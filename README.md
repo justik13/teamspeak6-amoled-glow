@@ -20,22 +20,38 @@ Designed specifically for OLED / QD-OLED monitors to eliminate chromatic fringin
 
 ---
 
-## 🚀 Installation (TeamSpeak 6)
+## 🤖 1-Prompt AI Agent Install (Установка через ИИ в один промпт)
 
-### Option 1: Download ZIP (Recommended)
-1. Download this repository as a `.zip` archive:
-   - Click the green **Code** button above → **Download ZIP**.
-2. Extract the archive.
-3. Rename the extracted folder to:
+Скопируйте и отправьте этот промпт вашему ИИ-ассистенту (Cursor, Antigravity, Claude, ChatGPT, Windsurf):
+
+```text
+Установи тему TeamSpeak 6: склонируй https://github.com/justik13/teamspeak6-amoled-glow в "$env:APPDATA\TeamSpeak\Default\extensions\amoled.dark.minimalistic" и сразу удали внутри папку .git (из-за лимита TeamSpeak 6 на размер файлов в 2 МБ).
+```
+
+### Или PowerShell-команда в одну строку / 1-line PowerShell command:
+
+```powershell
+powershell -Command "$p = \"$env:APPDATA\TeamSpeak\Default\extensions\amoled.dark.minimalistic\"; git clone --depth 1 https://github.com/justik13/teamspeak6-amoled-glow.git $p; Remove-Item \"$p\.git\" -Recurse -Force"
+```
+
+---
+
+## 🚀 Manual Installation (Ручная установка)
+
+### Option 1: Download ZIP (Рекомендуется)
+1. Скачайте архив репозитория:
+   - Нажмите зелёную кнопку **Code** вверху страницы → **Download ZIP**.
+2. Распакуйте архив.
+3. Переименуйте распакованную папку строго в:
    ```
    amoled.dark.minimalistic
    ```
-4. Move this folder into your TeamSpeak extensions directory:
+4. Переместите эту папку в директорию расширений TeamSpeak:
    - **Windows**:
      ```
      %APPDATA%\TeamSpeak\Default\extensions\
      ```
-     *(Full path: `C:\Users\<YourUser>\AppData\Roaming\TeamSpeak\Default\extensions\amoled.dark.minimalistic`)*
+     *(Полный путь: `C:\Users\<ВашПользователь>\AppData\Roaming\TeamSpeak\Default\extensions\amoled.dark.minimalistic`)*
    - **Linux**:
      ```
      ~/.config/TeamSpeak/Default/extensions/amoled.dark.minimalistic
@@ -46,12 +62,12 @@ Designed specifically for OLED / QD-OLED monitors to eliminate chromatic fringin
      ```
 
 > [!IMPORTANT]
-> **Do not use `git clone` directly into the `extensions` directory!**
-> TeamSpeak 6 enforces a strict **2 MB file limit** on all files in extension folders. Git's internal `.git/` pack files exceed 2 MB, which will cause TeamSpeak 6 to reject the extension (`Invalid extension`). If cloning via git, clone elsewhere and copy the files without the `.git` folder.
+> **Не клонируйте через `git clone` напрямую в папку `extensions`!**  
+> В движок TeamSpeak 6 встроен строгий лимит **2 МБ на размер любого файла** внутри папки расширения. Внутренние файлы `.git/` превышают этот лимит, и TeamSpeak 6 отклонит тему с ошибкой `Invalid extension`. При клонировании через git обязательно удаляйте папку `.git`.
 
-5. Open **TeamSpeak 6** → **Settings** (⚙️) → **Appearance** (*Внешний вид*).
-6. Enable **User Theme** (*Пользовательская тема*) and click the **Refresh** (🔄) button.
-7. Click on the **AMOLED Cyber Glow** tile and select **AMOLED Pink** or **AMOLED Dark**.
+5. Откройте **TeamSpeak 6** → **Настройки** (⚙️) → **Внешний вид** (*Appearance*).
+6. Включите **Пользовательская тема** (*User Theme*) и нажмите **Обновить** (🔄).
+7. Выберите плитку **AMOLED Cyber Glow** и включите **AMOLED Pink** или **AMOLED Dark**.
 
 ---
 
