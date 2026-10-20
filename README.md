@@ -1,34 +1,34 @@
-# AMOLED Cyber Glow for TeamSpeak 6
+# AMOLED Cyber Glow для TeamSpeak 6
 
-A pure-black AMOLED & QD-OLED calibrated theme for TeamSpeak 6 with Dark Glass, translucent surfaces, and subtle neon glow accents.
+Чисто чёрная тема для TeamSpeak 6 с калибровкой под **AMOLED и QD-OLED** дисплеи, матовым тёмным стеклом (*Dark Glassmorphism*) и деликатным неоновым свечением (*Cyber Glow*).
 
-Designed specifically for OLED / QD-OLED monitors to eliminate chromatic fringing, reduce eye strain, and deliver deep true blacks (`#000000`).
-
----
-
-## ✨ Features
-
-- **True AMOLED Black (`#000000`)** — True black base allows OLED pixels to turn completely off for infinite contrast and power efficiency.
-- **QD-OLED Calibrated Typography** — Softened off-white font tones (`#e2e5eb`) prevent subpixel color fringing and harsh glare on triangular QD-OLED matrices.
-- **Dark Glassmorphism** — Translucent cards, sidebars, and chat containers with frosted glass blur effects (`backdrop-filter: blur(...)`).
-- **Cyber Glow Effects** — Delicate neon glow on active and hovered voice channels, buttons, toggles, and speaking indicators.
-- **Glass Buttons** — Subtle glass pill buttons with glowing outlines instead of harsh solid blocks.
-- **Clean Server Tree** — Fixed channel hover bug where default TeamSpeak blue background was bleeding through.
-- **Two Curated Variants**:
-  - 🩷 **AMOLED Pink** — Neon pink cyber glow accent with glassmorphism.
-  - 🖤 **AMOLED Dark** — Pure titanium / white monochrome glow.
+Специально оптимизирована для экранов QD-OLED: устраняет цветную кайму вокруг букв (субпиксельный fringing), снижает нагрузку на глаза и сохраняет истинный глубокий чёрный цвет (`#000000`), отключая пиксели панели.
 
 ---
 
-## 🤖 1-Prompt AI Agent Install (Установка через ИИ в один промпт)
+## ✨ Особенности
 
-Скопируйте и отправьте этот промпт вашему ИИ-ассистенту (Cursor, Antigravity, Claude, ChatGPT, Windsurf):
+- **Истинный чёрный AMOLED (`#000000`)** — основной фон полностью отключает пиксели OLED для бесконечного контраста и энергоэффективности.
+- **Калиброванная типографика под QD-OLED** — смягчённые оттенки шрифтов (`#e2e5eb`) полностью убирают зелёно-розовые ореолы и слепящие блики на треугольной структуре субпикселей QD-OLED.
+- **Тёмное матовое стекло (*Glassmorphism*)** — полупрозрачные карточки, сайдбар и блоки чата с эффектом глубокого матового размытия (`backdrop-filter: blur(...)`).
+- **Неоновое свечение (*Cyber Glow*)** — аккуратный неоновый контур активных и наведённых войс-каналов, кнопок, тумблеров и индикатора говорящего в войсе.
+- **Стеклянные кнопки** — стильные полупрозрачные капсулы со светящейся каймой вместо сплошных заливок.
+- **Исправлено дерево серверов** — устранён баг оригинальной темы, из-за которого при наведении на войс-канал просвечивал старый синий фон.
+- **Два отобранных варианта**:
+  - 🩷 **AMOLED Pink** — неоновый розовый акцент со стеклом.
+  - 🖤 **AMOLED Dark** — благородный монохромный титановый / белый акцент.
+
+---
+
+## 🤖 Установка через ИИ-агента в один промпт
+
+Отправьте этот промпт вашему ИИ-ассистенту (Cursor, Antigravity, Claude, ChatGPT, Windsurf):
 
 ```text
 Установи тему TeamSpeak 6: склонируй https://github.com/justik13/teamspeak6-amoled-glow в "$env:APPDATA\TeamSpeak\Default\extensions\amoled.dark.minimalistic" и сразу удали внутри папку .git (из-за лимита TeamSpeak 6 на размер файлов в 2 МБ).
 ```
 
-### Или PowerShell-команда в одну строку / 1-line PowerShell command:
+### Либо готовая PowerShell-команда в одну строку:
 
 ```powershell
 powershell -Command "$p = \"$env:APPDATA\TeamSpeak\Default\extensions\amoled.dark.minimalistic\"; git clone --depth 1 https://github.com/justik13/teamspeak6-amoled-glow.git $p; Remove-Item \"$p\.git\" -Recurse -Force"
@@ -36,17 +36,17 @@ powershell -Command "$p = \"$env:APPDATA\TeamSpeak\Default\extensions\amoled.dar
 
 ---
 
-## 🚀 Manual Installation (Ручная установка)
+## 🚀 Ручная установка
 
-### Option 1: Download ZIP (Рекомендуется)
+### Вариант 1: Скачать ZIP-архив (Рекомендуется)
 1. Скачайте архив репозитория:
    - Нажмите зелёную кнопку **Code** вверху страницы → **Download ZIP**.
-2. Распакуйте архив.
-3. Переименуйте распакованную папку строго в:
+2. Распакуйте скачанный архив.
+3. Переименуйте распакованную папку в:
    ```
    amoled.dark.minimalistic
    ```
-4. Переместите эту папку в директорию расширений TeamSpeak:
+4. Переместите эту папку в каталог расширений TeamSpeak:
    - **Windows**:
      ```
      %APPDATA%\TeamSpeak\Default\extensions\
@@ -63,31 +63,31 @@ powershell -Command "$p = \"$env:APPDATA\TeamSpeak\Default\extensions\amoled.dar
 
 > [!IMPORTANT]
 > **Не клонируйте через `git clone` напрямую в папку `extensions`!**  
-> В движок TeamSpeak 6 встроен строгий лимит **2 МБ на размер любого файла** внутри папки расширения. Внутренние файлы `.git/` превышают этот лимит, и TeamSpeak 6 отклонит тему с ошибкой `Invalid extension`. При клонировании через git обязательно удаляйте папку `.git`.
+> В движке TeamSpeak 6 действует жёсткое ограничение: **любой файл размером более 2 МБ блокирует всё расширение**. Служебные файлы `.git/` превышают этот размер, и клиент откажется загружать тему с ошибкой `Invalid extension`. При клонировании через git всегда удаляйте скрытую папку `.git`.
 
-5. Откройте **TeamSpeak 6** → **Настройки** (⚙️) → **Внешний вид** (*Appearance*).
-6. Включите **Пользовательская тема** (*User Theme*) и нажмите **Обновить** (🔄).
-7. Выберите плитку **AMOLED Cyber Glow** и включите **AMOLED Pink** или **AMOLED Dark**.
+5. Откройте **TeamSpeak 6** → **Настройки** (значок шестерёнки) → **Внешний вид**.
+6. Включите тумблер **Пользовательская тема** и нажмите кнопку **Обновить** (круговая стрелка).
+7. Выберите карточку **AMOLED Cyber Glow** и переключитесь на **AMOLED Pink** или **AMOLED Dark**.
 
 ---
 
-## 📁 File Structure
+## 📁 Структура файлов
 
 ```
 amoled.dark.minimalistic/
-├── package.json          # Theme metadata and manifest
-├── TeamSpeak.css         # Core CSS overrides & glow variables
-├── Glassmorphism.css     # Translucent glass & blur effects
-├── Pink.css              # AMOLED Pink variant
-├── Pink.png              # Pink preview thumbnail
-├── Reaper.css            # AMOLED Dark (Monochrome / Titanium) variant
-├── Reaper.png            # Dark preview thumbnail
-├── Thumbnail.png         # Main extension icon
+├── package.json          # Манифест и метаданные темы для TeamSpeak 6
+├── TeamSpeak.css         # Основные CSS-стили, переменные и эффекты свечения
+├── Glassmorphism.css     # Стили матового стекла и прозрачности
+├── Pink.css              # Вариант AMOLED Pink
+├── Pink.png              # Превью розового варианта
+├── Reaper.css            # Вариант AMOLED Dark (титановый монохром)
+├── Reaper.png            # Превью тёмного варианта
+├── Thumbnail.png         # Главная иконка расширения в настройках
 └── README.md
 ```
 
 ---
 
-## 📄 License
+## 📄 Лицензия
 
 MIT License.
