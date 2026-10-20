@@ -1,0 +1,355 @@
+/*
+ *  AMOLED Dark — QD-OLED Cyber Glow & Glass Edition
+ *  Pure OLED Black (#000000) base, translucent frosted glass, elegant neon glow accents.
+ */
+
+:root,
+::after,
+::before {
+  /* ── Accent (overridden per variant) ── */
+  --custom-color-accent-light: #c74b6f;
+  --custom-color-accent-dark: #8e3050;
+  --accent-rgb: 199, 75, 111;
+  --accent-glow: rgba(var(--accent-rgb), 0.50);
+  --accent-glow-subtle: rgba(var(--accent-rgb), 0.22);
+  --accent-glow-soft: rgba(var(--accent-rgb), 0.12);
+
+  --custom-color-accent-light-t: rgba(var(--accent-rgb), 0.16);
+  --custom-color-accent-dark-t: rgba(var(--accent-rgb), 0.08);
+  --custom-color-slider1: var(--custom-color-accent-light);
+  --custom-color-slider2: rgba(255, 255, 255, 0.15);
+  --custom-color-secondary-text: #969ba8;
+  --custom-value-scrollbar-width: 5px;
+  --default-tsv-tint: var(--custom-color-accent-light);
+
+  /* ── AMOLED surface scale ── */
+  --custom-value-dark1: #000000;
+  --custom-value-dark2: #050608;
+  --custom-value-dark3: #0a0b10;
+  --custom-value-dark4: #0f1118;
+  --custom-value-dark5: #151822;
+  --custom-value-dark6: #1b1f2c;
+  --custom-value-dark7: #222738;
+}
+
+/* ── TeamSpeak variable mapping ── */
+
+:root,
+::after,
+::before {
+  --tsv-tint: var(--custom-color-accent-light) !important;
+  --tsv-tint2: var(--custom-color-accent-light) !important;
+  --tsv-separation-border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  --tsv-control-handle-active-bg: var(--custom-color-accent-light) !important;
+  --tsv-button-bg: rgba(255, 255, 255, 0.06) !important;
+  --tsv-button-hover-bg: rgba(255, 255, 255, 0.12) !important;
+  --ts-menu-action-color: var(--custom-color-accent-light) !important;
+
+  /* List & Voice channel highlights */
+  --tsv-item-selection: rgba(var(--accent-rgb), 0.10) !important;
+  --tsv-shaded-item-selection: rgba(255, 255, 255, 0.04) !important;
+
+  /* Chat */
+  --tsv-chat-remote-bg: rgba(16, 18, 24, 0.70) !important;
+  --tsv-chat-self-bg: rgba(var(--accent-rgb), 0.12) !important;
+  --tsv-chat-deleted-bg: rgba(16, 18, 24, 0.40) !important;
+  --tsv-chat-deleted-font-color: #ef4444 !important;
+  --tsv-chat-link-color: var(--custom-color-accent-light) !important;
+  --tsv-chat-remote-font-color: var(--tsv-chat-self-font-color) !important;
+  --tsv-chat-self-font-color: var(--tsv-chat-self-font-color) !important;
+  --ts-chat-system-highlight-text-color: var(--custom-color-accent-light) !important;
+  --tsv-highlight-color: var(--custom-color-accent-light) !important;
+
+  /* Drag & selection */
+  --ts-drag-border: var(--custom-color-accent-light) !important;
+  --ts-select-arrow-color: var(--custom-color-accent-light) !important;
+
+  /* Typography — Calibrated for QD-OLED */
+  --tsv-font-color: #e2e5eb !important;
+  --tsv-font-subtitle-color: #9499a6 !important;
+  --ts-third-font-color: #bec3cd !important;
+
+  /* Core surfaces — Pure black base */
+  --tsv-bg: var(--custom-value-dark1) !important;
+  --tsv-shaded-bg: var(--custom-value-dark1) !important;
+  --tsv-contrast-bg: var(--custom-value-dark2) !important;
+  --tsv-contrast-strong-bg: var(--custom-value-dark3) !important;
+
+  /* Context menu */
+  --ts-context-menu-background: rgba(12, 14, 20, 0.92) !important;
+  --tsv-context-menu-border: rgba(255, 255, 255, 0.10) !important;
+  --tsv-context-menu-item-selection: rgba(var(--accent-rgb), 0.15) !important;
+
+  /* Header */
+  --tsv-header-bg: rgba(5, 6, 8, 0.85) !important;
+  --ts-new-header-bg: rgba(5, 6, 8, 0.85) !important;
+
+  /* System messages */
+  --ts-chat-system-message-bg: transparent !important;
+  --tsv-unrelated-activity-header-bg: none !important;
+
+  /* Slider */
+  --tsv-slider-track-bg: rgba(255, 255, 255, 0.08) !important;
+
+  /* Client state — Voice indicator with glow */
+  --tsv-client-silent--gradient-start: var(--custom-value-dark1) !important;
+  --tsv-client-silent--gradient-stop: var(--custom-value-dark1) !important;
+  --tsv-client-talking--gradient-start: var(--custom-color-accent-light) !important;
+  --tsv-client-talking--gradient-stop: var(--custom-color-accent-dark) !important;
+
+  --ts-chat-system-message-color: rgba(255, 255, 255, 0.06) !important;
+
+  /* Scrollbar */
+  --tsv-scrollbar-bg: transparent !important;
+  --tsv-scrollbar-chunks--bg-1: rgba(255, 255, 255, 0.18) !important;
+  --tsv-scrollbar-chunks--bg-2: rgba(255, 255, 255, 0.10) !important;
+
+  /* Misc surfaces */
+  --strong-bg: rgba(16, 18, 24, 0.70) !important;
+  --tsv-button-filled-bg: var(--custom-color-accent-light) !important;
+  --tsv-button-filled-disabled-bg: rgba(255, 255, 255, 0.05) !important;
+  --tsv-chat-widget-bg: rgba(14, 16, 22, 0.75) !important;
+  --card-outline: rgba(255, 255, 255, 0.08) !important;
+  --tsv-deviant-bg: rgba(16, 18, 24, 0.70) !important;
+
+  /* Server tree */
+  --tsv-servertree-bg-gradient: var(--custom-value-dark1) !important;
+  --tsv-view-header-bg: rgba(5, 6, 8, 0.85) !important;
+  --tsv-view-header-gradient-start: rgba(5, 6, 8, 0.85) !important;
+  --tsv-server-header-gradient-start: rgba(5, 6, 8, 0.85) !important;
+  --tsv-server-header-gradient-end: rgba(5, 6, 8, 0.85) !important;
+
+  /* Cards */
+  --card-background: rgba(16, 18, 24, 0.70) !important;
+  --card-hover-background: rgba(24, 28, 38, 0.80) !important;
+
+  /* Hero button */
+  --hero-button-background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.35), rgba(var(--accent-rgb), 0.12)) !important;
+
+  /* Separators */
+  --presence-separator-presence: rgba(255, 255, 255, 0.07) !important;
+  --horizontal-separator-color: rgba(255, 255, 255, 0.07) !important;
+
+  /* Side bar */
+  --tsv-side-bar-bg-gradient-bottom: var(--custom-value-dark1) !important;
+  --ts-tree-badges-bg: rgba(255, 255, 255, 0.08) !important;
+
+  /* Highlight */
+  --highlight-outline-color: var(--accent-glow) !important;
+  --tsv-preview-bg: rgba(16, 18, 24, 0.70) !important;
+  --tsv-highlight-header-bg: rgba(16, 18, 24, 0.70) !important;
+}
+
+
+/* ═══════════════════════════════════════════
+   VOICE CHANNELS & SERVER TREE — Cyber Glow & Transparency
+   ═══════════════════════════════════════════ */
+
+.ts-server-tree-item-background-no-image,
+.ts-server-tree-item-background-image {
+  background: transparent !important;
+}
+
+/* Base highlight capsule */
+.tsv-item-highlight {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-radius: 6px !important;
+  transition: all 0.15s ease !important;
+}
+
+/* Hover on channel — Subtle neon glow outline */
+.ts-server-tree-item-leaf:hover .tsv-item-highlight,
+.ts-server-tree-item-leaf.channel:hover .tsv-item-highlight,
+.ts-server-tree-item-leaf.client:hover .tsv-item-highlight,
+.tsv-item:hover .tsv-item-highlight {
+  background: rgba(var(--accent-rgb), 0.09) !important;
+  box-shadow: 0 0 12px var(--accent-glow-subtle), inset 0 0 0 1px rgba(var(--accent-rgb), 0.45) !important;
+  display: block !important;
+}
+
+/* Active / Selected channel — Crisp glowing capsule */
+.ts-server-tree-item-leaf.channel.tsv-active .tsv-item-highlight,
+.ts-server-tree-item-leaf.channel.tsv-selected .tsv-item-highlight,
+.ts-server-tree-item-leaf.client.tsv-selected .tsv-item-highlight,
+.ts-server-tree-item-leaf.client.tsv-active .tsv-item-highlight {
+  background: rgba(var(--accent-rgb), 0.16) !important;
+  box-shadow: 0 0 16px var(--accent-glow), inset 0 0 0 1px var(--custom-color-accent-light) !important;
+  display: block !important;
+}
+
+/* Channel text glow on active */
+.ts-server-tree-item-leaf.channel.tsv-active .tsv-item-text,
+.ts-server-tree-item-leaf.channel.tsv-selected .tsv-item-text {
+  color: #ffffff !important;
+  text-shadow: 0 0 10px var(--accent-glow-subtle) !important;
+}
+
+
+/* ═══════════════════════════════════════════
+   BUTTONS — Glassmorphism with Neon Glow Edge
+   ═══════════════════════════════════════════ */
+
+/* Hero buttons ("Создать сообщество TeamSpeak", "Создать канал") */
+.tsv-button-hero,
+.ts-button.filled,
+.tsv-button-filled {
+  background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.32), rgba(var(--accent-rgb), 0.12)) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid var(--custom-color-accent-light) !important;
+  border-radius: 6px !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 14px var(--accent-glow-subtle), inset 0 0 8px rgba(var(--accent-rgb), 0.15) !important;
+  animation: none !important;
+  transition: all 0.18s ease !important;
+}
+
+.tsv-button-hero:hover,
+.ts-button.filled:hover,
+.tsv-button-filled:hover {
+  background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.48), rgba(var(--accent-rgb), 0.20)) !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 0 24px var(--accent-glow), inset 0 0 12px rgba(var(--accent-rgb), 0.25) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+.tsv-button-hero:active,
+.ts-button.filled:active,
+.tsv-button-filled:active {
+  transform: translateY(0);
+  box-shadow: 0 0 10px var(--accent-glow) !important;
+}
+
+/* Normal buttons with soft glass */
+.tsv-button:not(.tsv-button-hero) {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  border-radius: 6px !important;
+  transition: all 0.15s ease !important;
+}
+.tsv-button:not(.tsv-button-hero):hover {
+  background: rgba(var(--accent-rgb), 0.12) !important;
+  border-color: rgba(var(--accent-rgb), 0.45) !important;
+  box-shadow: 0 0 12px var(--accent-glow-subtle) !important;
+}
+
+
+/* ═══════════════════════════════════════════
+   SERVER MANAGEMENT / RIGHT PANEL — Clean & Glowing
+   ═══════════════════════════════════════════ */
+
+/* Management item links (Разрешения, Забаненные...) */
+/* Management links in right panel & left-aligned action buttons — clean list without clunky boxes */
+.ts-server-management-actions .tsv-button,
+.tsv-button.tsv-button-left-aligned,
+.tsv-button-left-aligned {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 6px !important;
+  padding: 6px 10px !important;
+  margin: 1px 0 !important;
+  color: #dce0e8 !important;
+  transition: all 0.15s ease !important;
+}
+
+.ts-server-management-actions .tsv-button:hover,
+.tsv-button.tsv-button-left-aligned:hover,
+.tsv-button-left-aligned:hover {
+  background: rgba(var(--accent-rgb), 0.14) !important;
+  border: none !important;
+  box-shadow: 0 0 12px var(--accent-glow-subtle) !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 8px var(--accent-glow) !important;
+}
+
+.tsv-action-list-item,
+.tsv-item-action {
+  transition: all 0.15s ease !important;
+}
+.tsv-action-list-item:hover,
+.tsv-item-action:hover {
+  color: #ffffff !important;
+  text-shadow: 0 0 8px var(--accent-glow) !important;
+}
+
+
+/* ═══════════════════════════════════════════
+   CHAT & CONTROLS — Glass & Glowing accents
+   ═══════════════════════════════════════════ */
+
+/* Chat input with neon glow on focus */
+.ts-chat-input-container {
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background-color: rgba(14, 16, 22, 0.75) !important;
+  backdrop-filter: blur(16px) !important;
+  border-radius: 8px !important;
+  transition: all 0.2s ease !important;
+}
+.ts-chat-input-container.focus,
+.ts-chat-input-container:hover {
+  border-color: var(--custom-color-accent-light) !important;
+  background-color: rgba(18, 21, 30, 0.90) !important;
+  box-shadow: 0 0 16px var(--accent-glow-subtle) !important;
+}
+
+/* Chat bubbles — Soft translucent glass */
+.ts-chat-room-event-detailed:not(.ts-currently-referencing, .apparently-people-like-huge-faces) .ts-chat-room-event-bubble {
+  background: rgba(18, 20, 27, 0.65) !important;
+  backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 8px !important;
+}
+.ts-chat-room-event-detailed:not(.ts-currently-referencing, .apparently-people-like-huge-faces) .ts-chat-room-event-bubble::before {
+  border-right: 6px solid rgba(18, 20, 27, 0.65) !important;
+}
+
+/* Own messages (self) with soft accent glow */
+.ts-chat-room-event-detailed.is-own-message .ts-chat-room-event-bubble {
+  background: rgba(var(--accent-rgb), 0.12) !important;
+  border: 1px solid rgba(var(--accent-rgb), 0.25) !important;
+}
+
+/* Toggles with neon glow */
+.ts-toggle.checked {
+  border: 1px solid var(--custom-color-accent-light) !important;
+  box-shadow: 0 0 10px var(--accent-glow-subtle) !important;
+}
+.ts-toggle-inner.checked:after {
+  background: var(--custom-color-accent-light) !important;
+  box-shadow: 0 0 8px var(--accent-glow) !important;
+}
+
+/* Sliders */
+.ts-slider-segment-value.ts-slider-segment-value-on {
+  background: var(--custom-color-accent-light) !important;
+  box-shadow: 0 0 8px var(--accent-glow) !important;
+}
+.ts-slider-segment-value.ts-slider-segment-value-off {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Scrollbar with subtle glow on hover */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar {
+  width: var(--custom-value-scrollbar-width) !important;
+  height: 0px !important;
+}
+::-webkit-scrollbar-thumb,
+.ts-chunk-scroll-track__thumb {
+  background-color: rgba(255, 255, 255, 0.16) !important;
+  border-radius: 4px;
+  transition: all 0.15s ease !important;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--custom-color-accent-light) !important;
+  box-shadow: 0 0 10px var(--accent-glow) !important;
+}
+
+/* Talking avatar in voice — Glowing pulse ring */
+.tsv-avatar.talking,
+.ts-server-tree-item-leaf.client.talking .tsv-avatar {
+  box-shadow: 0 0 12px var(--accent-glow) !important;
+}

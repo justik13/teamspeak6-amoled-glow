@@ -1,0 +1,17 @@
+@import url(TeamSpeak.css);
+@import url(Glassmorphism.css);
+
+/* AMOLED Dark — QD-OLED Soft Titanium / White Monochrome */
+:root, ::after, ::before {
+  --custom-color-accent-light: #d8dce6;
+  --custom-color-accent-dark: #8890a0;
+  --accent-rgb: 216, 220, 230;
+  --accent-glow: rgba(216, 220, 230, 0.45);
+  --accent-glow-subtle: rgba(216, 220, 230, 0.20);
+  --accent-glow-soft: rgba(216, 220, 230, 0.10);
+
+  --custom-color-accent-light-t: rgba(216, 220, 230, 0.14);
+  --custom-color-accent-dark-t: rgba(216, 220, 230, 0.07);
+  --custom-color-slider1: #c4c9d4;
+  --custom-color-slider2: rgba(255, 255, 255, 0.15);
+}
