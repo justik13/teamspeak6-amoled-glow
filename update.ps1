@@ -6,7 +6,9 @@
 # TeamSpeak 6 AMOLED Glow — Safe Universal Installer & Updater
 $prevErrorAction = $ErrorActionPreference
 $prevProgress = $ProgressPreference
+$prevOutputEncoding = [Console]::OutputEncoding
 $ErrorActionPreference = 'Stop'
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
 try {
     Write-Host "========================================" -ForegroundColor Magenta
@@ -18,6 +20,68 @@ try {
     $isAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
     if ($isAdmin) {
         Write-Host ">>> [Инфо] Скрипт выполняется с правами администратора." -ForegroundColor Gray
+    }
+
+    # Компиляция безопасного Win32-хелпера закрытия (если ещё не загружен)
+    if (-not ([System.Management.Automation.PSTypeName]'TSGracefulCloser').Type) {
+        Add-Type @"
+        using System;
+        using System.Text;
+        using System.Collections.Generic;
+        using System.Runtime.InteropServices;
+
+        public class TSGracefulCloser {
+            public delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
+
+            [DllImport("user32.dll")]
+            public static extern IntPtr OpenInputDesktop(uint dwFlags, bool fInherit, uint dwDesiredAccess);
+
+            [DllImport("user32.dll")]
+            public static extern bool EnumDesktopWindows(IntPtr hDesktop, EnumWindowsProc lpfn, IntPtr lParam);
+
+            [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+            public static extern int GetClassName(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
+
+            [DllImport("user32.dll", SetLastError = true)]
+            public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
+
+            [DllImport("user32.dll")]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            public static extern bool PostMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+
+            [DllImport("user32.dll")]
+            public static extern bool CloseDesktop(IntPtr hDesktop);
+
+            public const uint WM_CLOSE = 0x0010;
+
+            public static int SendGracefulClose(uint[] pids) {
+                int messagesSent = 0;
+                IntPtr hDesk = OpenInputDesktop(0, false, 0x0100);
+                if (hDesk == IntPtr.Zero) return 0;
+
+                var pidSet = new HashSet<uint>(pids);
+
+                EnumDesktopWindows(hDesk, (hWnd, lParam) => {
+                    uint pid;
+                    GetWindowThreadProcessId(hWnd, out pid);
+                    if (pidSet.Contains(pid)) {
+                        var sbClass = new StringBuilder(256);
+                        GetClassName(hWnd, sbClass, 256);
+                        string cls = sbClass.ToString();
+                        // Отправка WM_CLOSE нативным окнам трея и CEF интерфейса
+                        if (cls == "TS Client" || cls == "Chrome_WidgetWin_1") {
+                            PostMessage(hWnd, WM_CLOSE, IntPtr.Zero, IntPtr.Zero);
+                            messagesSent++;
+                        }
+                    }
+                    return true;
+                }, IntPtr.Zero);
+
+                CloseDesktop(hDesk);
+                return messagesSent;
+            }
+        }
+"@
     }
 
     # 1. Поиск пути к TeamSpeak
@@ -191,7 +255,7 @@ try {
         if (Test-Path -LiteralPath $bakDir)  { Remove-Item -LiteralPath $bakDir -Recurse -Force -ErrorAction SilentlyContinue }
     }
 
-    # 4. Применение темы и безопасный перезапуск
+    # 4. Применение темы и безопасное завершение
     Write-Host "`n>>> [4/4] Завершение..." -ForegroundColor Cyan
 
     $sessionProcs = Get-Process -Name "TeamSpeak*" -ErrorAction SilentlyContinue | Where-Object { $_.SessionId -eq $currentSessionId }
@@ -199,68 +263,82 @@ try {
     $shouldRestart = $false
 
     if ($isTsRunning) {
-        if ($NoRestart) {
-            $shouldRestart = $false
-            Write-Host ">>> TeamSpeak активен. Перезапуск пропущен по флагу -NoRestart." -ForegroundColor Gray
-        } elseif ($Force) {
-            $shouldRestart = $true
-        } else {
-            # Безопасный запрос перезапуска: по умолчанию НЕТ [y/N], чтобы не сломать игры и оверлеи
-            Write-Host "`n[!] TeamSpeak сейчас запущен." -ForegroundColor Yellow
-            Write-Host "    Тема уже успешно обновлена на диске." -ForegroundColor Green
-            Write-Host "    Если вы сейчас в игре, перезапуск может сбросить игровой оверлей!" -ForegroundColor Yellow
-            Write-Host -NoNewline ">>> Перезапустить TeamSpeak сейчас для применения? [y/N] (по умолчанию N — не перезапускать): " -ForegroundColor Cyan
+        Write-Host "`n========================================" -ForegroundColor Green
+        Write-Host "  Тема успешно обновлена на диске!" -ForegroundColor Green
+        Write-Host "========================================" -ForegroundColor Green
+        Write-Host "Файлы темы уже обновлены. Перезапуск клиента НЕ ОБЯЗАТЕЛЕН!" -ForegroundColor White
+        Write-Host "Чтобы применить тему прямо сейчас без выхода из войса и без призраков:" -ForegroundColor Cyan
+        Write-Host "  -> В TeamSpeak откройте Настройки (шестерёнка) -> Внешний вид" -ForegroundColor Cyan
+        Write-Host "  -> Нажмите круглую стрелочку 🔄 («Обновить темы»)" -ForegroundColor Cyan
+
+        if (-not $NoRestart) {
+            Write-Host "`nХотите штатно перезапустить TeamSpeak сейчас через скрипт?" -ForegroundColor Yellow
+            Write-Host "(Скрипт пошлёт штатный сигнал выхода в трей, чтобы корректно покинуть войс-канал)" -ForegroundColor Gray
+            Write-Host -NoNewline ">>> Перезапустить TeamSpeak? [y/N] (по умолчанию N — не закрывать): " -ForegroundColor Cyan
             
             $answer = Read-Host
             if ($answer -and ($answer.Trim().ToLower() -in @('y', 'yes', 'д', 'да'))) {
                 $shouldRestart = $true
-            } else {
-                $shouldRestart = $false
-                Write-Host ">>> Перезапуск отклонён. Клиент не закрывался, игра не прервана." -ForegroundColor Gray
             }
         }
     } elseif ($Force -or (-not $NoRestart)) {
-        # TeamSpeak не был запущен. Если найден exe, спросить о запуске
+        # TeamSpeak не запущен
         if ($tsExe -and (Test-Path -LiteralPath $tsExe)) {
             if ($Force) {
                 $shouldRestart = $true
             } else {
-                Write-Host -NoNewline "`n>>> Запустить TeamSpeak сейчас? [Y/n] (по умолчанию Y): " -ForegroundColor Cyan
+                Write-Host "`n========================================" -ForegroundColor Green
+                Write-Host "  Тема успешно установлена!" -ForegroundColor Green
+                Write-Host "========================================" -ForegroundColor Green
+                Write-Host -NoNewline ">>> Запустить TeamSpeak сейчас? [Y/n] (по умолчанию Y): " -ForegroundColor Cyan
                 $answer = Read-Host
                 if ([string]::IsNullOrWhiteSpace($answer) -or ($answer.Trim().ToLower() -in @('y', 'yes', 'д', 'да'))) {
                     $shouldRestart = $true
                 }
             }
+        } else {
+            Write-Host "`n========================================" -ForegroundColor Green
+            Write-Host "  Тема успешно установлена!" -ForegroundColor Green
+            Write-Host "========================================" -ForegroundColor Green
+            Write-Host "TeamSpeak сейчас не запущен. Тема активируется при следующем запуске." -ForegroundColor White
         }
     }
 
     if ($shouldRestart) {
         if ($isTsRunning) {
-            Write-Host ">>> Мягкое закрытие TeamSpeak..." -ForegroundColor Yellow
-            $tsProcs = Get-Process -Name "TeamSpeak*" -ErrorAction SilentlyContinue | Where-Object { $_.SessionId -eq $currentSessionId }
-            foreach ($p in $tsProcs) {
-                try { $p.CloseMainWindow() | Out-Null } catch {}
-            }
-
-            # Ожидание штатного закрытия окна до 3 секунд
-            $graceTimeout = [DateTime]::UtcNow.AddSeconds(3)
-            while ((Get-Process -Name "TeamSpeak*" -ErrorAction SilentlyContinue | Where-Object { $_.SessionId -eq $currentSessionId }) -and ([DateTime]::UtcNow -lt $graceTimeout)) {
-                Start-Sleep -Milliseconds 200
-            }
-
-            # Если процессы всё ещё активны — принудительное завершение
-            $remaining = Get-Process -Name "TeamSpeak*" -ErrorAction SilentlyContinue | Where-Object { $_.SessionId -eq $currentSessionId }
-            if ($remaining) {
-                $remaining | Stop-Process -Force -ErrorAction SilentlyContinue
-                $stopTimeout = [DateTime]::UtcNow.AddSeconds(5)
-                while ((Get-Process -Name "TeamSpeak*" -ErrorAction SilentlyContinue | Where-Object { $_.SessionId -eq $currentSessionId }) -and ([DateTime]::UtcNow -lt $stopTimeout)) {
-                    Start-Sleep -Milliseconds 200
+            Write-Host ">>> Отправка сигнала штатного выхода TeamSpeak (как через меню трея)..." -ForegroundColor Yellow
+            
+            $pids = [uint[]]($sessionProcs | Select-Object -ExpandProperty Id)
+            $sent = [TSGracefulCloser]::SendGracefulClose($pids)
+            if ($sent -eq 0) {
+                Write-Host ">>> Окно трея не обнаружено, пробуем штатное закрытие через Windows..." -ForegroundColor Gray
+                foreach ($p in $sessionProcs) {
+                    try { $p.CloseMainWindow() | Out-Null } catch {}
                 }
             }
-            Start-Sleep -Milliseconds 500
+
+            # Ожидание чистого выхода из войса и завершения процесса до 8 секунд
+            Write-Host ">>> Ожидание чистого отключения от сервера..." -ForegroundColor Gray
+            $graceTimeout = [DateTime]::UtcNow.AddSeconds(8)
+            while ((Get-Process -Name "TeamSpeak*" -ErrorAction SilentlyContinue | Where-Object { $_.SessionId -eq $currentSessionId }) -and ([DateTime]::UtcNow -lt $graceTimeout)) {
+                Start-Sleep -Milliseconds 250
+            }
+
+            $remaining = Get-Process -Name "TeamSpeak*" -ErrorAction SilentlyContinue | Where-Object { $_.SessionId -eq $currentSessionId }
+            if ($remaining) {
+                # КРИТИЧЕСКИ ВАЖНО: Мы НЕ вызываем Stop-Process -Force!
+                # Принудительное завершение обрывает сокет, и на сервере остаётся призрак-аккаунт.
+                Write-Host "`n[!] Внимание: TeamSpeak не завершился автоматически (активно голосовое соединение или открыт диалог)." -ForegroundColor Yellow
+                Write-Host "    Принудительное убийство процесса ОТМЕНЕНО во избежание зависания «призрака» в войсе!" -ForegroundColor Yellow
+                Write-Host "    Пожалуйста, закройте TeamSpeak вручную через трей (ПКМ -> Выход) или примените тему через Настройки -> Внешний вид -> 🔄." -ForegroundColor Cyan
+                return
+            }
+
+            # Небольшая пауза для освобождения сетевых портов и аудиоустройств
+            Start-Sleep -Seconds 1
         }
 
-        # Запуск TeamSpeak
+        # Штатный запуск TeamSpeak
         if ($tsExe -and (Test-Path -LiteralPath $tsExe)) {
             Write-Host ">>> Запуск окна TeamSpeak..." -ForegroundColor Cyan
             $workDir = Split-Path -Path $tsExe -Parent
@@ -277,21 +355,6 @@ try {
                 Start-Process -FilePath $tsExe -WorkingDirectory $workDir
             }
             Write-Host ">>> Окно TeamSpeak успешно открыто с обновлённой темой!" -ForegroundColor Green
-        } else {
-            Write-Host ">>> TeamSpeak не найден для авто-запуска. Пожалуйста, откройте его вручную." -ForegroundColor Yellow
-        }
-    } else {
-        Write-Host "`n========================================" -ForegroundColor Green
-        Write-Host "  Тема успешно обновлена на диске!" -ForegroundColor Green
-        Write-Host "========================================" -ForegroundColor Green
-        if ($isTsRunning) {
-            Write-Host "Клиент TeamSpeak не перезапускался, ваши игры и звонки не прерваны." -ForegroundColor White
-            Write-Host "Чтобы применить обновлённую тему прямо сейчас:" -ForegroundColor White
-            Write-Host "  1. В TeamSpeak откройте Настройки (шестерёнка) -> Внешний вид" -ForegroundColor Cyan
-            Write-Host "  2. Нажмите круглую стрелочку 🔄 («Обновить темы»)" -ForegroundColor Cyan
-            Write-Host "  Или просто перезапустите клиент, когда закончите игру." -ForegroundColor Gray
-        } else {
-            Write-Host "TeamSpeak сейчас не запущен. Тема активируется при следующем запуске." -ForegroundColor White
         }
     }
 }
@@ -301,4 +364,5 @@ catch {
 finally {
     $ErrorActionPreference = $prevErrorAction
     $ProgressPreference = $prevProgress
+    [Console]::OutputEncoding = $prevOutputEncoding
 }
