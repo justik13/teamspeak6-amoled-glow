@@ -140,7 +140,7 @@ body {
   --tsv-unrelated-activity-header-bg: none !important;
 
   /* Slider */
-  --tsv-slider-track-bg: rgba(255, 255, 255, 0.08) !important;
+  --tsv-slider-track-bg: rgba(255, 255, 255, 0.16) !important;
 
   /* Client state — Voice indicator with glow */
   --tsv-client-silent--gradient-start: var(--custom-value-dark1) !important;
@@ -545,11 +545,39 @@ svg.tsv-icon-client-detailed-talking {
   padding: 0 !important;
 }
 
-/* Inbound volume slider */
+/* Inbound volume slider in stream overlay */
 .screen-overlay__bottom .screen-overlay__hero-actions__action-volume-wrapper {
+  display: inline-flex !important;
+  align-items: center !important;
   flex: 0 1 auto !important;
-  max-width: 80px !important;
-  min-width: 0 !important;
+  min-width: 130px !important;
+  max-width: 220px !important;
+  height: 24px !important;
+  padding: 0 4px !important;
+  box-sizing: border-box !important;
+}
+
+.screen-overlay__bottom .screen-overlay__hero-actions__action-volume-wrapper .screen-overlay__hero-actions__action {
+  flex-shrink: 0 !important;
+  margin-right: 4px !important;
+}
+
+.screen-overlay__bottom .screen-overlay__hero-actions__action-volume {
+  display: flex !important;
+  align-items: center !important;
+  flex: 1 1 auto !important;
+  min-width: 70px !important;
+  width: 100% !important;
+  opacity: 1 !important;
+}
+
+.screen-overlay__bottom .screen-overlay__hero-actions__action-volume-slider {
+  animation: none !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  min-width: 60px !important;
+  max-width: 100% !important;
+  pointer-events: all !important;
 }
 
 /* Stream viewers counter — pinned to the left edge of toolbar */
@@ -823,6 +851,21 @@ svg.tsv-icon-client-detailed-talking {
   height: 20px !important;
 }
 
+.screen-overlay__bottom.is-fullscreen .screen-overlay__hero-actions__action-volume-wrapper {
+  min-width: 160px !important;
+  max-width: 260px !important;
+  height: 32px !important;
+  padding: 0 6px !important;
+}
+
+.screen-overlay__bottom.is-fullscreen .screen-overlay__hero-actions__action-volume {
+  min-width: 90px !important;
+}
+
+.screen-overlay__bottom.is-fullscreen .screen-overlay__hero-actions__action-volume-slider {
+  min-width: 80px !important;
+}
+
 /* Normal buttons with soft glass (exempting stream toolbar and status bar) */
 /* Normal buttons with soft glass (exempting stream toolbar, hero, destructive and disabled buttons) */
 .tsv-button:not(.tsv-button-hero, .compensate-border-button, .screen-overlay_bottom__viewers, .tsv-is-destructive, [is-destructive], [class*="destructive"], :disabled, [disabled], .is-disabled) {
@@ -1053,13 +1096,79 @@ a:not(.tsv-button, .tsv-tool-button, .tsv-item, .tsv-tab-button):hover,
   text-shadow: 0 0 8px var(--accent-glow-subtle) !important;
 }
 
-/* Sliders */
-.ts-slider-segment-value.ts-slider-segment-value-on {
-  background: var(--custom-color-accent-light) !important;
-  box-shadow: 0 0 8px var(--accent-glow) !important;
+/* -------------------------------------------
+   ALL SLIDERS & VOLUME CONTROLS
+   ------------------------------------------- */
+
+.ts-slider {
+  min-width: 60px !important;
 }
+
+/* Call Volume in voice calls */
+.call-volume {
+  display: flex !important;
+  align-items: center !important;
+  min-width: 140px !important;
+  width: 100% !important;
+}
+
+.call-volume .ts-slider {
+  min-width: 100px !important;
+  width: 100% !important;
+}
+
+/* Slider Track / Rail (High-contrast visible dark-glass rail) */
+.ts-slider .ts-slider-track-fill,
+.ts-slider .ts-slider-segment-placeholder {
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-radius: 4px !important;
+}
+
+.ts-slider.ts-slider-compact .ts-slider-track {
+  background: rgba(255, 255, 255, 0.14) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 4px !important;
+}
+
+/* Unfilled segments */
 .ts-slider-segment-value.ts-slider-segment-value-off {
   background: rgba(255, 255, 255, 0.08) !important;
+  border-color: transparent !important;
+}
+
+/* Active Fill (Neon Accent Glow) */
+.ts-slider-segment-value.ts-slider-segment-value-on,
+.ts-slider-track-progress .ts-slider-segment-value-on {
+  background: var(--custom-color-accent-light) !important;
+  box-shadow: 0 0 10px var(--accent-glow) !important;
+  border-color: transparent !important;
+  opacity: 1 !important;
+}
+
+/* Slider Thumb / Knob (Visible, glowing neon indicator) */
+.ts-slider .ts-slider-knob {
+  display: block !important;
+  z-index: 10 !important;
+}
+
+.ts-slider-knob-svg,
+.ts-slider-knob svg {
+  --tsv-icon-tint: var(--custom-color-accent-light) !important;
+  --tsv-icon-base: var(--custom-color-accent-light) !important;
+  color: var(--custom-color-accent-light) !important;
+  fill: var(--custom-color-accent-light) !important;
+  filter: drop-shadow(0 0 6px var(--accent-glow)) !important;
+}
+
+/* Value bubble tooltip on drag */
+.ts-slider-knob-bubble,
+.ts-slider-knob-bubble.escaped {
+  background-color: #0c0f13 !important;
+  color: #ffffff !important;
+  border: 1px solid var(--custom-color-accent-light) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 0 8px var(--accent-glow) !important;
+  font-weight: 600 !important;
+  border-radius: 4px !important;
 }
 
 
