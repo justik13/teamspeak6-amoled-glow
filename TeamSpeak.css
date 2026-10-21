@@ -22,6 +22,10 @@
   --custom-value-scrollbar-width: 5px;
   --default-tsv-tint: var(--custom-color-accent-light);
 
+  /* ── Typography Stack & Smoothing ── */
+  --tsv-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", "Inter", Roboto, Helvetica, Arial, sans-serif !important;
+  --tsv-font-family-monospace: "JetBrains Mono", "Cascadia Code", "Fira Code", Consolas, monospace !important;
+
   /* ── OLED-Calibrated Status Colors (Zero Fringing) ── */
   --tsv-online-color: #10b981 !important;
   --tsv-away-color: #f59e0b !important;
@@ -42,8 +46,15 @@
   --custom-value-dark7: #222738;
 }
 
-/* ── TeamSpeak variable mapping ── */
+/* ── Typography & Antialiasing ── */
+html,
+body {
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeLegibility !important;
+}
 
+/* ── TeamSpeak variable mapping ── */
 :root,
 ::after,
 ::before {
@@ -69,6 +80,29 @@
   --tsv-chat-self-font-color: var(--tsv-chat-self-font-color) !important;
   --ts-chat-system-highlight-text-color: var(--custom-color-accent-light) !important;
   --tsv-highlight-color: var(--custom-color-accent-light) !important;
+
+  /* Markdown & Code Blocks */
+  --_md-code-bg: rgba(10, 12, 17, 0.90) !important;
+  --_md-code-bg-alt: rgba(14, 16, 23, 0.94) !important;
+  --_md-code-fg: #e2e5eb !important;
+  --_md-code-border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  --_md-code-focused-border: var(--custom-color-accent-light) !important;
+  --_md-code-lineno: #64748b !important;
+  --_md-code-badge-bg: rgba(var(--accent-rgb), 0.18) !important;
+  --_md-blockquote-border: var(--custom-color-accent-light) !important;
+  --_md-blockquote-fg: #bec3cd !important;
+  --_md-callout-note-bg: rgba(var(--accent-rgb), 0.10) !important;
+  --_md-callout-note-color: var(--custom-color-accent-light) !important;
+  --_md-callout-tip-bg: rgba(16, 185, 129, 0.10) !important;
+  --_md-callout-tip-color: #10b981 !important;
+  --_md-callout-warning-bg: rgba(245, 158, 11, 0.12) !important;
+  --_md-callout-warning-color: #f59e0b !important;
+  --_md-callout-caution-bg: rgba(244, 63, 94, 0.12) !important;
+  --_md-callout-caution-color: #f43f5e !important;
+  --_md-table-border: rgba(255, 255, 255, 0.08) !important;
+  --_md-table-header-bg: rgba(14, 16, 23, 0.85) !important;
+  --_md-table-hover-bg: rgba(255, 255, 255, 0.04) !important;
+  --tsv-spoiler-background-color: rgba(20, 24, 34, 0.85) !important;
 
   /* Drag & selection */
   --ts-drag-border: var(--custom-color-accent-light) !important;
@@ -104,8 +138,15 @@
   /* Client state — Voice indicator with glow */
   --tsv-client-silent--gradient-start: var(--custom-value-dark1) !important;
   --tsv-client-silent--gradient-stop: var(--custom-value-dark1) !important;
-  --tsv-client-talking--gradient-start: var(--custom-color-accent-light) !important;
-  --tsv-client-talking--gradient-stop: var(--custom-color-accent-dark) !important;
+  --tsv-client-talking--gradient-start: #10b981 !important;
+  --tsv-client-talking--gradient-stop: #059669 !important;
+  --tsv-client-talking--outline: #10b981 !important;
+  --tsv-client-commander-talking--gradient-start: #f59e0b !important;
+  --tsv-client-commander-talking--gradient-stop: #d97706 !important;
+  --tsv-client-commander-talking--outline: #f59e0b !important;
+  --tsv-client-whisper-talking--gradient-start: #ec4899 !important;
+  --tsv-client-whisper-talking--gradient-stop: #be185d !important;
+  --tsv-client-whisper-talking--outline: #ec4899 !important;
 
   --ts-chat-system-message-color: rgba(255, 255, 255, 0.06) !important;
 
@@ -202,6 +243,53 @@
 
 
 /* ═══════════════════════════════════════════
+   ANIMATED CYBER GLOW VOICE ACTIVITY
+   ═══════════════════════════════════════════ */
+
+@keyframes ts-voice-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.65), 0 0 8px rgba(16, 185, 129, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(16, 185, 129, 0), 0 0 16px rgba(16, 185, 129, 0.65);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0), 0 0 8px rgba(16, 185, 129, 0.3);
+  }
+}
+
+@keyframes ts-voice-glow {
+  0% {
+    filter: drop-shadow(0 0 3px rgba(16, 185, 129, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.85));
+  }
+  100% {
+    filter: drop-shadow(0 0 3px rgba(16, 185, 129, 0.5));
+  }
+}
+
+/* Pulsing voice indicator ring */
+.tsv-new-talking-indicator.talking:before,
+.tsv-avatar.talking,
+.ts-server-tree-item-leaf.client.talking .tsv-avatar,
+.call-participant-cell.is-talking .tsv-avatar {
+  border-radius: 50% !important;
+  animation: ts-voice-pulse 1.35s infinite cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 0 12px var(--tsv-online-color) !important;
+}
+
+/* Talking icon glow in server tree */
+.ts-server-tree-client-talking,
+.ts-server-tree-icon.client.talking,
+svg.tsv-icon-client-talking,
+svg.tsv-icon-client-detailed-talking {
+  animation: ts-voice-glow 1.35s infinite ease-in-out !important;
+}
+
+
+/* ═══════════════════════════════════════════
    BUTTONS — Apple Bevel & Emil Spring Physics
    ═══════════════════════════════════════════ */
 
@@ -294,7 +382,7 @@
 
 
 /* ═══════════════════════════════════════════
-   AUDIO CONTROLS (Top Bar: Mic, Sound, AFK)
+   AUDIO CONTROLS & STATUS AURA (Top Bar & Tree)
    ═══════════════════════════════════════════ */
 
 .ts-audio-controls .tsv-tool-button,
@@ -316,9 +404,45 @@
 /* Ruby glow on mute */
 .hardware-muted,
 .local-mute-action.hardware-muted,
-.tsv-tool-button.is-muted {
+.tsv-tool-button.is-muted,
+.tsv-icon-audio-input-muted,
+.tsv-icon-audio-output-muted,
+.client.input-muted svg {
   --tsv-icon-base: var(--tsv-error-color) !important;
-  filter: drop-shadow(0 0 6px rgba(244, 63, 94, 0.50)) !important;
+  filter: drop-shadow(0 0 5px rgba(244, 63, 94, 0.55)) !important;
+}
+
+/* Amber glow on away / AFK */
+.client.is-away svg,
+.tsv-icon-away {
+  filter: drop-shadow(0 0 5px rgba(245, 158, 11, 0.50)) !important;
+}
+
+
+/* ═══════════════════════════════════════════
+   INPUT FIELDS & SEARCH BARS — Glass & Focus Rings
+   ═══════════════════════════════════════════ */
+
+.tsv-search-bar,
+.tsv-form-input,
+.tsv-suggestions-menu-filter-input,
+input[type="text"],
+input[type="search"] {
+  background: rgba(12, 14, 20, 0.75) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #e2e5eb !important;
+  border-radius: 6px !important;
+  transition: border-color 140ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 140ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.tsv-search-bar:focus-within,
+.tsv-form-input:focus,
+.tsv-suggestions-menu-filter-input:focus,
+input[type="text"]:focus,
+input[type="search"]:focus {
+  border-color: var(--custom-color-accent-light) !important;
+  box-shadow: 0 0 12px var(--accent-glow-subtle), inset 0 0 0 1px var(--custom-color-accent-light) !important;
+  outline: none !important;
 }
 
 
@@ -385,45 +509,50 @@
   background: rgba(255, 255, 255, 0.08) !important;
 }
 
-/* Scrollbar with subtle glow on hover */
-::-webkit-scrollbar-track {
-  background: transparent;
-}
+
+/* ═══════════════════════════════════════════
+   ULTRA-SLEEK GLASS SCROLLBARS
+   ═══════════════════════════════════════════ */
+
 ::-webkit-scrollbar {
   width: var(--custom-value-scrollbar-width) !important;
-  height: 0px !important;
+  height: var(--custom-value-scrollbar-width) !important;
+}
+::-webkit-scrollbar-track {
+  background: transparent !important;
 }
 ::-webkit-scrollbar-thumb,
 .ts-chunk-scroll-track__thumb {
-  background-color: rgba(255, 255, 255, 0.16) !important;
-  border-radius: 4px;
-  transition: background-color 120ms ease-out, box-shadow 120ms ease-out !important;
+  background-color: rgba(255, 255, 255, 0.14) !important;
+  border-radius: 9999px !important;
+  transition: background-color 140ms ease-out, box-shadow 140ms ease-out !important;
 }
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--custom-color-accent-light) !important;
   box-shadow: 0 0 10px var(--accent-glow) !important;
 }
 
-/* Talking avatar in voice — Glowing pulse ring */
-.tsv-avatar.talking,
-.ts-server-tree-item-leaf.client.talking .tsv-avatar {
-  box-shadow: 0 0 12px var(--tsv-online-color) !important;
+
+/* ═══════════════════════════════════════════
+   POPOVERS & CONTEXT MENUS — Spring Physics
+   ═══════════════════════════════════════════ */
+
+@keyframes ts-spring-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(-4px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
-/* Pop-in micro-interaction on tooltips and popovers */
 .tsv-context-menu,
 .ts-context-menu,
-.ts-tooltip {
-  animation: tsv-pop-in 140ms cubic-bezier(0.16, 1, 0.3, 1) !important;
-  transform-origin: top center;
-}
-@keyframes tsv-pop-in {
-  from {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+.ts-false-context-menu,
+.ts-tooltip,
+.menu {
+  animation: ts-spring-pop 140ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transform-origin: top left !important;
 }

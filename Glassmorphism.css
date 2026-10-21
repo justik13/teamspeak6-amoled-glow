@@ -44,7 +44,7 @@
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   border-radius: 8px !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.40) !important;
-  transition: all 0.2s ease !important;
+  transition: border-color 140ms ease, box-shadow 140ms ease, transform 140ms ease !important;
 }
 .tsv-card:hover,
 .tsv-preview:hover {
@@ -74,7 +74,7 @@
   border-right-color: rgba(18, 20, 27, 0.65) !important;
 }
 
-/* ── Context menus & Popups ── */
+/* ── Context menus & Popups — Apple Deep Glass ── */
 .tsv-context-menu,
 .ts-context-menu,
 .menu,
@@ -83,8 +83,17 @@
   backdrop-filter: blur(24px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
   border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.70), 0 0 20px var(--accent-glow-subtle) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75), 0 0 20px var(--accent-glow-subtle), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
   border-radius: 8px !important;
+}
+
+/* ── Modals & Overlays — Frosted Backdrop ── */
+.tsv-dialog-container,
+.ts-modal-backdrop,
+.tsv-modal-backdrop {
+  backdrop-filter: blur(20px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(140%) !important;
+  background: rgba(0, 0, 0, 0.70) !important;
 }
 
 /* ── Variable overrides ── */
