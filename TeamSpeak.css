@@ -6,6 +6,7 @@
 :root,
 ::after,
 ::before {
+  color-scheme: dark !important;
   /* ── Accent (overridden per variant) ── */
   --custom-color-accent-light: #f43f8e;
   --custom-color-accent-dark: #be185d;
@@ -46,12 +47,38 @@
   --custom-value-dark7: #222738;
 }
 
-/* ── Typography & Antialiasing ── */
+/* ── Core Dark Engine & Accessibility (UI/UX Pro Max & WCAG 2.2) ── */
+html {
+  color-scheme: dark !important;
+  scroll-behavior: smooth !important;
+}
+
 html,
 body {
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale !important;
   text-rendering: optimizeLegibility !important;
+}
+
+::selection {
+  background: rgba(var(--accent-rgb), 0.35) !important;
+  color: #ffffff !important;
+}
+
+/* WCAG 2.2 AA/AAA Visible Keyboard Focus Ring */
+:focus-visible {
+  outline: 2px solid var(--custom-color-accent-light) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 8px var(--accent-glow-soft) !important;
+}
+
+:focus:not(:focus-visible) {
+  outline: none !important;
+}
+
+input:focus-visible,
+textarea:focus-visible {
+  outline: none !important;
 }
 
 /* ── TeamSpeak variable mapping ── */
