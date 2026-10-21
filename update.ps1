@@ -1,4 +1,4 @@
-﻿param(
+param(
     [switch]$NoRestart,
     [switch]$Force
 )
@@ -24,64 +24,64 @@ try {
 
     # Компиляция безопасного Win32-хелпера закрытия (если ещё не загружен)
     if (-not ([System.Management.Automation.PSTypeName]'TSGracefulCloser').Type) {
-        Add-Type @"
-        using System;
-        using System.Text;
-        using System.Collections.Generic;
-        using System.Runtime.InteropServices;
+        $closerSource = @'
+using System;
+using System.Text;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
-        public class TSGracefulCloser {
-            public delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
+public class TSGracefulCloser {
+    public delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
 
-            [DllImport("user32.dll")]
-            public static extern IntPtr OpenInputDesktop(uint dwFlags, bool fInherit, uint dwDesiredAccess);
+    [DllImport("user32.dll")]
+    public static extern IntPtr OpenInputDesktop(uint dwFlags, bool fInherit, uint dwDesiredAccess);
 
-            [DllImport("user32.dll")]
-            public static extern bool EnumDesktopWindows(IntPtr hDesktop, EnumWindowsProc lpfn, IntPtr lParam);
+    [DllImport("user32.dll")]
+    public static extern bool EnumDesktopWindows(IntPtr hDesktop, EnumWindowsProc lpfn, IntPtr lParam);
 
-            [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-            public static extern int GetClassName(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
+    [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+    public static extern int GetClassName(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
 
-            [DllImport("user32.dll", SetLastError = true)]
-            public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
+    [DllImport("user32.dll", SetLastError = true)]
+    public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
 
-            [DllImport("user32.dll")]
-            [return: MarshalAs(UnmanagedType.Bool)]
-            public static extern bool PostMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+    [DllImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static extern bool PostMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
 
-            [DllImport("user32.dll")]
-            public static extern bool CloseDesktop(IntPtr hDesktop);
+    [DllImport("user32.dll")]
+    public static extern bool CloseDesktop(IntPtr hDesktop);
 
-            public const uint WM_CLOSE = 0x0010;
+    public const uint WM_CLOSE = 0x0010;
 
-            public static int SendGracefulClose(uint[] pids) {
-                int messagesSent = 0;
-                IntPtr hDesk = OpenInputDesktop(0, false, 0x0100);
-                if (hDesk == IntPtr.Zero) return 0;
+    public static int SendGracefulClose(uint[] pids) {
+        int messagesSent = 0;
+        IntPtr hDesk = OpenInputDesktop(0, false, 0x0100);
+        if (hDesk == IntPtr.Zero) return 0;
 
-                var pidSet = new HashSet<uint>(pids);
+        var pidSet = new HashSet<uint>(pids);
 
-                EnumDesktopWindows(hDesk, (hWnd, lParam) => {
-                    uint pid;
-                    GetWindowThreadProcessId(hWnd, out pid);
-                    if (pidSet.Contains(pid)) {
-                        var sbClass = new StringBuilder(256);
-                        GetClassName(hWnd, sbClass, 256);
-                        string cls = sbClass.ToString();
-                        // Отправка WM_CLOSE нативным окнам трея и CEF интерфейса
-                        if (cls == "TS Client" || cls == "Chrome_WidgetWin_1") {
-                            PostMessage(hWnd, WM_CLOSE, IntPtr.Zero, IntPtr.Zero);
-                            messagesSent++;
-                        }
-                    }
-                    return true;
-                }, IntPtr.Zero);
-
-                CloseDesktop(hDesk);
-                return messagesSent;
+        EnumDesktopWindows(hDesk, (hWnd, lParam) => {
+            uint pid;
+            GetWindowThreadProcessId(hWnd, out pid);
+            if (pidSet.Contains(pid)) {
+                var sbClass = new StringBuilder(256);
+                GetClassName(hWnd, sbClass, 256);
+                string cls = sbClass.ToString();
+                if (cls == "TS Client" || cls == "Chrome_WidgetWin_1") {
+                    PostMessage(hWnd, WM_CLOSE, IntPtr.Zero, IntPtr.Zero);
+                    messagesSent++;
+                }
             }
-        }
-"@
+            return true;
+        }, IntPtr.Zero);
+
+        CloseDesktop(hDesk);
+        return messagesSent;
+    }
+}
+'@
+        Add-Type -TypeDefinition $closerSource
     }
 
     # 1. Поиск пути к TeamSpeak
