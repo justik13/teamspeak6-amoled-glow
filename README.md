@@ -26,23 +26,16 @@
 
 ## Быстрая установка и обновление (Windows)
 
-Скрипт автоматически скачивает тему с GitHub и устанавливает её в TeamSpeak. TeamSpeak не закрывается, звонки и голосовые каналы не прерываются.
-
-Откройте окно **PowerShell** и выполните:
+Откройте **PowerShell** и выполните:
 
 ```powershell
 irm https://raw.githubusercontent.com/justik13/teamspeak6-amoled-glow/main/update.ps1 | iex
 ```
 
-Либо нажмите <kbd>Win</kbd> + <kbd>R</kbd> и вставьте:
-```text
-powershell -c "irm https://raw.githubusercontent.com/justik13/teamspeak6-amoled-glow/main/update.ps1 | iex"
-```
-
 > [!TIP]
 > **Как применить тему:**
 > - Если TeamSpeak уже открыт: зайдите в **Настройки** (шестерёнка) → **Внешний вид** и нажмите круглую стрелочку 🔄 («Обновить темы»).
-> - Если вы скачали или клонировали репозиторий: просто дважды кликните по `update.bat`.
+> - Если вы скачали архив вручную: просто запустите `update.bat`.
 
 ## Установка через ИИ-агента
 
