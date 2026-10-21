@@ -297,12 +297,20 @@ svg.tsv-icon-client-detailed-talking {
 .tsv-button-hero,
 .ts-button.filled,
 .tsv-button-filled,
+.ts-server-status-bar .tsv-tool-button,
 .ts-server-status-constructive-buttons .tsv-tool-button,
+.ts-server-status-constructive-buttons .tsv-bar-item,
 .tsv-tool-button.filled,
-.tsv-tool-button.tinted.filled {
-  background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.22), rgba(var(--accent-rgb), 0.08)) !important;
+.tsv-tool-button.tinted.filled,
+.tsv-tool-button.tinted,
+.tsv-bar-item.tinted.filled,
+.tsv-item-action.tinted.filled,
+.tsv-tool-button[class*="filled"],
+.tsv-bar .tsv-tool-button.tinted,
+.tsv-bar .tsv-tool-button.filled {
+  background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.20), rgba(var(--accent-rgb), 0.08)) !important;
   backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(var(--accent-rgb), 0.45) !important;
+  border: 1px solid rgba(var(--accent-rgb), 0.40) !important;
   border-radius: 6px !important;
   color: #e2e5eb !important;
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12), 0 0 10px var(--accent-glow-soft) !important;
@@ -310,13 +318,27 @@ svg.tsv-icon-client-detailed-talking {
   transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1), background 120ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 120ms cubic-bezier(0.16, 1, 0.3, 1), border-color 120ms cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
+.ts-server-status-bar .tsv-tool-button:before,
+.ts-server-status-bar .tsv-tool-button:after,
+.ts-server-status-constructive-buttons .tsv-tool-button:before,
+.ts-server-status-constructive-buttons .tsv-tool-button:after,
+.tsv-tool-button.tinted.filled:before,
+.tsv-tool-button.tinted.filled:after,
+.tsv-tool-button.filled:before,
+.tsv-tool-button.filled:after {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
 .tsv-button-hero:hover,
 .ts-button.filled:hover,
 .tsv-button-filled:hover,
+.ts-server-status-bar .tsv-tool-button:hover,
 .ts-server-status-constructive-buttons .tsv-tool-button:hover,
 .tsv-tool-button.filled:hover,
 .tsv-tool-button.tinted.filled:hover {
-  background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.35), rgba(var(--accent-rgb), 0.16)) !important;
+  background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.32), rgba(var(--accent-rgb), 0.15)) !important;
   border-color: var(--custom-color-accent-light) !important;
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.20), 0 0 16px var(--accent-glow-subtle) !important;
   color: #ffffff !important;
@@ -327,6 +349,7 @@ svg.tsv-icon-client-detailed-talking {
 .tsv-button-hero:active,
 .ts-button.filled:active,
 .tsv-button-filled:active,
+.ts-server-status-bar .tsv-tool-button:active,
 .ts-server-status-constructive-buttons .tsv-tool-button:active,
 .tsv-tool-button.filled:active,
 .tsv-tool-button.tinted.filled:active {
@@ -336,12 +359,14 @@ svg.tsv-icon-client-detailed-talking {
 }
 
 /* Ensure text and icon inside constructive tool-buttons match the sleek palette */
+.ts-server-status-bar .tsv-tool-button .tsv-item-text,
 .ts-server-status-constructive-buttons .tsv-tool-button .tsv-item-text,
 .tsv-tool-button.filled .tsv-item-text,
 .tsv-tool-button.tinted .tsv-item-text {
   color: #e2e5eb !important;
 }
 
+.ts-server-status-bar .tsv-tool-button:hover .tsv-item-text,
 .ts-server-status-constructive-buttons .tsv-tool-button:hover .tsv-item-text,
 .tsv-tool-button.filled:hover .tsv-item-text,
 .tsv-tool-button.tinted:hover .tsv-item-text {
@@ -349,11 +374,81 @@ svg.tsv-icon-client-detailed-talking {
   text-shadow: 0 0 8px var(--accent-glow-subtle) !important;
 }
 
+.ts-server-status-bar .tsv-tool-button svg,
 .ts-server-status-constructive-buttons .tsv-tool-button svg,
 .tsv-tool-button.filled svg,
 .tsv-tool-button.tinted svg {
   --tsv-icon-base: var(--custom-color-accent-light) !important;
   --tsv-icon-tint: var(--custom-color-accent-light) !important;
+  --tsv-icon-tint2: var(--custom-color-accent-light) !important;
+}
+
+/* ═══════════════════════════════════════════
+   SCREEN SHARE OVERLAY & STREAM CONTROLS
+   Ensure all controls (Pause, Settings, Popout, Stop Stream) fit and never get clipped
+   ═══════════════════════════════════════════ */
+
+.screen-overlay,
+.screen-overlay__bottom,
+.always-visible-overlay {
+  overflow: visible !important;
+}
+
+.screen-overlay__bottom {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 2px !important;
+  padding: 2px 4px !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Allow middle spacer to shrink so trailing buttons never get pushed off */
+.screen-overlay__bottom .compensate-border.tsv-flex-grow {
+  min-width: 2px !important;
+  flex-shrink: 1 !important;
+}
+
+/* Stream toolbar buttons — compact icon size */
+.screen-overlay__bottom .tsv-button,
+.screen-overlay__bottom .compensate-border-button {
+  padding: 0 3px !important;
+  min-width: 24px !important;
+  height: 24px !important;
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 4px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  flex-shrink: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.screen-overlay__bottom .tsv-button:hover,
+.screen-overlay__bottom .compensate-border-button:hover {
+  background: rgba(255, 255, 255, 0.18) !important;
+}
+
+/* Prominent Stop Stream / Leave button */
+.screen-overlay__bottom .tsv-button.tsv-is-destructive,
+.screen-overlay__bottom .compensate-border-button[is-destructive],
+.screen-overlay__bottom .tsv-button:last-child {
+  background: rgba(244, 63, 94, 0.28) !important;
+  border: 1px solid rgba(244, 63, 94, 0.60) !important;
+  border-radius: 4px !important;
+  color: #ffffff !important;
+  flex-shrink: 0 !important;
+  filter: drop-shadow(0 0 6px rgba(244, 63, 94, 0.45)) !important;
+}
+
+.screen-overlay__bottom .tsv-button.tsv-is-destructive:hover,
+.screen-overlay__bottom .compensate-border-button[is-destructive]:hover,
+.screen-overlay__bottom .tsv-button:last-child:hover {
+  background: rgba(244, 63, 94, 0.50) !important;
+  border-color: #fb7185 !important;
 }
 
 /* Normal buttons with soft glass */
