@@ -61,11 +61,22 @@ finally {
     Remove-Item -Path $tempZip, $tempDir -Recurse -Force -ErrorAction SilentlyContinue
 }
 
-# 4. Запуск TeamSpeak (открытие окна программы)
+# 4. Запуск TeamSpeak (гарантированное открытие окна на рабочем столе)
 Write-Host ">>> [4/4] Открытие окна TeamSpeak..." -ForegroundColor Cyan
 if ($tsExe -and (Test-Path $tsExe)) {
     $workDir = Split-Path -Path $tsExe -Parent
-    Start-Process -FilePath $tsExe -WorkingDirectory $workDir
+    try {
+        $res = Invoke-CimMethod -ClassName Win32_Process -MethodName Create -Arguments @{
+            CommandLine = "`"$tsExe`""
+            CurrentDirectory = "$workDir"
+        }
+        if ($res.ReturnValue -ne 0) {
+            Start-Process -FilePath $tsExe -WorkingDirectory $workDir
+        }
+    }
+    catch {
+        Start-Process -FilePath $tsExe -WorkingDirectory $workDir
+    }
     Write-Host ">>> Окно TeamSpeak успешно открыто с обновлённой темой!" -ForegroundColor Green
 } else {
     Write-Host ">>> TeamSpeak не найден по стандартным путям. Пожалуйста, запустите его вручную." -ForegroundColor Yellow
