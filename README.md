@@ -28,10 +28,10 @@
 Установи тему TeamSpeak 6: склонируй https://github.com/justik13/teamspeak6-amoled-glow в "$env:APPDATA\TeamSpeak\Default\extensions\amoled.dark.minimalistic" и сразу удали внутри папку .git (из-за лимита TeamSpeak 6 на размер файлов в 2 МБ).
 ```
 
-### Либо готовая PowerShell-команда в одну строку:
+### Команда для PowerShell в одну строку:
 
 ```powershell
-powershell -Command "$p = \"$env:APPDATA\TeamSpeak\Default\extensions\amoled.dark.minimalistic\"; git clone --depth 1 https://github.com/justik13/teamspeak6-amoled-glow.git $p; Remove-Item \"$p\.git\" -Recurse -Force"
+$p = "$env:APPDATA\TeamSpeak\Default\extensions\amoled.dark.minimalistic"; git clone --depth 1 https://github.com/justik13/teamspeak6-amoled-glow.git $p; Remove-Item "$p\.git" -Recurse -Force
 ```
 
 ---
