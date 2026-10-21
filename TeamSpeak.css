@@ -340,10 +340,6 @@ svg.tsv-icon-client-detailed-talking {
    BUTTONS — Apple Bevel & Emil Spring Physics
    ═══════════════════════════════════════════ */
 
-/* ═══════════════════════════════════════════
-   BUTTONS — Apple Bevel & Emil Spring Physics
-   ═══════════════════════════════════════════ */
-
 /* Hero buttons ("Создать сообщество TeamSpeak" in sidebar & modal primary buttons) */
 .tsv-button-hero,
 .ts-button.filled,
@@ -866,7 +862,6 @@ svg.tsv-icon-client-detailed-talking {
   min-width: 80px !important;
 }
 
-/* Normal buttons with soft glass (exempting stream toolbar and status bar) */
 /* Normal buttons with soft glass (exempting stream toolbar, hero, destructive and disabled buttons) */
 .tsv-button:not(.tsv-button-hero, .compensate-border-button, .screen-overlay_bottom__viewers, .tsv-is-destructive, [is-destructive], [class*="destructive"], :disabled, [disabled], .is-disabled) {
   background: rgba(255, 255, 255, 0.06) !important;

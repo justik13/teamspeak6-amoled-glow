@@ -81,7 +81,7 @@ $tempDir = Join-Path $env:TEMP 'ts6-amoled-glow-tmp'
 try {
     $srcDir = $null
     $candidate = if ($env:LOCAL_SRC) { $env:LOCAL_SRC } elseif ($PSScriptRoot) { $PSScriptRoot } else { $null }
-    if ($candidate -and (Test-Path -LiteralPath (Join-Path $candidate 'package.json')) -and (Test-Path -LiteralPath (Join-Path $candidate 'styles'))) {
+    if ($candidate -and (Test-Path -LiteralPath (Join-Path $candidate 'package.json')) -and (Test-Path -LiteralPath (Join-Path $candidate 'TeamSpeak.css'))) {
         Write-Host '>>> Установка из локальной папки...' -ForegroundColor Yellow
         $srcDir = $candidate
     } else {
