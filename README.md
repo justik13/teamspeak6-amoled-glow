@@ -24,13 +24,18 @@
   - AMOLED Purple: электрический фиолетовый.
   - AMOLED Amber: тёплый янтарно-оранжевый.
 
-## Установка через PowerShell
+## Установка и обновление в 1 действие (Windows)
 
-Работает в Windows без установки Git. Откройте PowerShell, вставьте команду и нажмите Enter:
+Команда автоматически закроет TeamSpeak (если запущен), скачает последнюю версию темы с GitHub, установит её в каталог расширений и перезапустит клиент с обновлённой темой:
+
+Вставьте команду в окно **PowerShell** (или нажмите <kbd>Win</kbd> + <kbd>R</kbd>) и нажмите Enter:
 
 ```powershell
-$dest = "$env:APPDATA\TeamSpeak\Default\extensions\amoled.dark.minimalistic"; $tDir = Join-Path $env:TEMP ([Guid]::NewGuid().ToString()); New-Item -ItemType Directory -Path $tDir -Force | Out-Null; $zip = Join-Path $tDir "theme.zip"; Invoke-WebRequest -Uri "https://github.com/justik13/teamspeak6-amoled-glow/archive/refs/heads/main.zip" -OutFile $zip; Expand-Archive -Path $zip -DestinationPath $tDir -Force; $src = Get-ChildItem -Path $tDir -Directory | Where-Object { $_.Name -like "teamspeak6-amoled-glow*" } | Select-Object -First 1; if ($src -and (Test-Path (Join-Path $src.FullName "package.json"))) { New-Item -ItemType Directory -Path "$env:APPDATA\TeamSpeak\Default\extensions" -Force | Out-Null; if (Test-Path $dest) { Remove-Item $dest -Recurse -Force }; Move-Item $src.FullName $dest; Write-Host "Тема успешно установлена!" -ForegroundColor Green } else { Write-Error "Ошибка распаковки архива темы" }; Remove-Item $tDir -Recurse -Force -ErrorAction SilentlyContinue
+irm https://raw.githubusercontent.com/justik13/teamspeak6-amoled-glow/main/update.ps1 | iex
 ```
+
+> [!TIP]
+> Если вы скачали или клонировали репозиторий, можно просто дважды кликнуть по файлу `update.bat`.
 
 ## Установка через ИИ-агента
 
@@ -39,12 +44,6 @@ $dest = "$env:APPDATA\TeamSpeak\Default\extensions\amoled.dark.minimalistic"; $t
 ```text
 Установи тему TeamSpeak 6: скачай zip-архив https://github.com/justik13/teamspeak6-amoled-glow/archive/refs/heads/main.zip, распакуй содержимое в "$env:APPDATA\TeamSpeak\Default\extensions\amoled.dark.minimalistic" (папка .git не должна присутствовать из-за лимита TeamSpeak 6 в 2 МБ).
 ```
-
-## Обновление
-
-1. Запустите ту же команду PowerShell. Скрипт безопасно скачает свежую версию во временный каталог, проверит целостность и обновит файлы темы.
-2. В TeamSpeak 6 откройте **Настройки** → **Внешний вид** и нажмите кнопку со стрелкой по кругу (Обновить).
-3. При ручной установке скачайте новый ZIP и распакуйте с заменой файлов.
 
 ## Ручная установка
 
