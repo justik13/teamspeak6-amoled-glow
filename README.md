@@ -26,27 +26,23 @@
 
 ## Быстрая установка и обновление (Windows)
 
-Скрипт скачивает архив с GitHub, валидирует файлы и безопасно обновляет тему на диске с поддержкой резервной копии и отката при ошибке. Если TeamSpeak запущен, скрипт предложит перезапустить клиент (`[y/N]`, по умолчанию **нет**), гарантируя, что ваши игры и оверлеи не будут прерваны.
+Скрипт автоматически скачивает тему с GitHub и устанавливает её в TeamSpeak. TeamSpeak не закрывается, звонки и голосовые каналы не прерываются.
 
-Откройте окно **PowerShell** и выполните команду:
+Откройте окно **PowerShell** и выполните:
 
 ```powershell
-& ([scriptblock]::Create(((irm https://raw.githubusercontent.com/justik13/teamspeak6-amoled-glow/main/update.ps1).TrimStart([char]65279))))
+irm https://raw.githubusercontent.com/justik13/teamspeak6-amoled-glow/main/update.ps1 | iex
 ```
 
-Для запуска через окно **«Выполнить»** (<kbd>Win</kbd> + <kbd>R</kbd>):
+Либо нажмите <kbd>Win</kbd> + <kbd>R</kbd> и вставьте:
 ```text
-powershell -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create(((irm https://raw.githubusercontent.com/justik13/teamspeak6-amoled-glow/main/update.ps1).TrimStart([char]65279))))"
-```
-
-Для тихого обновления во время игры без всплывающих диалогов и без перезапуска:
-```powershell
-& ([scriptblock]::Create(((irm https://raw.githubusercontent.com/justik13/teamspeak6-amoled-glow/main/update.ps1).TrimStart([char]65279)))) -NoRestart
+powershell -c "irm https://raw.githubusercontent.com/justik13/teamspeak6-amoled-glow/main/update.ps1 | iex"
 ```
 
 > [!TIP]
-> Если вы скачали или клонировали репозиторий, можно просто дважды кликнуть по файлу `update.bat`.
-> Чтобы сразу применить тему в работающем TeamSpeak без перезапуска: **Настройки** (шестерёнка) → **Внешний вид** → нажмите круглую стрелочку **«Обновить темы»**.
+> **Как применить тему:**
+> - Если TeamSpeak уже открыт: зайдите в **Настройки** (шестерёнка) → **Внешний вид** и нажмите круглую стрелочку 🔄 («Обновить темы»).
+> - Если вы скачали или клонировали репозиторий: просто дважды кликните по `update.bat`.
 
 ## Установка через ИИ-агента
 

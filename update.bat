@@ -2,7 +2,10 @@
 chcp 65001 >nul
 title TeamSpeak 6 AMOLED Glow Updater
 setlocal
-set "SCRIPT_DIR=%~dp0"
-powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "$p = Join-Path $env:SCRIPT_DIR 'update.ps1'; if (Test-Path -LiteralPath $p) { $c = Get-Content -LiteralPath $p -Raw -Encoding utf8 } else { $c = (irm https://raw.githubusercontent.com/justik13/teamspeak6-amoled-glow/main/update.ps1) }; & ([scriptblock]::Create(($c.TrimStart([char]65279)))) %*"
-endlocal
+cd /d "%~dp0"
+if exist "%~dp0package.json" (
+    powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "& { $env:LOCAL_SRC='%~dp0'; [IO.File]::ReadAllText('%~dp0update.ps1', [Text.Encoding]::UTF8) | iex }"
+) else (
+    powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/justik13/teamspeak6-amoled-glow/main/update.ps1 | iex"
+)
 pause
