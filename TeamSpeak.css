@@ -444,70 +444,237 @@ svg.tsv-icon-client-detailed-talking {
 
 /* ═══════════════════════════════════════════
    SCREEN SHARE OVERLAY & STREAM CONTROLS
-   Ensure all controls (Pause, Settings, Popout, Stop Stream) fit and never get clipped
+   Ultra-compact toolbar ensuring Stop Stream button is ALWAYS visible on any card width
    ═══════════════════════════════════════════ */
 
+.video-stream {
+  overflow: visible !important;
+}
+
+.video-stream > .video,
+.video-stream video {
+  border-radius: var(--tsv-video-border-radius) !important;
+}
+
 .screen-overlay,
-.screen-overlay__bottom,
 .always-visible-overlay {
   overflow: visible !important;
 }
 
 .screen-overlay__bottom {
+  position: absolute !important;
+  left: 2px !important;
+  right: 2px !important;
+  bottom: 2px !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  max-height: 24px !important;
+  padding: 1px 2px !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
+  justify-content: flex-end !important;
   gap: 2px !important;
-  padding: 2px 4px !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
+  backdrop-filter: blur(8px) !important;
+  background: rgba(8, 10, 15, 0.85) !important;
+  border: 1px solid rgba(255, 255, 255, 0.10) !important;
+  border-radius: 5px !important;
+  overflow: visible !important;
+  z-index: 25 !important;
 }
 
-/* Allow middle spacer to shrink so trailing buttons never get pushed off */
+/* Middle spacer collapses on tight cards, expands on wider views */
 .screen-overlay__bottom .compensate-border.tsv-flex-grow {
-  min-width: 2px !important;
-  flex-shrink: 1 !important;
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-/* Stream toolbar buttons — compact icon size */
-.screen-overlay__bottom .tsv-button,
-.screen-overlay__bottom .compensate-border-button {
-  padding: 0 3px !important;
-  min-width: 24px !important;
-  height: 24px !important;
-  margin: 0 !important;
-  border: none !important;
-  box-shadow: none !important;
-  border-radius: 4px !important;
+/* Inbound volume slider */
+.screen-overlay__bottom .screen-overlay__hero-actions__action-volume-wrapper {
+  flex: 0 1 auto !important;
+  max-width: 70px !important;
+  min-width: 0 !important;
+}
+
+/* Stream viewers counter — pinned to the left edge of toolbar */
+.screen-overlay__bottom .screen-overlay_bottom__viewers {
+  order: -2 !important;
+  padding: 0 4px !important;
+  margin: 0 auto 0 0 !important;
+  height: 18px !important;
+  min-height: 18px !important;
+  min-width: 20px !important;
+  max-width: 34px !important;
+  border-radius: 3px !important;
   background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
   flex-shrink: 0 !important;
+  font-size: 10px !important;
+  line-height: 1 !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
 }
 
-.screen-overlay__bottom .tsv-button:hover,
-.screen-overlay__bottom .compensate-border-button:hover {
-  background: rgba(255, 255, 255, 0.18) !important;
+.screen-overlay__bottom .screen-overlay_bottom__viewers svg {
+  --tsv-icon-size: 10px !important;
+  width: 10px !important;
+  height: 10px !important;
+  margin-right: 2px !important;
 }
 
-/* Prominent Stop Stream / Leave button */
+.screen-overlay__bottom .screen-overlay_bottom__viewers .tsv-button-content {
+  font-size: 10px !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Stream toolbar buttons (Pause, Settings, Fullscreen, Popout) — compact icon size */
+.screen-overlay__bottom .tsv-button:not(.screen-overlay_bottom__viewers, .tsv-is-destructive),
+.screen-overlay__bottom .compensate-border-button:not(.screen-overlay_bottom__viewers, [is-destructive]) {
+  width: 18px !important;
+  min-width: 15px !important;
+  max-width: 18px !important;
+  height: 18px !important;
+  min-height: 18px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 3px !important;
+  background: rgba(255, 255, 255, 0.07) !important;
+  box-shadow: none !important;
+  flex-shrink: 1 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  transition: background 120ms ease, border-color 120ms ease !important;
+}
+
+.screen-overlay__bottom .tsv-button:not(.screen-overlay_bottom__viewers, .tsv-is-destructive) svg,
+.screen-overlay__bottom .compensate-border-button:not(.screen-overlay_bottom__viewers, [is-destructive]) svg {
+  --tsv-icon-size: 11px !important;
+  width: 11px !important;
+  height: 11px !important;
+}
+
+.screen-overlay__bottom .tsv-button:not(.screen-overlay_bottom__viewers, .tsv-is-destructive):hover,
+.screen-overlay__bottom .compensate-border-button:not(.screen-overlay_bottom__viewers, [is-destructive]):hover {
+  background: rgba(255, 255, 255, 0.18) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Prominent Stop Stream / Leave button — ALWAYS visible, never shrinks, pinned far-right */
 .screen-overlay__bottom .tsv-button.tsv-is-destructive,
 .screen-overlay__bottom .compensate-border-button[is-destructive],
+.screen-overlay__bottom .tsv-button[class*="destructive"],
 .screen-overlay__bottom .tsv-button:last-child {
-  background: rgba(244, 63, 94, 0.28) !important;
-  border: 1px solid rgba(244, 63, 94, 0.60) !important;
-  border-radius: 4px !important;
+  order: 100 !important;
+  width: 22px !important;
+  min-width: 20px !important;
+  max-width: 24px !important;
+  height: 18px !important;
+  min-height: 18px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 3px !important;
+  background: rgba(244, 63, 94, 0.35) !important;
+  border: 1px solid rgba(244, 63, 94, 0.75) !important;
   color: #ffffff !important;
+  box-shadow: 0 0 8px rgba(244, 63, 94, 0.50) !important;
   flex-shrink: 0 !important;
-  filter: drop-shadow(0 0 6px rgba(244, 63, 94, 0.45)) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  z-index: 30 !important;
+  transition: background 120ms ease, border-color 120ms ease, box-shadow 120ms ease, transform 120ms ease !important;
+}
+
+.screen-overlay__bottom .tsv-button.tsv-is-destructive svg,
+.screen-overlay__bottom .compensate-border-button[is-destructive] svg,
+.screen-overlay__bottom .tsv-button[class*="destructive"] svg,
+.screen-overlay__bottom .tsv-button:last-child svg {
+  --tsv-icon-base: #ffffff !important;
+  --tsv-icon-tint: #ffffff !important;
+  --tsv-icon-tint2: #ffffff !important;
+  --tsv-icon-size: 11px !important;
+  width: 11px !important;
+  height: 11px !important;
 }
 
 .screen-overlay__bottom .tsv-button.tsv-is-destructive:hover,
 .screen-overlay__bottom .compensate-border-button[is-destructive]:hover,
+.screen-overlay__bottom .tsv-button[class*="destructive"]:hover,
 .screen-overlay__bottom .tsv-button:last-child:hover {
-  background: rgba(244, 63, 94, 0.50) !important;
+  background: rgba(244, 63, 94, 0.65) !important;
   border-color: #fb7185 !important;
+  box-shadow: 0 0 12px rgba(244, 63, 94, 0.85) !important;
+  transform: scale(1.08) !important;
+}
+
+/* Fullscreen mode scaling — comfortably larger icons when watching stream in full size */
+.screen-overlay__bottom.is-fullscreen {
+  height: 38px !important;
+  min-height: 38px !important;
+  max-height: 42px !important;
+  padding: 4px 10px !important;
+  gap: 6px !important;
+  left: var(--bar-inset) !important;
+  right: var(--bar-inset) !important;
+  bottom: var(--bar-inset) !important;
+  border-radius: 8px !important;
+}
+
+.screen-overlay__bottom.is-fullscreen .screen-overlay_bottom__viewers {
+  height: 26px !important;
+  min-height: 26px !important;
+  min-width: 38px !important;
+  max-width: unset !important;
+  font-size: 12px !important;
+  padding: 0 8px !important;
+  border-radius: 5px !important;
+}
+
+.screen-overlay__bottom.is-fullscreen .screen-overlay_bottom__viewers svg {
+  --tsv-icon-size: 13px !important;
+  width: 13px !important;
+  height: 13px !important;
+}
+
+.screen-overlay__bottom.is-fullscreen .tsv-button:not(.screen-overlay_bottom__viewers),
+.screen-overlay__bottom.is-fullscreen .compensate-border-button:not(.screen-overlay_bottom__viewers) {
+  width: 28px !important;
+  min-width: 28px !important;
+  max-width: 28px !important;
+  height: 26px !important;
+  min-height: 26px !important;
+  border-radius: 5px !important;
+}
+
+.screen-overlay__bottom.is-fullscreen .tsv-button:not(.screen-overlay_bottom__viewers) svg,
+.screen-overlay__bottom.is-fullscreen .compensate-border-button:not(.screen-overlay_bottom__viewers) svg {
+  --tsv-icon-size: 15px !important;
+  width: 15px !important;
+  height: 15px !important;
+}
+
+.screen-overlay__bottom.is-fullscreen .tsv-button.tsv-is-destructive,
+.screen-overlay__bottom.is-fullscreen .compensate-border-button[is-destructive],
+.screen-overlay__bottom.is-fullscreen .tsv-button[class*="destructive"],
+.screen-overlay__bottom.is-fullscreen .tsv-button:last-child {
+  width: 32px !important;
+  min-width: 32px !important;
+  max-width: 34px !important;
+  height: 26px !important;
+  min-height: 26px !important;
+  border-radius: 5px !important;
 }
 
 /* Normal buttons with soft glass (exempting stream toolbar and status bar) */
