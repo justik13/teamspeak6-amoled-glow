@@ -31,17 +31,17 @@
 Откройте окно **PowerShell** и выполните команду:
 
 ```powershell
-& ([scriptblock]::Create((irm https://raw.githubusercontent.com/justik13/teamspeak6-amoled-glow/main/update.ps1)))
+& ([scriptblock]::Create(((irm https://raw.githubusercontent.com/justik13/teamspeak6-amoled-glow/main/update.ps1).TrimStart([char]65279))))
 ```
 
 Для запуска через окно **«Выполнить»** (<kbd>Win</kbd> + <kbd>R</kbd>):
 ```text
-powershell -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm https://raw.githubusercontent.com/justik13/teamspeak6-amoled-glow/main/update.ps1)))"
+powershell -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create(((irm https://raw.githubusercontent.com/justik13/teamspeak6-amoled-glow/main/update.ps1).TrimStart([char]65279))))"
 ```
 
 Для тихого обновления во время игры без всплывающих диалогов и без перезапуска:
 ```powershell
-& ([scriptblock]::Create((irm https://raw.githubusercontent.com/justik13/teamspeak6-amoled-glow/main/update.ps1))) -NoRestart
+& ([scriptblock]::Create(((irm https://raw.githubusercontent.com/justik13/teamspeak6-amoled-glow/main/update.ps1).TrimStart([char]65279)))) -NoRestart
 ```
 
 > [!TIP]
