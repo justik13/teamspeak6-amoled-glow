@@ -39,6 +39,9 @@ public class TSGracefulCloser {
     [DllImport("user32.dll")]
     public static extern bool EnumDesktopWindows(IntPtr hDesktop, EnumWindowsProc lpfn, IntPtr lParam);
 
+    [DllImport("user32.dll")]
+    public static extern bool EnumWindows(EnumWindowsProc lpfn, IntPtr lParam);
+
     [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
     public static extern int GetClassName(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
 
@@ -54,17 +57,14 @@ public class TSGracefulCloser {
 
     public const uint WM_CLOSE = 0x0010;
 
-    public static int SendGracefulClose(uint[] pids) {
+    public static int SendGracefulClose(int[] pids) {
         int messagesSent = 0;
-        IntPtr hDesk = OpenInputDesktop(0, false, 0x0100);
-        if (hDesk == IntPtr.Zero) return 0;
+        var pidSet = new HashSet<int>(pids);
 
-        var pidSet = new HashSet<uint>(pids);
-
-        EnumDesktopWindows(hDesk, (hWnd, lParam) => {
+        EnumWindowsProc callback = (hWnd, lParam) => {
             uint pid;
             GetWindowThreadProcessId(hWnd, out pid);
-            if (pidSet.Contains(pid)) {
+            if (pidSet.Contains((int)pid)) {
                 var sbClass = new StringBuilder(256);
                 GetClassName(hWnd, sbClass, 256);
                 string cls = sbClass.ToString();
@@ -74,9 +74,16 @@ public class TSGracefulCloser {
                 }
             }
             return true;
-        }, IntPtr.Zero);
+        };
 
-        CloseDesktop(hDesk);
+        IntPtr hDesk = OpenInputDesktop(0, false, 0x0100);
+        if (hDesk != IntPtr.Zero) {
+            EnumDesktopWindows(hDesk, callback, IntPtr.Zero);
+            CloseDesktop(hDesk);
+        } else {
+            EnumWindows(callback, IntPtr.Zero);
+        }
+
         return messagesSent;
     }
 }
@@ -308,7 +315,7 @@ public class TSGracefulCloser {
         if ($isTsRunning) {
             Write-Host ">>> Отправка сигнала штатного выхода TeamSpeak (как через меню трея)..." -ForegroundColor Yellow
             
-            $pids = [uint[]]($sessionProcs | Select-Object -ExpandProperty Id)
+            $pids = [int[]]($sessionProcs | Select-Object -ExpandProperty Id)
             $sent = [TSGracefulCloser]::SendGracefulClose($pids)
             if ($sent -eq 0) {
                 Write-Host ">>> Окно трея не обнаружено, пробуем штатное закрытие через Windows..." -ForegroundColor Gray
