@@ -1,26 +1,36 @@
 /*
- *  AMOLED Dark — QD-OLED Cyber Glow & Glass Edition
- *  Pure OLED Black (#000000) base, translucent frosted glass, elegant neon glow accents.
+ *  AMOLED Dark — QD-OLED Cyber Glow & Apple Glass Edition
+ *  Pure OLED Black (#000000), Apple materials depth, tactile Emil-style physics, neon glow accents.
  */
 
 :root,
 ::after,
 ::before {
   /* ── Accent (overridden per variant) ── */
-  --custom-color-accent-light: #c74b6f;
-  --custom-color-accent-dark: #8e3050;
-  --accent-rgb: 199, 75, 111;
+  --custom-color-accent-light: #f43f8e;
+  --custom-color-accent-dark: #be185d;
+  --accent-rgb: 244, 63, 142;
   --accent-glow: rgba(var(--accent-rgb), 0.50);
   --accent-glow-subtle: rgba(var(--accent-rgb), 0.22);
-  --accent-glow-soft: rgba(var(--accent-rgb), 0.12);
+  --accent-glow-soft: rgba(var(--accent-rgb), 0.10);
 
   --custom-color-accent-light-t: rgba(var(--accent-rgb), 0.16);
   --custom-color-accent-dark-t: rgba(var(--accent-rgb), 0.08);
   --custom-color-slider1: var(--custom-color-accent-light);
-  --custom-color-slider2: rgba(255, 255, 255, 0.15);
+  --custom-color-slider2: rgba(255, 255, 255, 0.14);
   --custom-color-secondary-text: #969ba8;
   --custom-value-scrollbar-width: 5px;
   --default-tsv-tint: var(--custom-color-accent-light);
+
+  /* ── OLED-Calibrated Status Colors (Zero Fringing) ── */
+  --tsv-online-color: #10b981 !important;
+  --tsv-away-color: #f59e0b !important;
+  --tsv-error-color: #f43f5e !important;
+  --tsv-error-light-color: #fb7185 !important;
+  --tsv-destructive-color: #f43f5e !important;
+  --tsv-accept-color: #10b981 !important;
+  --tsv-accept-light-color: #34d399 !important;
+  --tsv-accept-dark-color: #059669 !important;
 
   /* ── AMOLED surface scale ── */
   --custom-value-dark1: #000000;
@@ -53,7 +63,7 @@
   --tsv-chat-remote-bg: rgba(16, 18, 24, 0.70) !important;
   --tsv-chat-self-bg: rgba(var(--accent-rgb), 0.12) !important;
   --tsv-chat-deleted-bg: rgba(16, 18, 24, 0.40) !important;
-  --tsv-chat-deleted-font-color: #ef4444 !important;
+  --tsv-chat-deleted-font-color: var(--tsv-error-color) !important;
   --tsv-chat-link-color: var(--custom-color-accent-light) !important;
   --tsv-chat-remote-font-color: var(--tsv-chat-self-font-color) !important;
   --tsv-chat-self-font-color: var(--tsv-chat-self-font-color) !important;
@@ -76,7 +86,7 @@
   --tsv-contrast-strong-bg: var(--custom-value-dark3) !important;
 
   /* Context menu */
-  --ts-context-menu-background: rgba(12, 14, 20, 0.92) !important;
+  --ts-context-menu-background: rgba(12, 14, 20, 0.94) !important;
   --tsv-context-menu-border: rgba(255, 255, 255, 0.10) !important;
   --tsv-context-menu-item-selection: rgba(var(--accent-rgb), 0.15) !important;
 
@@ -142,7 +152,7 @@
 
 
 /* ═══════════════════════════════════════════
-   VOICE CHANNELS & SERVER TREE — Cyber Glow & Transparency
+   VOICE CHANNELS & SERVER TREE — Cyber Glow & Tactile Response
    ═══════════════════════════════════════════ */
 
 .ts-server-tree-item-background-no-image,
@@ -154,7 +164,7 @@
 .tsv-item-highlight {
   background: rgba(255, 255, 255, 0.05) !important;
   border-radius: 6px !important;
-  transition: all 0.15s ease !important;
+  transition: background-color 120ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 120ms cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 /* Hover on channel — Subtle neon glow outline */
@@ -167,13 +177,19 @@
   display: block !important;
 }
 
-/* Active / Selected channel — Crisp glowing capsule */
+/* Tactile press on channel */
+.ts-server-tree-item-leaf:active {
+  transform: scale(0.995) !important;
+  transition: transform 60ms ease-out !important;
+}
+
+/* Active / Selected channel — Crisp glowing capsule with Apple inner-bevel */
 .ts-server-tree-item-leaf.channel.tsv-active .tsv-item-highlight,
 .ts-server-tree-item-leaf.channel.tsv-selected .tsv-item-highlight,
 .ts-server-tree-item-leaf.client.tsv-selected .tsv-item-highlight,
 .ts-server-tree-item-leaf.client.tsv-active .tsv-item-highlight {
   background: rgba(var(--accent-rgb), 0.16) !important;
-  box-shadow: 0 0 16px var(--accent-glow), inset 0 0 0 1px var(--custom-color-accent-light) !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.15), 0 0 16px var(--accent-glow), inset 0 0 0 1px var(--custom-color-accent-light) !important;
   display: block !important;
 }
 
@@ -186,7 +202,7 @@
 
 
 /* ═══════════════════════════════════════════
-   BUTTONS — Glassmorphism with Neon Glow Edge
+   BUTTONS — Apple Bevel & Emil Spring Physics
    ═══════════════════════════════════════════ */
 
 /* Hero buttons ("Создать сообщество TeamSpeak", "Создать канал") */
@@ -198,9 +214,9 @@
   border: 1px solid var(--custom-color-accent-light) !important;
   border-radius: 6px !important;
   color: #ffffff !important;
-  box-shadow: 0 0 14px var(--accent-glow-subtle), inset 0 0 8px rgba(var(--accent-rgb), 0.15) !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.20), 0 0 14px var(--accent-glow-subtle), inset 0 0 8px rgba(var(--accent-rgb), 0.15) !important;
   animation: none !important;
-  transition: all 0.18s ease !important;
+  transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1), background 120ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 120ms cubic-bezier(0.16, 1, 0.3, 1), border-color 120ms cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .tsv-button-hero:hover,
@@ -208,16 +224,18 @@
 .tsv-button-filled:hover {
   background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.48), rgba(var(--accent-rgb), 0.20)) !important;
   border-color: #ffffff !important;
-  box-shadow: 0 0 24px var(--accent-glow), inset 0 0 12px rgba(var(--accent-rgb), 0.25) !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.30), 0 0 24px var(--accent-glow), inset 0 0 12px rgba(var(--accent-rgb), 0.25) !important;
   color: #ffffff !important;
   transform: translateY(-1px);
 }
 
+/* Tactile press on buttons (Apple Design WWDC guideline: instantaneous feedback) */
 .tsv-button-hero:active,
 .ts-button.filled:active,
 .tsv-button-filled:active {
-  transform: translateY(0);
+  transform: scale(0.97) translateY(0) !important;
   box-shadow: 0 0 10px var(--accent-glow) !important;
+  transition: transform 60ms ease-out !important;
 }
 
 /* Normal buttons with soft glass */
@@ -225,21 +243,25 @@
   background: rgba(255, 255, 255, 0.06) !important;
   border: 1px solid rgba(255, 255, 255, 0.09) !important;
   border-radius: 6px !important;
-  transition: all 0.15s ease !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08) !important;
+  transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1), background-color 120ms cubic-bezier(0.16, 1, 0.3, 1), border-color 120ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 120ms cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 .tsv-button:not(.tsv-button-hero):hover {
   background: rgba(var(--accent-rgb), 0.12) !important;
   border-color: rgba(var(--accent-rgb), 0.45) !important;
-  box-shadow: 0 0 12px var(--accent-glow-subtle) !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12), 0 0 12px var(--accent-glow-subtle) !important;
+}
+.tsv-button:not(.tsv-button-hero):active {
+  transform: scale(0.97) !important;
+  transition: transform 60ms ease-out !important;
 }
 
 
 /* ═══════════════════════════════════════════
-   SERVER MANAGEMENT / RIGHT PANEL — Clean & Glowing
+   SERVER MANAGEMENT / RIGHT PANEL — Clean & Tactile
    ═══════════════════════════════════════════ */
 
-/* Management item links (Разрешения, Забаненные...) */
-/* Management links in right panel & left-aligned action buttons — clean list without clunky boxes */
+/* Management links in right panel & left-aligned action buttons */
 .ts-server-management-actions .tsv-button,
 .tsv-button.tsv-button-left-aligned,
 .tsv-button-left-aligned {
@@ -250,7 +272,7 @@
   padding: 6px 10px !important;
   margin: 1px 0 !important;
   color: #dce0e8 !important;
-  transition: all 0.15s ease !important;
+  transition: background-color 120ms cubic-bezier(0.16, 1, 0.3, 1), color 120ms cubic-bezier(0.16, 1, 0.3, 1), transform 120ms cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .ts-server-management-actions .tsv-button:hover,
@@ -263,19 +285,45 @@
   text-shadow: 0 0 8px var(--accent-glow) !important;
 }
 
-.tsv-action-list-item,
-.tsv-item-action {
-  transition: all 0.15s ease !important;
-}
-.tsv-action-list-item:hover,
-.tsv-item-action:hover {
-  color: #ffffff !important;
-  text-shadow: 0 0 8px var(--accent-glow) !important;
+.ts-server-management-actions .tsv-button:active,
+.tsv-button.tsv-button-left-aligned:active,
+.tsv-button-left-aligned:active {
+  transform: scale(0.98) !important;
+  transition: transform 60ms ease-out !important;
 }
 
 
 /* ═══════════════════════════════════════════
-   CHAT & CONTROLS — Glass & Glowing accents
+   AUDIO CONTROLS (Top Bar: Mic, Sound, AFK)
+   ═══════════════════════════════════════════ */
+
+.ts-audio-controls .tsv-tool-button,
+.tsv-tool-button {
+  border-radius: 6px !important;
+  transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1), background-color 120ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 120ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.ts-audio-controls .tsv-tool-button:hover,
+.tsv-tool-button:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.12) !important;
+}
+.ts-audio-controls .tsv-tool-button:active,
+.tsv-tool-button:active {
+  transform: scale(0.92) !important;
+  transition: transform 60ms ease-out !important;
+}
+
+/* Ruby glow on mute */
+.hardware-muted,
+.local-mute-action.hardware-muted,
+.tsv-tool-button.is-muted {
+  --tsv-icon-base: var(--tsv-error-color) !important;
+  filter: drop-shadow(0 0 6px rgba(244, 63, 94, 0.50)) !important;
+}
+
+
+/* ═══════════════════════════════════════════
+   CHAT & CONTROLS — Glass, Neon & Micro-interactions
    ═══════════════════════════════════════════ */
 
 /* Chat input with neon glow on focus */
@@ -284,13 +332,14 @@
   background-color: rgba(14, 16, 22, 0.75) !important;
   backdrop-filter: blur(16px) !important;
   border-radius: 8px !important;
-  transition: all 0.2s ease !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05) !important;
+  transition: border-color 140ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 140ms cubic-bezier(0.16, 1, 0.3, 1), background-color 140ms cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 .ts-chat-input-container.focus,
 .ts-chat-input-container:hover {
   border-color: var(--custom-color-accent-light) !important;
   background-color: rgba(18, 21, 30, 0.90) !important;
-  box-shadow: 0 0 16px var(--accent-glow-subtle) !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.10), 0 0 16px var(--accent-glow-subtle) !important;
 }
 
 /* Chat bubbles — Soft translucent glass */
@@ -299,18 +348,25 @@
   backdrop-filter: blur(14px) !important;
   border: 1px solid rgba(255, 255, 255, 0.06) !important;
   border-radius: 8px !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.04) !important;
 }
 .ts-chat-room-event-detailed:not(.ts-currently-referencing, .apparently-people-like-huge-faces) .ts-chat-room-event-bubble::before {
   border-right: 6px solid rgba(18, 20, 27, 0.65) !important;
 }
 
-/* Own messages (self) with soft accent glow */
+/* Own messages with soft accent glow */
 .ts-chat-room-event-detailed.is-own-message .ts-chat-room-event-bubble {
   background: rgba(var(--accent-rgb), 0.12) !important;
   border: 1px solid rgba(var(--accent-rgb), 0.25) !important;
 }
 
-/* Toggles with neon glow */
+/* Toggles with tactile feel */
+.ts-toggle {
+  transition: transform 100ms cubic-bezier(0.16, 1, 0.3, 1), border-color 120ms ease-out !important;
+}
+.ts-toggle:active {
+  transform: scale(0.95) !important;
+}
 .ts-toggle.checked {
   border: 1px solid var(--custom-color-accent-light) !important;
   box-shadow: 0 0 10px var(--accent-glow-subtle) !important;
@@ -341,7 +397,7 @@
 .ts-chunk-scroll-track__thumb {
   background-color: rgba(255, 255, 255, 0.16) !important;
   border-radius: 4px;
-  transition: all 0.15s ease !important;
+  transition: background-color 120ms ease-out, box-shadow 120ms ease-out !important;
 }
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--custom-color-accent-light) !important;
@@ -351,5 +407,23 @@
 /* Talking avatar in voice — Glowing pulse ring */
 .tsv-avatar.talking,
 .ts-server-tree-item-leaf.client.talking .tsv-avatar {
-  box-shadow: 0 0 12px var(--accent-glow) !important;
+  box-shadow: 0 0 12px var(--tsv-online-color) !important;
+}
+
+/* Pop-in micro-interaction on tooltips and popovers */
+.tsv-context-menu,
+.ts-context-menu,
+.ts-tooltip {
+  animation: tsv-pop-in 140ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transform-origin: top center;
+}
+@keyframes tsv-pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

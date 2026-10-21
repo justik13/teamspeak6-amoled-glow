@@ -1,17 +1,17 @@
 @import url(TeamSpeak.css);
 @import url(Glassmorphism.css);
 
-/* AMOLED Dark — QD-OLED Soft Titanium / White Monochrome */
+/* AMOLED Dark — Brushed Titanium / Silver Glow */
 :root, ::after, ::before {
-  --custom-color-accent-light: #d8dce6;
-  --custom-color-accent-dark: #8890a0;
-  --accent-rgb: 216, 220, 230;
-  --accent-glow: rgba(216, 220, 230, 0.45);
-  --accent-glow-subtle: rgba(216, 220, 230, 0.20);
-  --accent-glow-soft: rgba(216, 220, 230, 0.10);
+  --custom-color-accent-light: #e2e6ef;
+  --custom-color-accent-dark: #858d9e;
+  --accent-rgb: 226, 230, 239;
+  --accent-glow: rgba(226, 230, 239, 0.40);
+  --accent-glow-subtle: rgba(226, 230, 239, 0.18);
+  --accent-glow-soft: rgba(226, 230, 239, 0.08);
 
-  --custom-color-accent-light-t: rgba(216, 220, 230, 0.14);
-  --custom-color-accent-dark-t: rgba(216, 220, 230, 0.07);
-  --custom-color-slider1: #c4c9d4;
-  --custom-color-slider2: rgba(255, 255, 255, 0.15);
+  --custom-color-accent-light-t: rgba(226, 230, 239, 0.14);
+  --custom-color-accent-dark-t: rgba(226, 230, 239, 0.07);
+  --custom-color-slider1: #c8ceda;
+  --custom-color-slider2: rgba(255, 255, 255, 0.14);
 }
