@@ -293,24 +293,17 @@ svg.tsv-icon-client-detailed-talking {
    BUTTONS — Apple Bevel & Emil Spring Physics
    ═══════════════════════════════════════════ */
 
-/* Hero buttons & Constructive action buttons ("Создать сообщество", "Создать канал") */
+/* ═══════════════════════════════════════════
+   BUTTONS — Apple Bevel & Emil Spring Physics
+   ═══════════════════════════════════════════ */
+
+/* Hero buttons ("Создать сообщество TeamSpeak" in sidebar & modal primary buttons) */
 .tsv-button-hero,
 .ts-button.filled,
-.tsv-button-filled,
-.ts-server-status-bar .tsv-tool-button,
-.ts-server-status-constructive-buttons .tsv-tool-button,
-.ts-server-status-constructive-buttons .tsv-bar-item,
-.tsv-tool-button.filled,
-.tsv-tool-button.tinted.filled,
-.tsv-tool-button.tinted,
-.tsv-bar-item.tinted.filled,
-.tsv-item-action.tinted.filled,
-.tsv-tool-button[class*="filled"],
-.tsv-bar .tsv-tool-button.tinted,
-.tsv-bar .tsv-tool-button.filled {
-  background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.20), rgba(var(--accent-rgb), 0.08)) !important;
+.tsv-button-filled {
+  background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.22), rgba(var(--accent-rgb), 0.08)) !important;
   backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(var(--accent-rgb), 0.40) !important;
+  border: 1px solid rgba(var(--accent-rgb), 0.45) !important;
   border-radius: 6px !important;
   color: #e2e5eb !important;
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12), 0 0 10px var(--accent-glow-soft) !important;
@@ -318,70 +311,136 @@ svg.tsv-icon-client-detailed-talking {
   transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1), background 120ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 120ms cubic-bezier(0.16, 1, 0.3, 1), border-color 120ms cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.ts-server-status-bar .tsv-tool-button:before,
-.ts-server-status-bar .tsv-tool-button:after,
-.ts-server-status-constructive-buttons .tsv-tool-button:before,
-.ts-server-status-constructive-buttons .tsv-tool-button:after,
-.tsv-tool-button.tinted.filled:before,
-.tsv-tool-button.tinted.filled:after,
-.tsv-tool-button.filled:before,
-.tsv-tool-button.filled:after {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
 .tsv-button-hero:hover,
 .ts-button.filled:hover,
-.tsv-button-filled:hover,
-.ts-server-status-bar .tsv-tool-button:hover,
-.ts-server-status-constructive-buttons .tsv-tool-button:hover,
-.tsv-tool-button.filled:hover,
-.tsv-tool-button.tinted.filled:hover {
-  background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.32), rgba(var(--accent-rgb), 0.15)) !important;
+.tsv-button-filled:hover {
+  background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.35), rgba(var(--accent-rgb), 0.16)) !important;
   border-color: var(--custom-color-accent-light) !important;
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.20), 0 0 16px var(--accent-glow-subtle) !important;
   color: #ffffff !important;
   transform: translateY(-1px);
 }
 
-/* Tactile press on buttons (Apple Design WWDC guideline: instantaneous feedback) */
 .tsv-button-hero:active,
 .ts-button.filled:active,
-.tsv-button-filled:active,
-.ts-server-status-bar .tsv-tool-button:active,
-.ts-server-status-constructive-buttons .tsv-tool-button:active,
-.tsv-tool-button.filled:active,
-.tsv-tool-button.tinted.filled:active {
+.tsv-button-filled:active {
   transform: scale(0.97) translateY(0) !important;
   box-shadow: 0 0 10px var(--accent-glow) !important;
   transition: transform 60ms ease-out !important;
 }
 
-/* Ensure text and icon inside constructive tool-buttons match the sleek palette */
-.ts-server-status-bar .tsv-tool-button .tsv-item-text,
-.ts-server-status-constructive-buttons .tsv-tool-button .tsv-item-text,
-.tsv-tool-button.filled .tsv-item-text,
-.tsv-tool-button.tinted .tsv-item-text {
-  color: #e2e5eb !important;
+
+/* ═══════════════════════════════════════════
+   SERVER BOTTOM STATUS BAR — Polished Constructive & Informative separation
+   ═══════════════════════════════════════════ */
+
+.ts-server-status-bar {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  padding: 0 8px !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+  background: transparent !important;
 }
 
-.ts-server-status-bar .tsv-tool-button:hover .tsv-item-text,
-.ts-server-status-constructive-buttons .tsv-tool-button:hover .tsv-item-text,
-.tsv-tool-button.filled:hover .tsv-item-text,
-.tsv-tool-button.tinted:hover .tsv-item-text {
+/* Constructive action buttons on the left: "Создать канал" & "Начать трансляцию" */
+.ts-server-status-constructive-buttons .tsv-tool-button {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 28px !important;
+  min-height: 28px !important;
+  padding: 0 10px !important;
+  margin: 0 6px 0 0 !important;
+  background: rgba(var(--accent-rgb), 0.14) !important;
+  border: 1px solid rgba(var(--accent-rgb), 0.40) !important;
+  border-radius: 6px !important;
+  color: #e2e5eb !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10), 0 0 8px var(--accent-glow-soft) !important;
+  cursor: pointer !important;
+  transition: background 120ms ease, border-color 120ms ease, box-shadow 120ms ease, transform 60ms ease !important;
+}
+
+.ts-server-status-constructive-buttons .tsv-tool-button:before,
+.ts-server-status-constructive-buttons .tsv-tool-button:after {
+  display: none !important;
+  background: transparent !important;
+}
+
+.ts-server-status-constructive-buttons .tsv-tool-button:hover {
+  background: rgba(var(--accent-rgb), 0.24) !important;
+  border-color: var(--custom-color-accent-light) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 14px var(--accent-glow-subtle) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+.ts-server-status-constructive-buttons .tsv-tool-button:active {
+  transform: scale(0.97) translateY(0) !important;
+  box-shadow: 0 0 8px var(--accent-glow) !important;
+}
+
+.ts-server-status-constructive-buttons .tsv-tool-button .tsv-item-text {
+  color: #e2e5eb !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  margin-left: 6px !important;
+  line-height: 1 !important;
+}
+
+.ts-server-status-constructive-buttons .tsv-tool-button:hover .tsv-item-text {
   color: #ffffff !important;
   text-shadow: 0 0 8px var(--accent-glow-subtle) !important;
 }
 
-.ts-server-status-bar .tsv-tool-button svg,
-.ts-server-status-constructive-buttons .tsv-tool-button svg,
-.tsv-tool-button.filled svg,
-.tsv-tool-button.tinted svg {
+.ts-server-status-constructive-buttons .tsv-tool-button svg {
   --tsv-icon-base: var(--custom-color-accent-light) !important;
   --tsv-icon-tint: var(--custom-color-accent-light) !important;
   --tsv-icon-tint2: var(--custom-color-accent-light) !important;
 }
+
+/* Informative buttons on the right: PING, PACKET LOSS, UPTIME CLOCK — Clean, neutral, zero pink boxes */
+.ts-server-informative-buttons,
+.ts-server-informative-buttons .tsv-tool-button,
+.ts-server-informative-buttons .tsv-bar-item {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 4px !important;
+  margin: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+.ts-server-informative-buttons .tsv-tool-button:before,
+.ts-server-informative-buttons .tsv-tool-button:after {
+  display: none !important;
+  background: transparent !important;
+}
+
+.ts-server-informative-buttons .tsv-tool-button:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-radius: 4px !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Restore native status indicators: green/amber ping bars and muted clock */
+.ts-server-informative-buttons .tsv-tool-button svg {
+  --tsv-icon-base: #9499a6 !important;
+  --tsv-icon-tint: #9499a6 !important;
+  --tsv-icon-tint2: var(--tsv-online-color) !important;
+}
+
+.ts-server-informative-buttons .tsv-tool-button svg.ts-recording-indicator {
+  --tsv-icon-base: var(--tsv-error-light-color) !important;
+  --tsv-icon-tint: var(--tsv-error-light-color) !important;
+}
+
 
 /* ═══════════════════════════════════════════
    SCREEN SHARE OVERLAY & STREAM CONTROLS
@@ -451,20 +510,20 @@ svg.tsv-icon-client-detailed-talking {
   border-color: #fb7185 !important;
 }
 
-/* Normal buttons with soft glass */
-.tsv-button:not(.tsv-button-hero) {
+/* Normal buttons with soft glass (exempting stream toolbar and status bar) */
+.tsv-button:not(.tsv-button-hero, .compensate-border-button, .screen-overlay_bottom__viewers) {
   background: rgba(255, 255, 255, 0.06) !important;
   border: 1px solid rgba(255, 255, 255, 0.09) !important;
   border-radius: 6px !important;
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08) !important;
   transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1), background-color 120ms cubic-bezier(0.16, 1, 0.3, 1), border-color 120ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 120ms cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
-.tsv-button:not(.tsv-button-hero):hover {
+.tsv-button:not(.tsv-button-hero, .compensate-border-button, .screen-overlay_bottom__viewers):hover {
   background: rgba(var(--accent-rgb), 0.12) !important;
   border-color: rgba(var(--accent-rgb), 0.45) !important;
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12), 0 0 12px var(--accent-glow-subtle) !important;
 }
-.tsv-button:not(.tsv-button-hero):active {
+.tsv-button:not(.tsv-button-hero, .compensate-border-button, .screen-overlay_bottom__viewers):active {
   transform: scale(0.97) !important;
   transition: transform 60ms ease-out !important;
 }
