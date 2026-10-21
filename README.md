@@ -20,18 +20,20 @@
 
 ---
 
-## 🤖 Установка через ИИ-агента в один промпт
+## 🤖 Установка в один клик / через ИИ (без Git)
 
-Отправьте этот промпт вашему ИИ-ассистенту (Cursor, Antigravity, Claude, ChatGPT, Windsurf):
+Работает на любом компьютере с Windows — **Git устанавливать не нужно**:
 
-```text
-Установи тему TeamSpeak 6: склонируй https://github.com/justik13/teamspeak6-amoled-glow в "$env:APPDATA\TeamSpeak\Default\extensions\amoled.dark.minimalistic" и сразу удали внутри папку .git (из-за лимита TeamSpeak 6 на размер файлов в 2 МБ).
-```
-
-### Команда для PowerShell в одну строку:
+### Команда для PowerShell в одну строку (вставьте и нажмите Enter):
 
 ```powershell
-$p = "$env:APPDATA\TeamSpeak\Default\extensions\amoled.dark.minimalistic"; git clone --depth 1 https://github.com/justik13/teamspeak6-amoled-glow.git $p; Remove-Item "$p\.git" -Recurse -Force
+$dest = "$env:APPDATA\TeamSpeak\Default\extensions\amoled.dark.minimalistic"; $zip = "$env:TEMP\ts6_theme.zip"; $temp = "$env:TEMP\ts6_temp"; Invoke-WebRequest -Uri "https://github.com/justik13/teamspeak6-amoled-glow/archive/refs/heads/main.zip" -OutFile $zip; Expand-Archive -Path $zip -DestinationPath $temp -Force; New-Item -ItemType Directory -Path "$env:APPDATA\TeamSpeak\Default\extensions" -Force | Out-Null; if (Test-Path $dest) { Remove-Item $dest -Recurse -Force }; Move-Item "$temp\teamspeak6-amoled-glow-main" $dest; Remove-Item $zip, $temp -Recurse -Force -ErrorAction SilentlyContinue
+```
+
+### Промпт для любого ИИ-агента (Cursor, Claude, Antigravity, ChatGPT):
+
+```text
+Установи тему TeamSpeak 6: скачай zip-архив https://github.com/justik13/teamspeak6-amoled-glow/archive/refs/heads/main.zip, распакуй содержимое в "$env:APPDATA\TeamSpeak\Default\extensions\amoled.dark.minimalistic" (папка .git не должна присутствовать из-за лимита TeamSpeak 6 в 2 МБ).
 ```
 
 ---
