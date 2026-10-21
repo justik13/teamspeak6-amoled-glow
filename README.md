@@ -26,15 +26,20 @@
 
 ## Быстрая установка и обновление (Windows)
 
-Скрипт скачивает свежую версию темы с GitHub и обновляет файлы в каталоге расширений. Если TeamSpeak запущен, скрипт вежливо спросит, перезапустить ли клиент сейчас (`[Y/n]`), защищая активные игры и оверлеи от крашей.
+Скрипт скачивает архив с GitHub, валидирует файлы и безопасно обновляет тему на диске с поддержкой резервной копии и отката при ошибке. Если TeamSpeak запущен, скрипт предложит перезапустить клиент (`[y/N]`, по умолчанию **нет**), гарантируя, что ваши игры и оверлеи не будут прерваны.
 
-Вставьте команду в окно **PowerShell** (или нажмите <kbd>Win</kbd> + <kbd>R</kbd>) и нажмите Enter:
+Откройте окно **PowerShell** и выполните команду:
 
 ```powershell
-irm https://raw.githubusercontent.com/justik13/teamspeak6-amoled-glow/main/update.ps1 | iex
+& ([scriptblock]::Create((irm https://raw.githubusercontent.com/justik13/teamspeak6-amoled-glow/main/update.ps1)))
 ```
 
-Для тихого фонового обновления во время игры без закрытия клиента:
+Для запуска через окно **«Выполнить»** (<kbd>Win</kbd> + <kbd>R</kbd>):
+```text
+powershell -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm https://raw.githubusercontent.com/justik13/teamspeak6-amoled-glow/main/update.ps1)))"
+```
+
+Для тихого обновления во время игры без всплывающих диалогов и без перезапуска:
 ```powershell
 & ([scriptblock]::Create((irm https://raw.githubusercontent.com/justik13/teamspeak6-amoled-glow/main/update.ps1))) -NoRestart
 ```
