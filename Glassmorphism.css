@@ -106,3 +106,29 @@
   --card-hover-background: rgba(24, 28, 38, 0.80) !important;
   --tsv-preview-bg: rgba(16, 18, 24, 0.70) !important;
 }
+
+/* ── Accessibility — High contrast / reduced transparency fallback ── */
+@media (prefers-reduced-transparency: reduce) {
+  .tsv-sidebar .tsv-body-background,
+  .tsv-view-banner .tsv-view-background,
+  .tsv-view-header,
+  .ts-server-header,
+  .ts-new-header-bg,
+  .tsv-card,
+  .tsv-preview,
+  .tsv-deviant,
+  .tsv-highlight-header,
+  .ts-chat-input-container,
+  .tsv-context-menu,
+  .ts-context-menu,
+  .menu,
+  .ts-tooltip,
+  .tsv-dialog-container,
+  .ts-modal-backdrop,
+  .tsv-modal-backdrop {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #000000 !important;
+    border-color: rgba(255, 255, 255, 0.22) !important;
+  }
+}

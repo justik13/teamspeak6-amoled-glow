@@ -277,7 +277,7 @@ body {
   }
 }
 
-/* Pulsing voice indicator ring */
+/* Pulsing voice indicator ring — Hardware-accelerated GPU layer */
 .tsv-new-talking-indicator.talking:before,
 .tsv-avatar.talking,
 .ts-server-tree-item-leaf.client.talking .tsv-avatar,
@@ -285,6 +285,8 @@ body {
   border-radius: 50% !important;
   animation: ts-voice-pulse 1.35s infinite cubic-bezier(0.4, 0, 0.2, 1) !important;
   box-shadow: 0 0 12px var(--tsv-online-color) !important;
+  will-change: box-shadow;
+  transform: translateZ(0);
 }
 
 /* Talking icon glow in server tree */
@@ -304,13 +306,34 @@ svg.tsv-icon-client-detailed-talking {
   .ts-server-tree-client-talking,
   .ts-server-tree-icon.client.talking,
   svg.tsv-icon-client-talking,
-  svg.tsv-icon-client-detailed-talking {
+  svg.tsv-icon-client-detailed-talking,
+  .tsv-context-menu,
+  .ts-context-menu,
+  .ts-false-context-menu,
+  .ts-tooltip,
+  .menu {
     animation: none !important;
+    transform: none !important;
   }
 
   *, ::before, ::after {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
+  }
+}
+
+/* Accessibility — High contrast / reduced transparency fallback */
+@media (prefers-reduced-transparency: reduce) {
+  .tsv-header-bg,
+  .ts-new-header-bg,
+  .tsv-context-menu,
+  .ts-context-menu,
+  .screen-overlay__bottom,
+  .ts-chat-input-container {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #090b10 !important;
+    border-color: rgba(255, 255, 255, 0.22) !important;
   }
 }
 
@@ -413,6 +436,7 @@ svg.tsv-icon-client-detailed-talking {
   color: #e2e5eb !important;
   font-size: 12px !important;
   font-weight: 500 !important;
+  letter-spacing: 0.015em !important;
   margin-left: 6px !important;
   line-height: 1 !important;
 }
@@ -508,6 +532,7 @@ svg.tsv-icon-client-detailed-talking {
   backdrop-filter: blur(10px) !important;
   background: rgba(8, 10, 15, 0.85) !important;
   border: 1px solid rgba(255, 255, 255, 0.10) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14) !important;
   border-radius: 6px !important;
   overflow: visible !important;
   z-index: 25 !important;
@@ -545,6 +570,7 @@ svg.tsv-icon-client-detailed-talking {
   font-size: 11px !important;
   font-weight: 600 !important;
   line-height: 1 !important;
+  letter-spacing: 0.02em !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -584,7 +610,7 @@ svg.tsv-icon-client-detailed-talking {
   align-items: center !important;
   justify-content: center !important;
   box-sizing: border-box !important;
-  transition: background 120ms ease, border-color 120ms ease !important;
+  transition: background 120ms ease, border-color 120ms ease, transform 60ms ease-out !important;
 }
 
 .screen-overlay__bottom .tsv-button:not(.screen-overlay_bottom__viewers, .tsv-is-destructive) svg,
@@ -598,6 +624,12 @@ svg.tsv-icon-client-detailed-talking {
 .screen-overlay__bottom .compensate-border-button:not(.screen-overlay_bottom__viewers, [is-destructive]):hover {
   background: rgba(255, 255, 255, 0.18) !important;
   border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+.screen-overlay__bottom .tsv-button:not(.screen-overlay_bottom__viewers, .tsv-is-destructive):active,
+.screen-overlay__bottom .compensate-border-button:not(.screen-overlay_bottom__viewers, [is-destructive]):active {
+  transform: scale(0.95) !important;
+  transition: transform 60ms ease-out !important;
 }
 
 /* Prominent Stop Stream / Leave button — ALWAYS visible, never shrinks, pinned far-right */
@@ -643,7 +675,14 @@ svg.tsv-icon-client-detailed-talking {
   background: rgba(244, 63, 94, 0.65) !important;
   border-color: #fb7185 !important;
   box-shadow: 0 0 12px rgba(244, 63, 94, 0.85) !important;
-  transform: scale(1.06) !important;
+  transform: scale(1.04) !important;
+}
+
+.screen-overlay__bottom .tsv-button.tsv-is-destructive:active,
+.screen-overlay__bottom .compensate-border-button[is-destructive]:active,
+.screen-overlay__bottom .tsv-button[class*="destructive"]:active {
+  transform: scale(0.96) !important;
+  transition: transform 60ms ease-out !important;
 }
 
 /* ═══════════════════════════════════════════
@@ -1041,8 +1080,12 @@ a:not(.tsv-button, .tsv-tool-button, .tsv-item, .tsv-tab-button):hover,
 .tsv-context-menu,
 .ts-context-menu,
 .ts-false-context-menu,
-.ts-tooltip,
 .menu {
   animation: ts-spring-pop 140ms cubic-bezier(0.16, 1, 0.3, 1) !important;
   transform-origin: top left !important;
+}
+
+.ts-tooltip {
+  animation: ts-spring-pop 120ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transform-origin: center bottom !important;
 }
