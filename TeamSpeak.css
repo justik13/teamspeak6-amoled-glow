@@ -76,8 +76,8 @@ body {
   --tsv-chat-deleted-bg: rgba(16, 18, 24, 0.40) !important;
   --tsv-chat-deleted-font-color: var(--tsv-error-color) !important;
   --tsv-chat-link-color: var(--custom-color-accent-light) !important;
-  --tsv-chat-remote-font-color: var(--tsv-chat-self-font-color) !important;
-  --tsv-chat-self-font-color: var(--tsv-chat-self-font-color) !important;
+  --tsv-chat-self-font-color: var(--tsv-font-color) !important;
+  --tsv-chat-remote-font-color: var(--tsv-font-color) !important;
   --ts-chat-system-highlight-text-color: var(--custom-color-accent-light) !important;
   --tsv-highlight-color: var(--custom-color-accent-light) !important;
 
@@ -286,6 +286,25 @@ body {
 svg.tsv-icon-client-talking,
 svg.tsv-icon-client-detailed-talking {
   animation: ts-voice-glow 1.35s infinite ease-in-out !important;
+}
+
+/* Accessibility — Respect system reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .tsv-new-talking-indicator.talking:before,
+  .tsv-avatar.talking,
+  .ts-server-tree-item-leaf.client.talking .tsv-avatar,
+  .call-participant-cell.is-talking .tsv-avatar,
+  .ts-server-tree-client-talking,
+  .ts-server-tree-icon.client.talking,
+  svg.tsv-icon-client-talking,
+  svg.tsv-icon-client-detailed-talking {
+    animation: none !important;
+  }
+
+  *, ::before, ::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
 
 
@@ -577,8 +596,7 @@ svg.tsv-icon-client-detailed-talking {
 /* Prominent Stop Stream / Leave button — ALWAYS visible, never shrinks, pinned far-right */
 .screen-overlay__bottom .tsv-button.tsv-is-destructive,
 .screen-overlay__bottom .compensate-border-button[is-destructive],
-.screen-overlay__bottom .tsv-button[class*="destructive"],
-.screen-overlay__bottom .tsv-button:last-child {
+.screen-overlay__bottom .tsv-button[class*="destructive"] {
   order: 100 !important;
   width: 28px !important;
   min-width: 26px !important;
@@ -603,8 +621,7 @@ svg.tsv-icon-client-detailed-talking {
 
 .screen-overlay__bottom .tsv-button.tsv-is-destructive svg,
 .screen-overlay__bottom .compensate-border-button[is-destructive] svg,
-.screen-overlay__bottom .tsv-button[class*="destructive"] svg,
-.screen-overlay__bottom .tsv-button:last-child svg {
+.screen-overlay__bottom .tsv-button[class*="destructive"] svg {
   --tsv-icon-base: #ffffff !important;
   --tsv-icon-tint: #ffffff !important;
   --tsv-icon-tint2: #ffffff !important;
@@ -615,8 +632,7 @@ svg.tsv-icon-client-detailed-talking {
 
 .screen-overlay__bottom .tsv-button.tsv-is-destructive:hover,
 .screen-overlay__bottom .compensate-border-button[is-destructive]:hover,
-.screen-overlay__bottom .tsv-button[class*="destructive"]:hover,
-.screen-overlay__bottom .tsv-button:last-child:hover {
+.screen-overlay__bottom .tsv-button[class*="destructive"]:hover {
   background: rgba(244, 63, 94, 0.65) !important;
   border-color: #fb7185 !important;
   box-shadow: 0 0 12px rgba(244, 63, 94, 0.85) !important;
@@ -677,8 +693,7 @@ svg.tsv-icon-client-detailed-talking {
 
   .screen-overlay__bottom .tsv-button.tsv-is-destructive,
   .screen-overlay__bottom .compensate-border-button[is-destructive],
-  .screen-overlay__bottom .tsv-button[class*="destructive"],
-  .screen-overlay__bottom .tsv-button:last-child {
+  .screen-overlay__bottom .tsv-button[class*="destructive"] {
     width: 34px !important;
     min-width: 32px !important;
     max-width: 36px !important;
@@ -688,73 +703,11 @@ svg.tsv-icon-client-detailed-talking {
   }
   .screen-overlay__bottom .tsv-button.tsv-is-destructive svg,
   .screen-overlay__bottom .compensate-border-button[is-destructive] svg,
-  .screen-overlay__bottom .tsv-button[class*="destructive"] svg,
-  .screen-overlay__bottom .tsv-button:last-child svg {
+  .screen-overlay__bottom .tsv-button[class*="destructive"] svg {
     --tsv-icon-size: 18px !important;
     width: 18px !important;
     height: 18px !important;
   }
-}
-
-/* Fallback class selectors for large main view */
-.video-overlay .screen-overlay__bottom,
-.overlay-stream .screen-overlay__bottom,
-.video-overlay__viewing .screen-overlay__bottom,
-.video-overlay__streaming .screen-overlay__bottom {
-  height: 34px !important;
-  min-height: 34px !important;
-  padding: 3px 6px !important;
-  gap: 5px !important;
-  left: var(--bar-inset, 8px) !important;
-  right: var(--bar-inset, 8px) !important;
-  bottom: var(--bar-inset, 8px) !important;
-  border-radius: 7px !important;
-}
-
-.video-overlay .screen-overlay__bottom .screen-overlay_bottom__viewers,
-.overlay-stream .screen-overlay__bottom .screen-overlay_bottom__viewers {
-  height: 28px !important;
-  min-height: 28px !important;
-  font-size: 12px !important;
-  padding: 0 8px !important;
-}
-.video-overlay .screen-overlay__bottom .screen-overlay_bottom__viewers svg,
-.overlay-stream .screen-overlay__bottom .screen-overlay_bottom__viewers svg {
-  --tsv-icon-size: 15px !important;
-  width: 15px !important;
-  height: 15px !important;
-}
-
-.video-overlay .screen-overlay__bottom .tsv-button:not(.screen-overlay_bottom__viewers, .tsv-is-destructive),
-.overlay-stream .screen-overlay__bottom .tsv-button:not(.screen-overlay_bottom__viewers, .tsv-is-destructive) {
-  width: 30px !important;
-  min-width: 28px !important;
-  max-width: 32px !important;
-  height: 28px !important;
-  min-height: 28px !important;
-  border-radius: 5px !important;
-}
-.video-overlay .screen-overlay__bottom .tsv-button:not(.screen-overlay_bottom__viewers, .tsv-is-destructive) svg,
-.overlay-stream .screen-overlay__bottom .tsv-button:not(.screen-overlay_bottom__viewers, .tsv-is-destructive) svg {
-  --tsv-icon-size: 18px !important;
-  width: 18px !important;
-  height: 18px !important;
-}
-
-.video-overlay .screen-overlay__bottom .tsv-button.tsv-is-destructive,
-.overlay-stream .screen-overlay__bottom .tsv-button.tsv-is-destructive {
-  width: 34px !important;
-  min-width: 32px !important;
-  max-width: 36px !important;
-  height: 28px !important;
-  min-height: 28px !important;
-  border-radius: 5px !important;
-}
-.video-overlay .screen-overlay__bottom .tsv-button.tsv-is-destructive svg,
-.overlay-stream .screen-overlay__bottom .tsv-button.tsv-is-destructive svg {
-  --tsv-icon-size: 18px !important;
-  width: 18px !important;
-  height: 18px !important;
 }
 
 /* ═══════════════════════════════════════════
@@ -809,8 +762,7 @@ svg.tsv-icon-client-detailed-talking {
 
 .screen-overlay__bottom.is-fullscreen .tsv-button.tsv-is-destructive,
 .screen-overlay__bottom.is-fullscreen .compensate-border-button[is-destructive],
-.screen-overlay__bottom.is-fullscreen .tsv-button[class*="destructive"],
-.screen-overlay__bottom.is-fullscreen .tsv-button:last-child {
+.screen-overlay__bottom.is-fullscreen .tsv-button[class*="destructive"] {
   width: 38px !important;
   min-width: 36px !important;
   max-width: 42px !important;
@@ -821,8 +773,7 @@ svg.tsv-icon-client-detailed-talking {
 
 .screen-overlay__bottom.is-fullscreen .tsv-button.tsv-is-destructive svg,
 .screen-overlay__bottom.is-fullscreen .compensate-border-button[is-destructive] svg,
-.screen-overlay__bottom.is-fullscreen .tsv-button[class*="destructive"] svg,
-.screen-overlay__bottom.is-fullscreen .tsv-button:last-child svg {
+.screen-overlay__bottom.is-fullscreen .tsv-button[class*="destructive"] svg {
   --tsv-icon-size: 20px !important;
   width: 20px !important;
   height: 20px !important;
@@ -938,10 +889,10 @@ input[type="search"] {
 }
 
 .tsv-search-bar:focus-within,
-.tsv-form-input:focus,
-.tsv-suggestions-menu-filter-input:focus,
-input[type="text"]:focus,
-input[type="search"]:focus {
+.tsv-form-input:focus:not(.has-error, .is-invalid, .tsv-input-error),
+.tsv-suggestions-menu-filter-input:focus:not(.has-error, .is-invalid, .tsv-input-error),
+input[type="text"]:focus:not(.has-error, .is-invalid, .tsv-input-error),
+input[type="search"]:focus:not(.has-error, .is-invalid, .tsv-input-error) {
   border-color: var(--custom-color-accent-light) !important;
   box-shadow: 0 0 12px var(--accent-glow-subtle), inset 0 0 0 1px var(--custom-color-accent-light) !important;
   outline: none !important;
