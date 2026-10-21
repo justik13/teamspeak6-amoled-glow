@@ -127,10 +127,8 @@ try {
     Write-Host ''
     Write-Host '[OK] Тема успешно установлена / обновлена!' -ForegroundColor Green
     Write-Host '----------------------------------------' -ForegroundColor DarkGray
-    Write-Host 'Как применить:' -ForegroundColor White
-    Write-Host '  1. В TeamSpeak откройте Настройки (шестерёнка) -> Внешний вид' -ForegroundColor Gray
-    Write-Host '  2. Нажмите круглую стрелочку (🔄) для обновления тем' -ForegroundColor Gray
-    Write-Host '  (Либо просто перезапустите TeamSpeak в удобное время)' -ForegroundColor DarkGray
+    Write-Host 'Чтобы применить изменения:' -ForegroundColor White
+    Write-Host '  Перезапустите TeamSpeak (закройте и откройте снова)' -ForegroundColor Cyan
     Write-Host ''
 }
 catch {
