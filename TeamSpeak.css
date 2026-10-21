@@ -108,6 +108,13 @@ body {
   --ts-drag-border: var(--custom-color-accent-light) !important;
   --ts-select-arrow-color: var(--custom-color-accent-light) !important;
 
+  /* Global accents & toggles */
+  --ts-brand-color-bl: var(--custom-color-accent-light) !important;
+  --ts-primary-accent-color: var(--custom-color-accent-light) !important;
+  --ts-toggle-bg-color: var(--custom-color-accent-dark) !important;
+  --ts-toggle-checked-bg-color: var(--custom-color-accent-dark) !important;
+  --ts-toggle-checked-pill-color: var(--custom-color-accent-light) !important;
+
   /* Typography — Calibrated for QD-OLED */
   --tsv-font-color: #e2e5eb !important;
   --tsv-font-subtitle-color: #9499a6 !important;
@@ -945,12 +952,42 @@ input[type="search"]:focus:not(.has-error, .is-invalid, .tsv-input-error) {
   transform: scale(0.95) !important;
 }
 .ts-toggle.checked {
+  background-color: var(--custom-color-accent-dark) !important;
   border: 1px solid var(--custom-color-accent-light) !important;
   box-shadow: 0 0 10px var(--accent-glow-subtle) !important;
+}
+.ts-toggle:focus-within {
+  border-color: var(--custom-color-accent-light) !important;
+}
+.ts-toggle-inner.checked {
+  background-color: var(--custom-color-accent-dark) !important;
 }
 .ts-toggle-inner.checked:after {
   background: var(--custom-color-accent-light) !important;
   box-shadow: 0 0 8px var(--accent-glow) !important;
+}
+
+/* Spinners & Loaders — Ambient Glow */
+.ts-loader .circular .path,
+.ts-loader .check,
+.ts-loader .fill {
+  stroke: var(--custom-color-accent-light) !important;
+  filter: drop-shadow(0 0 5px var(--accent-glow-subtle)) !important;
+}
+
+/* Hyperlinks & Pinned Titles */
+a:not(.tsv-button, .tsv-tool-button, .tsv-item, .tsv-tab-button),
+.tsv-link,
+.tsv-pinned-message-title {
+  color: var(--custom-color-accent-light) !important;
+  text-decoration: none !important;
+  transition: color 120ms ease, text-shadow 120ms ease !important;
+}
+a:not(.tsv-button, .tsv-tool-button, .tsv-item, .tsv-tab-button):hover,
+.tsv-link:hover {
+  color: #ffffff !important;
+  text-decoration: underline !important;
+  text-shadow: 0 0 8px var(--accent-glow-subtle) !important;
 }
 
 /* Sliders */
