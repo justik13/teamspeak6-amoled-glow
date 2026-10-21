@@ -219,33 +219,48 @@ try {
                 Write-Host ">>> Перезапуск отклонён. Клиент не закрывался, игра не прервана." -ForegroundColor Gray
             }
         }
+    } elseif ($Force -or (-not $NoRestart)) {
+        # TeamSpeak не был запущен. Если найден exe, спросить о запуске
+        if ($tsExe -and (Test-Path -LiteralPath $tsExe)) {
+            if ($Force) {
+                $shouldRestart = $true
+            } else {
+                Write-Host -NoNewline "`n>>> Запустить TeamSpeak сейчас? [Y/n] (по умолчанию Y): " -ForegroundColor Cyan
+                $answer = Read-Host
+                if ([string]::IsNullOrWhiteSpace($answer) -or ($answer.Trim().ToLower() -in @('y', 'yes', 'д', 'да'))) {
+                    $shouldRestart = $true
+                }
+            }
+        }
     }
 
     if ($shouldRestart) {
-        Write-Host ">>> Мягкое закрытие TeamSpeak..." -ForegroundColor Yellow
-        $tsProcs = Get-Process -Name "TeamSpeak*" -ErrorAction SilentlyContinue | Where-Object { $_.SessionId -eq $currentSessionId }
-        foreach ($p in $tsProcs) {
-            try { $p.CloseMainWindow() | Out-Null } catch {}
-        }
+        if ($isTsRunning) {
+            Write-Host ">>> Мягкое закрытие TeamSpeak..." -ForegroundColor Yellow
+            $tsProcs = Get-Process -Name "TeamSpeak*" -ErrorAction SilentlyContinue | Where-Object { $_.SessionId -eq $currentSessionId }
+            foreach ($p in $tsProcs) {
+                try { $p.CloseMainWindow() | Out-Null } catch {}
+            }
 
-        # Ожидание штатного закрытия окна до 3 секунд
-        $graceTimeout = [DateTime]::UtcNow.AddSeconds(3)
-        while ((Get-Process -Name "TeamSpeak*" -ErrorAction SilentlyContinue | Where-Object { $_.SessionId -eq $currentSessionId }) -and ([DateTime]::UtcNow -lt $graceTimeout)) {
-            Start-Sleep -Milliseconds 200
-        }
-
-        # Если процессы всё ещё активны — принудительное завершение
-        $remaining = Get-Process -Name "TeamSpeak*" -ErrorAction SilentlyContinue | Where-Object { $_.SessionId -eq $currentSessionId }
-        if ($remaining) {
-            $remaining | Stop-Process -Force -ErrorAction SilentlyContinue
-            $stopTimeout = [DateTime]::UtcNow.AddSeconds(5)
-            while ((Get-Process -Name "TeamSpeak*" -ErrorAction SilentlyContinue | Where-Object { $_.SessionId -eq $currentSessionId }) -and ([DateTime]::UtcNow -lt $stopTimeout)) {
+            # Ожидание штатного закрытия окна до 3 секунд
+            $graceTimeout = [DateTime]::UtcNow.AddSeconds(3)
+            while ((Get-Process -Name "TeamSpeak*" -ErrorAction SilentlyContinue | Where-Object { $_.SessionId -eq $currentSessionId }) -and ([DateTime]::UtcNow -lt $graceTimeout)) {
                 Start-Sleep -Milliseconds 200
             }
-        }
-        Start-Sleep -Milliseconds 500
 
-        # Повторный запуск TeamSpeak
+            # Если процессы всё ещё активны — принудительное завершение
+            $remaining = Get-Process -Name "TeamSpeak*" -ErrorAction SilentlyContinue | Where-Object { $_.SessionId -eq $currentSessionId }
+            if ($remaining) {
+                $remaining | Stop-Process -Force -ErrorAction SilentlyContinue
+                $stopTimeout = [DateTime]::UtcNow.AddSeconds(5)
+                while ((Get-Process -Name "TeamSpeak*" -ErrorAction SilentlyContinue | Where-Object { $_.SessionId -eq $currentSessionId }) -and ([DateTime]::UtcNow -lt $stopTimeout)) {
+                    Start-Sleep -Milliseconds 200
+                }
+            }
+            Start-Sleep -Milliseconds 500
+        }
+
+        # Запуск TeamSpeak
         if ($tsExe -and (Test-Path -LiteralPath $tsExe)) {
             Write-Host ">>> Запуск окна TeamSpeak..." -ForegroundColor Cyan
             $workDir = Split-Path -Path $tsExe -Parent
@@ -279,6 +294,9 @@ try {
             Write-Host "TeamSpeak сейчас не запущен. Тема активируется при следующем запуске." -ForegroundColor White
         }
     }
+}
+catch {
+    Write-Host "`n[!] Ошибка: $($_.Exception.Message)" -ForegroundColor Red
 }
 finally {
     $ErrorActionPreference = $prevErrorAction
