@@ -1,0 +1,17 @@
+@import url(TeamSpeak.css);
+@import url(Glassmorphism.css);
+
+/* AMOLED Dark — Solar Amber / Cyber Orange Glow */
+:root, ::after, ::before {
+  --custom-color-accent-light: #f97316;
+  --custom-color-accent-dark: #c2410c;
+  --accent-rgb: 249, 115, 22;
+  --accent-glow: rgba(249, 115, 22, 0.48);
+  --accent-glow-subtle: rgba(249, 115, 22, 0.22);
+  --accent-glow-soft: rgba(249, 115, 22, 0.10);
+
+  --custom-color-accent-light-t: rgba(249, 115, 22, 0.16);
+  --custom-color-accent-dark-t: rgba(249, 115, 22, 0.08);
+  --custom-color-slider1: #f97316;
+  --custom-color-slider2: rgba(255, 255, 255, 0.15);
+}
