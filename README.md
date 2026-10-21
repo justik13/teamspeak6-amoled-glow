@@ -26,12 +26,17 @@
 
 ## Быстрая установка и обновление (Windows)
 
-Скрипт скачивает свежую версию темы с GitHub и обновляет файлы в каталоге расширений без закрытия клиента и без риска краша игр или аудио-оверлеев.
+Скрипт скачивает свежую версию темы с GitHub и обновляет файлы в каталоге расширений. Если TeamSpeak запущен, скрипт вежливо спросит, перезапустить ли клиент сейчас (`[Y/n]`), защищая активные игры и оверлеи от крашей.
 
 Вставьте команду в окно **PowerShell** (или нажмите <kbd>Win</kbd> + <kbd>R</kbd>) и нажмите Enter:
 
 ```powershell
 irm https://raw.githubusercontent.com/justik13/teamspeak6-amoled-glow/main/update.ps1 | iex
+```
+
+Для тихого фонового обновления во время игры без закрытия клиента:
+```powershell
+& ([scriptblock]::Create((irm https://raw.githubusercontent.com/justik13/teamspeak6-amoled-glow/main/update.ps1))) -NoRestart
 ```
 
 > [!TIP]
@@ -66,7 +71,7 @@ irm https://raw.githubusercontent.com/justik13/teamspeak6-amoled-glow/main/updat
 ## Структура файлов
 
 ```
-amoled.dark.minimalistic/
+teamspeak6-amoled-glow/
 ├── package.json          # Манифест и метаданные темы для TeamSpeak 6
 ├── TeamSpeak.css         # Стили интерфейса, переменные и эффекты подсветки
 ├── Glassmorphism.css     # Размытие и прозрачность панелей
@@ -81,6 +86,8 @@ amoled.dark.minimalistic/
 ├── Amber.css             # Вариант AMOLED Amber
 ├── Amber.png             # Превью янтарного варианта
 ├── Thumbnail.png         # Иконка расширения в настройках
+├── update.ps1            # Скрипт безопасной авто-установки и обновления (PowerShell)
+├── update.bat            # 1-клик лаунчер обновления для Windows
 └── README.md
 ```
 
