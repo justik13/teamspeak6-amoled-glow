@@ -43,6 +43,11 @@ colors:
       accent-light: "#ffaa00"
       accent-dark: "#cc7700"
       accent-rgb: "255, 170, 0"
+    slate:
+      accent-light: "#38bdf8"
+      accent-dark: "#0284c7"
+      accent-rgb: "56, 189, 248"
+      canvas: "#0d1117"
 
 typography:
   font-family: '-apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", "Inter", Roboto, Helvetica, Arial, sans-serif'
@@ -94,12 +99,13 @@ A design specification document conforming to the [VoltAgent/awesome-design-md](
 - **Surface Elevated (Floating Modals / Context Menus)**: `rgba(13, 16, 22, 0.85)` with `-webkit-backdrop-filter: blur(14px)`.
 
 ### Chromatic Variants
-The theme provides 5 standalone accent palettes:
+The theme provides 6 standalone accent palettes:
 - **AMOLED Pink**: Primary `#f43f8e`, Dark `#be185d`, RGB `244, 63, 142`.
 - **AMOLED Dark (Reaper)**: Stealth tactical accent `#4a5568`, Dark `#2d3748`, RGB `74, 85, 104`.
 - **AMOLED Cyan**: Cyber electric `#00e5ff`, Dark `#0099b8`, RGB `0, 229, 255`.
 - **AMOLED Purple**: Neon violet `#a855f7`, Dark `#7e22ce`, RGB `168, 85, 247`.
 - **AMOLED Amber**: Warm cyber amber `#ffaa00`, Dark `#cc7700`, RGB `255, 170, 0`.
+- **Midnight Slate (IPS Edition)**: Deep slate canvas `#0d1117`, surface `#161b22`, calibrated to mask IPS backlight bleed and IPS glow, with electric sky blue accent `#38bdf8` (RGB `56, 189, 248`).
 
 ---
 

@@ -1,0 +1,59 @@
+@import url(TeamSpeak.css);
+@import url(Glassmorphism.css);
+
+/* AMOLED Slate — Midnight Slate (IPS & LCD Calibrated Edition)
+   Calibrated for IPS/LCD displays: #0d1117 deep slate base hides backlight bleed,
+   eliminates IPS glow in corners, with gentle electric sky blue accents. */
+
+:root, ::after, ::before {
+  /* ── Accent (Electric Sky Blue / Cyan) ── */
+  --custom-color-accent-light: #38bdf8;
+  --custom-color-accent-dark: #0284c7;
+  --accent-rgb: 56, 189, 248;
+  --accent-glow: rgba(56, 189, 248, 0.48);
+  --accent-glow-subtle: rgba(56, 189, 248, 0.22);
+  --accent-glow-soft: rgba(56, 189, 248, 0.10);
+
+  --custom-color-accent-light-t: rgba(56, 189, 248, 0.16);
+  --custom-color-accent-dark-t: rgba(56, 189, 248, 0.08);
+  --custom-color-slider1: #38bdf8;
+  --custom-color-slider2: rgba(255, 255, 255, 0.18);
+
+  /* ── IPS Surface Ladder (Replaces pure #000000 to eliminate IPS glow) ── */
+  --custom-value-dark1: #0d1117;
+  --custom-value-dark2: #161b22;
+  --custom-value-dark3: #1c2128;
+  --custom-value-dark4: #22272e;
+  --custom-value-dark5: #2d333b;
+  --custom-value-dark6: #373e47;
+  --custom-value-dark7: #444c56;
+
+  /* ── IPS Calibrated Typography (Softened against slate to prevent glare) ── */
+  --tsv-font-color: #e6edf3 !important;
+  --tsv-font-subtitle-color: #8b949e !important;
+  --ts-third-font-color: #afb8c1 !important;
+}
+
+/* Dashboard & discovery backgrounds in Slate */
+.tsv-dashboard-servers__content,
+.tsv-dashboard-chats,
+.tsv-dashboard-news,
+.ts-discovery-wrapper {
+  background: #0d1117 !important;
+}
+
+/* Glass adjustments for IPS matrices */
+.tsv-sidebar .tsv-body-background {
+  background: rgba(13, 17, 23, 0.85) !important;
+}
+
+.tsv-view-banner .tsv-view-background,
+.tsv-view-header,
+.ts-server-header,
+.ts-new-header-bg {
+  background: rgba(22, 27, 34, 0.88) !important;
+}
+
+.screen-overlay__bottom {
+  background: rgba(13, 17, 23, 0.90) !important;
+}

@@ -47,6 +47,12 @@
                 "source": "Amber.css",
                 "image": "Amber.png",
                 "apiVersion": 1
+            },
+            {
+                "name": "Midnight Slate (IPS)",
+                "source": "Slate.css",
+                "image": "Slate.png",
+                "apiVersion": 1
             }
         ]
     }
