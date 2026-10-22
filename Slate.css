@@ -28,10 +28,10 @@
   --custom-value-dark6: #373e47;
   --custom-value-dark7: #444c56;
 
-  /* ── IPS Calibrated Typography (Softened against slate to prevent glare) ── */
-  --tsv-font-color: #e6edf3 !important;
-  --tsv-font-subtitle-color: #8b949e !important;
-  --ts-third-font-color: #afb8c1 !important;
+  /* ── IPS Calibrated Typography (Crisp & High Contrast) ── */
+  --tsv-font-color: #f0f3f6 !important;
+  --tsv-font-subtitle-color: #9aa4b2 !important;
+  --ts-third-font-color: #c0c8d4 !important;
 }
 
 /* Dashboard & discovery backgrounds in Slate */

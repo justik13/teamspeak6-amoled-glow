@@ -24,7 +24,7 @@
   --default-tsv-tint: var(--custom-color-accent-light);
 
   /* ── Typography Stack & Smoothing ── */
-  --tsv-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", "Inter", Roboto, Helvetica, Arial, sans-serif !important;
+  --tsv-font-family: "Segoe UI", "Segoe UI Variable Text", -apple-system, BlinkMacSystemFont, "Inter", Roboto, sans-serif !important;
   --tsv-font-family-monospace: "JetBrains Mono", "Cascadia Code", "Fira Code", Consolas, monospace !important;
 
   /* ── OLED-Calibrated Status Colors (Zero Fringing) ── */
@@ -55,9 +55,24 @@ html {
 
 html,
 body {
-  -webkit-font-smoothing: antialiased !important;
-  -moz-osx-font-smoothing: grayscale !important;
-  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: subpixel-antialiased !important;
+  -moz-osx-font-smoothing: auto !important;
+  text-rendering: geometricPrecision !important;
+}
+
+/* ── Typography Clarity & Stroke Definition ── */
+.ts-server-tree-item .tsv-item-text,
+.ts-server-tree-item-leaf .tsv-item-text,
+.tsv-tree-item .tsv-item-text {
+  color: var(--tsv-font-color) !important;
+  font-weight: 450 !important;
+  letter-spacing: 0.012em !important;
+}
+
+.ts-chat-room-event-bubble,
+.tsv-chat-message-content {
+  color: var(--tsv-font-color) !important;
+  line-height: 1.45 !important;
 }
 
 ::selection {
@@ -155,10 +170,11 @@ textarea:focus-visible {
   --ts-toggle-checked-bg-color: var(--custom-color-accent-dark) !important;
   --ts-toggle-checked-pill-color: var(--custom-color-accent-light) !important;
 
-  /* Typography — Calibrated for QD-OLED */
-  --tsv-font-color: #e2e5eb !important;
-  --tsv-font-subtitle-color: #9499a6 !important;
-  --ts-third-font-color: #bec3cd !important;
+    /* Typography — High Clarity & Contrast */
+  --tsv-font-color: #f1f3f7 !important;
+  --tsv-font-subtitle-color: #a3abb8 !important;
+  --ts-third-font-color: #cbd2dc !important;
+  --custom-color-secondary-text: #a3abb8 !important;
 
   /* Core surfaces — Pure black base */
   --tsv-bg: var(--custom-value-dark1) !important;
