@@ -82,6 +82,7 @@ teamspeak6-amoled-glow/
 ├── Thumbnail.png         # Иконка расширения в настройках
 ├── update.ps1            # Скрипт безопасной авто-установки и обновления (PowerShell)
 ├── update.bat            # 1-клик лаунчер обновления для Windows
+├── DESIGN.md             # Спецификация дизайн-системы (Stitch / VoltAgent standard)
 └── README.md
 ```
 

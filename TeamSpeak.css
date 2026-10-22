@@ -65,8 +65,21 @@ body {
   color: #ffffff !important;
 }
 
-/* WCAG 2.2 AA/AAA Visible Keyboard Focus Ring */
-:focus-visible {
+/* WCAG 2.2 AA/AAA Visible Keyboard Focus Ring on Interactive Controls */
+button:focus-visible,
+a:focus-visible,
+select:focus-visible,
+[role="button"]:focus-visible,
+[role="tab"]:focus-visible,
+[role="checkbox"]:focus-visible,
+[role="radio"]:focus-visible,
+.tsv-button:focus-visible,
+.ts-button:focus-visible,
+.ts-slider:focus-visible,
+.tsv-tab:focus-visible,
+.ts-toggle:focus-visible,
+.ts-server-tree-item:focus-visible,
+.tsv-tree-item:focus-visible {
   outline: 2px solid var(--custom-color-accent-light) !important;
   outline-offset: 2px !important;
   box-shadow: 0 0 8px var(--accent-glow-soft) !important;
