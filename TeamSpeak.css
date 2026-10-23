@@ -294,8 +294,11 @@ titlebar,
 }
 
 /* ── Server Banner Card — Clean Rounded Card matching native design ── */
+.ts-server-header,
 .tsv-view-banner-container {
   background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .tsv-view-banner {

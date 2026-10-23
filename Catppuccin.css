@@ -34,18 +34,18 @@
   --custom-value-dark7: #6c7086; /* Overlay0 */
 
   /* ── Harmonized Surfaces ── */
-  --custom-sidebar-bg: #11111b !important;
-  --custom-header-bg: #181825 !important;
+  --custom-sidebar-bg: #1e1e2e !important;
+  --custom-header-bg: #1e1e2e !important;
   --card-background: #181825 !important;
   --card-hover-background: #313244 !important;
   --ts-primary-background: #1e1e2e !important;
   --tsv-bg: #1e1e2e !important;
-  --tsv-header-bg: #181825 !important;
-  --ts-new-header-bg: #181825 !important;
+  --tsv-header-bg: #1e1e2e !important;
+  --ts-new-header-bg: #1e1e2e !important;
   --tsv-view-header-bg: #181825 !important;
-  --tsv-server-header-gradient-start: #181825 !important;
-  --tsv-server-header-gradient-end: #181825 !important;
-  --tsv-shaded-header-bg: #181825 !important;
+  --tsv-server-header-gradient-start: #1e1e2e !important;
+  --tsv-server-header-gradient-end: #1e1e2e !important;
+  --tsv-shaded-header-bg: #1e1e2e !important;
   --tsv-contrast-bg: #181825 !important;
   --tsv-separation-border-color: rgba(255, 255, 255, 0.07) !important;
 
