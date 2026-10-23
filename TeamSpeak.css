@@ -201,6 +201,7 @@ textarea:focus-visible {
   /* Header */
   --tsv-header-bg: var(--custom-header-bg, var(--custom-value-dark1)) !important;
   --ts-new-header-bg: var(--custom-header-bg, var(--custom-value-dark1)) !important;
+  --tsv-shaded-header-bg: var(--custom-header-bg, var(--custom-value-dark1)) !important;
 
   /* System messages */
   --ts-chat-system-message-bg: transparent !important;
@@ -242,7 +243,7 @@ textarea:focus-visible {
   --tsv-view-header-bg: var(--custom-header-bg, var(--custom-value-dark1)) !important;
   --tsv-view-header-gradient-start: var(--custom-header-bg, var(--custom-value-dark1)) !important;
   --tsv-server-header-gradient-start: var(--custom-header-bg, var(--custom-value-dark1)) !important;
-  --tsv-server-header-gradient-end: var(--custom-sidebar-bg, var(--custom-value-dark1)) !important;
+  --tsv-server-header-gradient-end: var(--custom-header-bg, var(--custom-value-dark1)) !important;
 
   /* Cards */
   --card-background: var(--custom-value-dark2, rgba(16, 18, 24, 0.70)) !important;
@@ -265,7 +266,7 @@ textarea:focus-visible {
   --tsv-highlight-header-bg: rgba(16, 18, 24, 0.70) !important;
 }
 
-/* ── Window Titlebar & Top Header ── */
+/* ── Window Titlebar & Top Header — Unified Monolithic Bar ── */
 .tsv-header,
 .tsv-header:before,
 .tsv-header-backdrop,
@@ -274,8 +275,40 @@ textarea:focus-visible {
 .tsv-bar.tsv-title-bar,
 .tsv-content-header-bar,
 .main-content titlebar,
-titlebar {
+titlebar,
+.tsv-activity-secondary .tsv-header,
+.tsv-activity-secondary .tsv-header:before,
+.tsv-activity-secondary .tsv-header-backdrop,
+.tsv-activity-main .tsv-header {
   background: var(--tsv-header-bg, var(--custom-header-bg, var(--custom-value-dark1))) !important;
+}
+
+/* Central audio controls capsule */
+.tsv-central-toolbar-buttons:before {
+  display: none !important;
+}
+.tsv-central-toolbar-buttons {
+  background: rgba(0, 0, 0, 0.25) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 9999px !important;
+}
+
+/* Seamless Server Banner (integrates banner into header, removes floating island & seams) */
+.tsv-view-banner-container {
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+.tsv-view-banner-container .tsv-view-banner {
+  margin: 0 !important;
+}
+.tsv-view-banner .tsv-view-background {
+  border-radius: 0 !important;
+  border: none !important;
+}
+.tsv-view-banner .tsv-view-background:before,
+.tsv-view-banner .tsv-view-background:after {
+  display: none !important;
+  border: none !important;
 }
 
 /* ── Seamless Sidebar Footer (Removes harsh horizontal line above user profile) ── */

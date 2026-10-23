@@ -1,4 +1,4 @@
-/*
+﻿/*
  *  AMOLED Dark — QD-OLED Dark Glass & Glow Overrides
  *  True black base + subtle translucent layers + elegant ambient glow.
  */
@@ -13,7 +13,7 @@
 }
 
 /* ── Headers & Banners — frosted dark glass ── */
-.tsv-view-banner .tsv-view-background,
+.tsv-header,
 .tsv-view-header,
 .ts-server-header,
 .ts-new-header-bg {
@@ -21,6 +21,13 @@
   backdrop-filter: blur(18px) saturate(140%) !important;
   -webkit-backdrop-filter: blur(18px) saturate(140%) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
+  box-shadow: none !important;
+}
+
+.tsv-view-banner .tsv-view-background {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: none !important;
   box-shadow: none !important;
 }
 
@@ -110,7 +117,7 @@
 /* ── Accessibility — High contrast / reduced transparency fallback ── */
 @media (prefers-reduced-transparency: reduce) {
   .tsv-sidebar .tsv-body-background,
-  .tsv-view-banner .tsv-view-background,
+  .tsv-header,
   .tsv-view-header,
   .ts-server-header,
   .ts-new-header-bg,
