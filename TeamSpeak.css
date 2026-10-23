@@ -359,21 +359,29 @@ titlebar,
   background: transparent !important;
 }
 
-/* Base highlight capsule */
-.tsv-item-highlight {
-  background: rgba(255, 255, 255, 0.05) !important;
+/* ── Apple Glass Pills: Persistent Slot Capsules for Voice Channels ── */
+.ts-server-tree-item-leaf.channel .tsv-item-highlight {
+  display: block !important;
+  background: rgba(255, 255, 255, 0.025) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.04) !important;
   border-radius: 6px !important;
-  transition: background-color 120ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 120ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: background-color 140ms cubic-bezier(0.16, 1, 0.3, 1), border-color 140ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 140ms cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 /* Hover on channel — Subtle neon glow outline */
-.ts-server-tree-item-leaf:hover .tsv-item-highlight,
-.ts-server-tree-item-leaf.channel:hover .tsv-item-highlight,
-.ts-server-tree-item-leaf.client:hover .tsv-item-highlight,
-.tsv-item:hover .tsv-item-highlight {
-  background: rgba(var(--accent-rgb), 0.09) !important;
-  box-shadow: 0 0 12px var(--accent-glow-subtle), inset 0 0 0 1px rgba(var(--accent-rgb), 0.45) !important;
-  display: block !important;
+.ts-server-tree-item-leaf.channel:hover .tsv-item-highlight {
+  background: rgba(var(--accent-rgb), 0.10) !important;
+  border-color: rgba(var(--accent-rgb), 0.45) !important;
+  box-shadow: 0 0 12px var(--accent-glow-subtle), inset 0 1px 0 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Active / Selected channel — Crisp glowing capsule with Apple inner-bevel */
+.ts-server-tree-item-leaf.channel.tsv-active .tsv-item-highlight,
+.ts-server-tree-item-leaf.channel.tsv-selected .tsv-item-highlight {
+  background: rgba(var(--accent-rgb), 0.18) !important;
+  border: 1px solid var(--custom-color-accent-light) !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.18), 0 0 16px var(--accent-glow), inset 0 0 0 1px var(--custom-color-accent-light) !important;
 }
 
 /* Tactile press on channel */
@@ -382,13 +390,20 @@ titlebar,
   transition: transform 60ms ease-out !important;
 }
 
-/* Active / Selected channel — Crisp glowing capsule with Apple inner-bevel */
-.ts-server-tree-item-leaf.channel.tsv-active .tsv-item-highlight,
-.ts-server-tree-item-leaf.channel.tsv-selected .tsv-item-highlight,
+/* Client items (users inside channel) — clean, highlight only on hover/select */
+.ts-server-tree-item-leaf.client .tsv-item-highlight {
+  border-radius: 6px !important;
+}
+.ts-server-tree-item-leaf.client:hover .tsv-item-highlight {
+  background: rgba(255, 255, 255, 0.07) !important;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.08) !important;
+  display: block !important;
+}
 .ts-server-tree-item-leaf.client.tsv-selected .tsv-item-highlight,
 .ts-server-tree-item-leaf.client.tsv-active .tsv-item-highlight {
-  background: rgba(var(--accent-rgb), 0.16) !important;
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.15), 0 0 16px var(--accent-glow), inset 0 0 0 1px var(--custom-color-accent-light) !important;
+  background: rgba(var(--accent-rgb), 0.14) !important;
+  border: 1px solid rgba(var(--accent-rgb), 0.35) !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12), 0 0 12px var(--accent-glow-soft) !important;
   display: block !important;
 }
 
