@@ -7,7 +7,7 @@
 :root,
 ::after,
 ::before {
-  /* ── Accent (Lavender & Mauve) ── */
+  /* ── Accent & Glow ── */
   --custom-color-accent-light: #cba6f7;
   --custom-color-accent-dark: #8839ef;
   --accent-rgb: 203, 166, 247;
@@ -20,6 +20,7 @@
   --custom-color-slider1: #cba6f7;
   --custom-color-slider2: rgba(255, 255, 255, 0.14);
 
+  /* ── Strict SSOT Contract Guards ── */
   --card-outline: rgba(203, 166, 247, 0.28) !important;
   --tsv-tint: var(--custom-color-accent-light) !important;
   --tsv-tint2: var(--custom-color-accent-light) !important;
@@ -33,19 +34,19 @@
   --custom-value-dark6: #585b70; /* Surface2 */
   --custom-value-dark7: #6c7086; /* Overlay0 */
 
-  /* ── Harmonized Surfaces ── */
+  /* ── Harmonized Canvas & Cards (Single Source of Truth) ── */
   --custom-sidebar-bg: #1e1e2e !important;
   --custom-header-bg: #1e1e2e !important;
-  --card-background: #181825 !important;
-  --card-hover-background: #313244 !important;
   --ts-primary-background: #1e1e2e !important;
   --tsv-bg: #1e1e2e !important;
   --tsv-header-bg: #1e1e2e !important;
   --ts-new-header-bg: #1e1e2e !important;
-  --tsv-view-header-bg: #181825 !important;
+  --tsv-shaded-header-bg: #1e1e2e !important;
   --tsv-server-header-gradient-start: #1e1e2e !important;
   --tsv-server-header-gradient-end: #1e1e2e !important;
-  --tsv-shaded-header-bg: #1e1e2e !important;
+  --card-background: #181825 !important;
+  --card-hover-background: #313244 !important;
+  --tsv-view-header-bg: #181825 !important;
   --tsv-contrast-bg: #181825 !important;
   --tsv-separation-border-color: rgba(255, 255, 255, 0.07) !important;
 

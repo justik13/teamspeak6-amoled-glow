@@ -1,12 +1,13 @@
 @import url(TeamSpeak.css);
 @import url(Glassmorphism.css);
 
-/* AMOLED Emerald — Matrix Cyber Green
-   Pure OLED Black (#000000) base with vivid emerald/matrix neon glow. */
+/* AMOLED Emerald — Matrix Cyber Green Edition
+   Pure OLED Black (#000000) base with vivid matrix emerald cyber glow. */
 
 :root,
 ::after,
 ::before {
+  /* ── Accent & Glow ── */
   --custom-color-accent-light: #10b981;
   --custom-color-accent-dark: #059669;
   --accent-rgb: 16, 185, 129;
@@ -19,6 +20,7 @@
   --custom-color-slider1: #10b981;
   --custom-color-slider2: rgba(255, 255, 255, 0.15);
 
+  /* ── Strict SSOT Contract Guards ── */
   --card-outline: rgba(16, 185, 129, 0.28) !important;
   --tsv-tint: var(--custom-color-accent-light) !important;
   --tsv-tint2: var(--custom-color-accent-light) !important;

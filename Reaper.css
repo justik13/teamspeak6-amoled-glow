@@ -1,17 +1,27 @@
 @import url(TeamSpeak.css);
 @import url(Glassmorphism.css);
 
-/* AMOLED Dark — Brushed Titanium / Silver Glow */
-:root, ::after, ::before {
-  --custom-color-accent-light: #e2e6ef;
-  --custom-color-accent-dark: #858d9e;
-  --accent-rgb: 226, 230, 239;
-  --accent-glow: rgba(226, 230, 239, 0.40);
-  --accent-glow-subtle: rgba(226, 230, 239, 0.18);
-  --accent-glow-soft: rgba(226, 230, 239, 0.08);
+/* AMOLED Reaper — Electric Violet / Cyber Dark Edition
+   Pure OLED Black (#000000) base with sharp electric violet cyber glow. */
 
-  --custom-color-accent-light-t: rgba(226, 230, 239, 0.14);
-  --custom-color-accent-dark-t: rgba(226, 230, 239, 0.07);
-  --custom-color-slider1: #c8ceda;
-  --custom-color-slider2: rgba(255, 255, 255, 0.14);
+:root,
+::after,
+::before {
+  /* ── Accent & Glow ── */
+  --custom-color-accent-light: #7c3aed;
+  --custom-color-accent-dark: #5b21b6;
+  --accent-rgb: 124, 58, 237;
+  --accent-glow: rgba(124, 58, 237, 0.48);
+  --accent-glow-subtle: rgba(124, 58, 237, 0.22);
+  --accent-glow-soft: rgba(124, 58, 237, 0.10);
+
+  --custom-color-accent-light-t: rgba(124, 58, 237, 0.16);
+  --custom-color-accent-dark-t: rgba(124, 58, 237, 0.08);
+  --custom-color-slider1: #7c3aed;
+  --custom-color-slider2: rgba(255, 255, 255, 0.15);
+
+  /* ── Strict SSOT Contract Guards ── */
+  --card-outline: rgba(124, 58, 237, 0.28) !important;
+  --tsv-tint: var(--custom-color-accent-light) !important;
+  --tsv-tint2: var(--custom-color-accent-light) !important;
 }

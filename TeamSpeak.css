@@ -235,7 +235,7 @@ textarea:focus-visible {
   --tsv-button-filled-bg: var(--custom-color-accent-light) !important;
   --tsv-button-filled-disabled-bg: rgba(255, 255, 255, 0.05) !important;
   --tsv-chat-widget-bg: rgba(14, 16, 22, 0.75) !important;
-  --card-outline: rgba(255, 255, 255, 0.08) !important;
+  --card-outline: rgba(var(--accent-rgb), 0.28) !important;
   --tsv-deviant-bg: rgba(16, 18, 24, 0.70) !important;
 
   /* Server tree */

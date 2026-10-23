@@ -1,8 +1,13 @@
 @import url(TeamSpeak.css);
 @import url(Glassmorphism.css);
 
-/* AMOLED Dark — Solar Amber / Cyber Orange Glow */
-:root, ::after, ::before {
+/* AMOLED Amber — Solar Cyber Orange Edition
+   Pure OLED Black (#000000) base with warm solar amber & neon orange cyber glow. */
+
+:root,
+::after,
+::before {
+  /* ── Accent & Glow ── */
   --custom-color-accent-light: #f97316;
   --custom-color-accent-dark: #c2410c;
   --accent-rgb: 249, 115, 22;
@@ -14,4 +19,9 @@
   --custom-color-accent-dark-t: rgba(249, 115, 22, 0.08);
   --custom-color-slider1: #f97316;
   --custom-color-slider2: rgba(255, 255, 255, 0.15);
+
+  /* ── Strict SSOT Contract Guards ── */
+  --card-outline: rgba(249, 115, 22, 0.28) !important;
+  --tsv-tint: var(--custom-color-accent-light) !important;
+  --tsv-tint2: var(--custom-color-accent-light) !important;
 }
