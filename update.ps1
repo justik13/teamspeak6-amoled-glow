@@ -161,8 +161,8 @@ try {
     Write-Host '[OK] Theme installed / updated successfully!' -ForegroundColor Green
     Write-Host '----------------------------------------' -ForegroundColor DarkGray
     Write-Host 'To apply changes in TeamSpeak 6:' -ForegroundColor White
-    Write-Host '  1. Open: Settings -> Appearance' -ForegroundColor Cyan
-    Write-Host '  2. Click the refresh button (circular arrow) or restart client' -ForegroundColor Cyan
+    Write-Host '  1. Open: Settings -> Appearance (enable theme if not active)' -ForegroundColor Cyan
+    Write-Host '  2. Completely exit TeamSpeak (tray icon -> Exit) and restart it' -ForegroundColor Yellow
     Write-Host ''
 }
 catch {
