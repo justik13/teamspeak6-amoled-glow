@@ -62,22 +62,21 @@ body {
 
 /* ── Typography Clarity & Stroke Definition ── */
 .ts-server-tree-item .tsv-item-text,
-.ts-server-tree-item-leaf .tsv-item-text,
-.tsv-tree-item .tsv-item-text {
+.ts-server-tree-item-leaf .tsv-item-text {
   color: var(--tsv-font-color) !important;
   font-weight: 450 !important;
   letter-spacing: 0.012em !important;
 }
 
 .ts-chat-room-event-bubble,
-.tsv-chat-message-content {
+.ts-chat-message-content {
   color: var(--tsv-font-color) !important;
   line-height: 1.45 !important;
 }
 
 ::selection {
   background: rgba(var(--accent-rgb), 0.35) !important;
-  color: #ffffff !important;
+  color: var(--tsv-font-color, #f1f3f7) !important;
 }
 
 /* WCAG 2.2 AA/AAA Visible Keyboard Focus Ring on Interactive Controls */
@@ -93,8 +92,7 @@ select:focus-visible,
 .ts-slider:focus-visible,
 .tsv-tab:focus-visible,
 .ts-toggle:focus-visible,
-.ts-server-tree-item:focus-visible,
-.tsv-tree-item:focus-visible {
+.ts-server-tree-item:focus-visible {
   outline: 2px solid var(--custom-color-accent-light) !important;
   outline-offset: 2px !important;
   box-shadow: 0 0 8px var(--accent-glow-soft) !important;
@@ -142,7 +140,7 @@ textarea:focus-visible {
   --_md-code-fg: #e2e5eb !important;
   --_md-code-border: 1px solid rgba(255, 255, 255, 0.09) !important;
   --_md-code-focused-border: var(--custom-color-accent-light) !important;
-  --_md-code-lineno: #64748b !important;
+  --_md-code-lineno: #94a3b8 !important;
   --_md-code-badge-bg: rgba(var(--accent-rgb), 0.18) !important;
   --_md-blockquote-border: var(--custom-color-accent-light) !important;
   --_md-blockquote-fg: #bec3cd !important;
@@ -397,7 +395,7 @@ titlebar,
 /* Channel text glow on active */
 .ts-server-tree-item-leaf.channel.tsv-active .tsv-item-text,
 .ts-server-tree-item-leaf.channel.tsv-selected .tsv-item-text {
-  color: #ffffff !important;
+  color: var(--tsv-font-color, #f1f3f7) !important;
   text-shadow: 0 0 10px var(--accent-glow-subtle) !important;
 }
 
@@ -513,7 +511,7 @@ svg.tsv-icon-client-detailed-talking {
   background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.35), rgba(var(--accent-rgb), 0.16)) !important;
   border-color: var(--custom-color-accent-light) !important;
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.20), 0 0 16px var(--accent-glow-subtle) !important;
-  color: #ffffff !important;
+  color: var(--tsv-font-color, #f1f3f7) !important;
   transform: translateY(-1px);
 }
 
@@ -570,7 +568,7 @@ svg.tsv-icon-client-detailed-talking {
   background: rgba(var(--accent-rgb), 0.24) !important;
   border-color: var(--custom-color-accent-light) !important;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 14px var(--accent-glow-subtle) !important;
-  color: #ffffff !important;
+  color: var(--tsv-font-color, #f1f3f7) !important;
   transform: translateY(-1px);
 }
 
@@ -589,7 +587,7 @@ svg.tsv-icon-client-detailed-talking {
 }
 
 .ts-server-status-constructive-buttons .tsv-tool-button:hover .tsv-item-text {
-  color: #ffffff !important;
+  color: var(--tsv-font-color, #f1f3f7) !important;
   text-shadow: 0 0 8px var(--accent-glow-subtle) !important;
 }
 
@@ -1083,7 +1081,7 @@ svg.tsv-icon-client-detailed-talking {
   background: rgba(var(--accent-rgb), 0.14) !important;
   border: none !important;
   box-shadow: 0 0 12px var(--accent-glow-subtle) !important;
-  color: #ffffff !important;
+  color: var(--tsv-font-color, #f1f3f7) !important;
   text-shadow: 0 0 8px var(--accent-glow) !important;
 }
 
@@ -1150,10 +1148,10 @@ input[type="search"] {
 }
 
 .tsv-search-bar:focus-within,
-.tsv-form-input:focus:not(.has-error, .is-invalid, .tsv-input-error),
-.tsv-suggestions-menu-filter-input:focus:not(.has-error, .is-invalid, .tsv-input-error),
-input[type="text"]:focus:not(.has-error, .is-invalid, .tsv-input-error),
-input[type="search"]:focus:not(.has-error, .is-invalid, .tsv-input-error) {
+.tsv-form-input:focus:not(.has-error, .error, .is-error, :invalid),
+.tsv-suggestions-menu-filter-input:focus:not(.has-error, .error, .is-error, :invalid),
+input[type="text"]:focus:not(.has-error, .error, .is-error, :invalid),
+input[type="search"]:focus:not(.has-error, .error, .is-error, :invalid) {
   border-color: var(--custom-color-accent-light) !important;
   box-shadow: 0 0 12px var(--accent-glow-subtle), inset 0 0 0 1px var(--custom-color-accent-light) !important;
   outline: none !important;
@@ -1193,7 +1191,7 @@ input[type="search"]:focus:not(.has-error, .is-invalid, .tsv-input-error) {
 }
 
 /* Own messages with soft accent glow */
-.ts-chat-room-event-detailed.is-own-message .ts-chat-room-event-bubble {
+.ts-chat-room-event-detailed.ownclient .ts-chat-room-event-bubble {
   background: rgba(var(--accent-rgb), 0.12) !important;
   border: 1px solid rgba(var(--accent-rgb), 0.25) !important;
 }
@@ -1230,16 +1228,14 @@ input[type="search"]:focus:not(.has-error, .is-invalid, .tsv-input-error) {
 }
 
 /* Hyperlinks & Pinned Titles */
-a:not(.tsv-button, .tsv-tool-button, .tsv-item, .tsv-tab-button),
-.tsv-link,
+a:not(.tsv-button, .tsv-tool-button, .tsv-item, .tsv-tab),
 .tsv-pinned-message-title {
   color: var(--custom-color-accent-light) !important;
   text-decoration: none !important;
   transition: color 120ms ease, text-shadow 120ms ease !important;
 }
-a:not(.tsv-button, .tsv-tool-button, .tsv-item, .tsv-tab-button):hover,
-.tsv-link:hover {
-  color: #ffffff !important;
+a:not(.tsv-button, .tsv-tool-button, .tsv-item, .tsv-tab):hover {
+  color: var(--tsv-font-color, #f1f3f7) !important;
   text-decoration: underline !important;
   text-shadow: 0 0 8px var(--accent-glow-subtle) !important;
 }
@@ -1312,7 +1308,7 @@ a:not(.tsv-button, .tsv-tool-button, .tsv-item, .tsv-tab-button):hover,
 .ts-slider-knob-bubble,
 .ts-slider-knob-bubble.escaped {
   background-color: #0c0f13 !important;
-  color: #ffffff !important;
+  color: var(--tsv-font-color, #f1f3f7) !important;
   border: 1px solid var(--custom-color-accent-light) !important;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 0 8px var(--accent-glow) !important;
   font-weight: 600 !important;

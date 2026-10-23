@@ -8,20 +8,20 @@
 ::after,
 ::before {
   /* ── Accent & Glow ── */
-  --custom-color-accent-light: #7c3aed;
-  --custom-color-accent-dark: #5b21b6;
-  --accent-rgb: 124, 58, 237;
-  --accent-glow: rgba(124, 58, 237, 0.48);
-  --accent-glow-subtle: rgba(124, 58, 237, 0.22);
-  --accent-glow-soft: rgba(124, 58, 237, 0.10);
+  --custom-color-accent-light: #9061f9;
+  --custom-color-accent-dark: #6d28d9;
+  --accent-rgb: 144, 97, 249;
+  --accent-glow: rgba(144, 97, 249, 0.48);
+  --accent-glow-subtle: rgba(144, 97, 249, 0.22);
+  --accent-glow-soft: rgba(144, 97, 249, 0.10);
 
-  --custom-color-accent-light-t: rgba(124, 58, 237, 0.16);
-  --custom-color-accent-dark-t: rgba(124, 58, 237, 0.08);
-  --custom-color-slider1: #7c3aed;
+  --custom-color-accent-light-t: rgba(144, 97, 249, 0.16);
+  --custom-color-accent-dark-t: rgba(144, 97, 249, 0.08);
+  --custom-color-slider1: #9061f9;
   --custom-color-slider2: rgba(255, 255, 255, 0.15);
 
   /* ── Strict SSOT Contract Guards ── */
-  --card-outline: rgba(124, 58, 237, 0.28) !important;
+  --card-outline: rgba(144, 97, 249, 0.28) !important;
   --tsv-tint: var(--custom-color-accent-light) !important;
   --tsv-tint2: var(--custom-color-accent-light) !important;
 }

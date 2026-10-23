@@ -1,5 +1,5 @@
 ---
-version: alpha
+version: 1.6.1
 name: AMOLED-Cyber-Glow-TeamSpeak6
 description: "A pure-black AMOLED & QD-OLED calibrated theme for TeamSpeak 6 with Dark Glass, Voice Activity Glow Rings, and tactile Emil Kowalski spring physics. Designed for zero optical fringing, 16:1 text contrast, and battery/panel longevity."
 
@@ -28,26 +28,52 @@ colors:
       accent-dark: "#be185d"
       accent-rgb: "244, 63, 142"
     reaper:
-      accent-light: "#4a5568"
-      accent-dark: "#2d3748"
-      accent-rgb: "74, 85, 104"
+      accent-light: "#9061f9"
+      accent-dark: "#6d28d9"
+      accent-rgb: "144, 97, 249"
     cyan:
-      accent-light: "#00e5ff"
-      accent-dark: "#0099b8"
-      accent-rgb: "0, 229, 255"
+      accent-light: "#06b6d4"
+      accent-dark: "#0891b2"
+      accent-rgb: "6, 182, 212"
     purple:
       accent-light: "#a855f7"
       accent-dark: "#7e22ce"
       accent-rgb: "168, 85, 247"
     amber:
-      accent-light: "#ffaa00"
-      accent-dark: "#cc7700"
-      accent-rgb: "255, 170, 0"
+      accent-light: "#f97316"
+      accent-dark: "#c2410c"
+      accent-rgb: "249, 115, 22"
+    emerald:
+      accent-light: "#10b981"
+      accent-dark: "#059669"
+      accent-rgb: "16, 185, 129"
+    ruby:
+      accent-light: "#f43f5e"
+      accent-dark: "#be123c"
+      accent-rgb: "244, 63, 94"
+    silver:
+      accent-light: "#e2e8f0"
+      accent-dark: "#94a3b8"
+      accent-rgb: "226, 232, 240"
+    abyss:
+      accent-light: "#0ea5e9"
+      accent-dark: "#0284c7"
+      accent-rgb: "14, 165, 233"
     slate:
       accent-light: "#38bdf8"
       accent-dark: "#0284c7"
       accent-rgb: "56, 189, 248"
       canvas: "#0d1117"
+    graphite:
+      accent-light: "#38bdf8"
+      accent-dark: "#0284c7"
+      accent-rgb: "56, 189, 248"
+      canvas: "#18191c"
+    catppuccin:
+      accent-light: "#cba6f7"
+      accent-dark: "#8839ef"
+      accent-rgb: "203, 166, 247"
+      canvas: "#11111b"
 
 typography:
   font-family: '-apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", "Inter", Roboto, Helvetica, Arial, sans-serif'
@@ -99,13 +125,19 @@ A design specification document conforming to the [VoltAgent/awesome-design-md](
 - **Surface Elevated (Floating Modals / Context Menus)**: `rgba(13, 16, 22, 0.85)` with `-webkit-backdrop-filter: blur(14px)`.
 
 ### Chromatic Variants
-The theme provides 6 standalone accent palettes:
+The theme provides 12 calibrated standalone accent palettes matching `package.json`:
 - **AMOLED Pink**: Primary `#f43f8e`, Dark `#be185d`, RGB `244, 63, 142`.
-- **AMOLED Dark (Reaper)**: Stealth tactical accent `#4a5568`, Dark `#2d3748`, RGB `74, 85, 104`.
-- **AMOLED Cyan**: Cyber electric `#00e5ff`, Dark `#0099b8`, RGB `0, 229, 255`.
+- **AMOLED Dark (Reaper)**: Cyber electric violet `#9061f9`, Dark `#6d28d9`, RGB `144, 97, 249` (WCAG AA compliant 5.26:1 text contrast).
+- **AMOLED Cyan**: Cyber electric teal `#06b6d4`, Dark `#0891b2`, RGB `6, 182, 212`.
 - **AMOLED Purple**: Neon violet `#a855f7`, Dark `#7e22ce`, RGB `168, 85, 247`.
-- **AMOLED Amber**: Warm cyber amber `#ffaa00`, Dark `#cc7700`, RGB `255, 170, 0`.
+- **AMOLED Amber**: Warm cyber amber `#f97316`, Dark `#c2410c`, RGB `249, 115, 22`.
+- **AMOLED Emerald**: Matrix emerald green `#10b981`, Dark `#059669`, RGB `16, 185, 129`.
+- **AMOLED Ruby**: Crimson ruby `#f43f5e`, Dark `#be123c`, RGB `244, 63, 94`.
+- **AMOLED Silver (Platinum)**: Crisp metallic silver `#e2e8f0`, Dark `#94a3b8`, RGB `226, 232, 240`.
+- **AMOLED Abyss (Deep Teal)**: Deep ocean cerulean `#0ea5e9`, Dark `#0284c7`, RGB `14, 165, 233`.
 - **Midnight Slate (IPS Edition)**: Deep slate canvas `#0d1117`, surface `#161b22`, calibrated to mask IPS backlight bleed and IPS glow, with electric sky blue accent `#38bdf8` (RGB `56, 189, 248`).
+- **Cyber Graphite**: Neutral charcoal gray canvas `#18191c`, surface `#202225`, sky blue accent `#38bdf8` (RGB `56, 189, 248`).
+- **Catppuccin Mocha**: Authentic pastel dark palette with Crust (`#11111b`), Mantle (`#181825`), Base (`#1e1e2e`), lavender accent `#cba6f7` (RGB `203, 166, 247`).
 
 ---
 
@@ -113,9 +145,9 @@ The theme provides 6 standalone accent palettes:
 
 - **Font Stack**: `-apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", "Inter", Roboto, Helvetica, Arial, sans-serif`.
 - **Code / Monospace**: `"JetBrains Mono", "Cascadia Code", "Fira Code", Consolas, monospace`.
-- **Primary Ink**: `#e2e5eb` (Contrast ratio against `#000000`: **16.3:1**, exceeding WCAG AAA).
-- **Secondary Ink**: `#9499a6` (Contrast ratio against `#000000`: **7.2:1**, meeting WCAG AAA).
-- **Subtle / Muted Ink**: `#6b7280` (Contrast ratio against `#000000`: **4.8:1**, meeting WCAG AA).
+- **Primary Ink**: `#f1f3f7` / `#e2e5eb` (Contrast ratio against `#000000`: **18.9:1**, exceeding WCAG AAA).
+- **Secondary Ink**: `#a3abb8` / `#9499a6` (Contrast ratio against `#000000`: **9.1:1**, meeting WCAG AAA).
+- **Subtle / Muted Ink**: `#94a3b8` / `#6b7280` (Contrast ratio against `#0a0c11`: **7.6:1**, meeting WCAG AAA).
 
 ---
 
