@@ -125,7 +125,7 @@ textarea:focus-visible {
 
   /* Chat */
   --tsv-chat-remote-bg: rgba(16, 18, 24, 0.70) !important;
-  --tsv-chat-self-bg: rgba(var(--accent-rgb), 0.12) !important;
+  --tsv-chat-self-bg: rgba(var(--accent-rgb), 0.20) !important;
   --tsv-chat-deleted-bg: rgba(16, 18, 24, 0.40) !important;
   --tsv-chat-deleted-font-color: var(--tsv-error-color) !important;
   --tsv-chat-link-color: var(--custom-color-accent-light) !important;
@@ -1178,22 +1178,26 @@ input[type="search"]:focus:not(.has-error, .error, .is-error, :invalid) {
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.10), 0 0 16px var(--accent-glow-subtle) !important;
 }
 
-/* Chat bubbles — Soft translucent glass */
-.ts-chat-room-event-detailed:not(.ts-currently-referencing, .apparently-people-like-huge-faces) .ts-chat-room-event-bubble {
+/* Chat bubbles — Soft translucent glass (Remote) */
+.ts-chat-room-event-detailed:not(.ts-currently-referencing, .apparently-people-like-huge-faces, .ownclient) .ts-chat-room-event-bubble {
   background: rgba(18, 20, 27, 0.65) !important;
   backdrop-filter: blur(14px) !important;
   border: 1px solid rgba(255, 255, 255, 0.06) !important;
   border-radius: 8px !important;
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.04) !important;
 }
-.ts-chat-room-event-detailed:not(.ts-currently-referencing, .apparently-people-like-huge-faces) .ts-chat-room-event-bubble::before {
+.ts-chat-room-event-detailed:not(.ts-currently-referencing, .apparently-people-like-huge-faces, .ownclient) .ts-chat-room-event-bubble::before {
   border-right: 6px solid rgba(18, 20, 27, 0.65) !important;
 }
 
-/* Own messages with soft accent glow */
+/* Own messages with vibrant cyber glow glass */
 .ts-chat-room-event-detailed.ownclient .ts-chat-room-event-bubble {
-  background: rgba(var(--accent-rgb), 0.12) !important;
-  border: 1px solid rgba(var(--accent-rgb), 0.25) !important;
+  background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.24), rgba(var(--accent-rgb), 0.12)) !important;
+  border: 1px solid rgba(var(--accent-rgb), 0.45) !important;
+  box-shadow: 0 0 12px var(--accent-glow-soft), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+.ts-chat-room-event-detailed.ownclient .ts-chat-room-event-bubble::before {
+  border-right: 6px solid rgba(var(--accent-rgb), 0.22) !important;
 }
 
 /* Toggles with tactile feel */
