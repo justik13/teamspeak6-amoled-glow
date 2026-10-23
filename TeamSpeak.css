@@ -122,6 +122,7 @@ textarea:focus-visible {
   /* List & Voice channel highlights */
   --tsv-item-selection: rgba(var(--accent-rgb), 0.10) !important;
   --tsv-shaded-item-selection: rgba(255, 255, 255, 0.04) !important;
+  --settings-highlight-bg: rgba(var(--accent-rgb), 0.16) !important;
 
   /* Chat */
   --tsv-chat-remote-bg: rgba(16, 18, 24, 0.70) !important;
@@ -434,6 +435,31 @@ titlebar,
 .ts-server-tree-item-leaf.channel.tsv-selected .tsv-item-text {
   color: var(--tsv-font-color, #f1f3f7) !important;
   text-shadow: 0 0 10px var(--accent-glow-subtle) !important;
+}
+
+/* ═══════════════════════════════════════════
+   SETTINGS WINDOW — Categories & Active Highlights
+   ═══════════════════════════════════════════ */
+
+.tsv-settings-categories .tsv-item.tsv-selected > .tsv-item-highlight,
+.tsv-settings-categories.not-in-sidebar .tsv-item.tsv-selected > .tsv-item-highlight {
+  background: rgba(var(--accent-rgb), 0.16) !important;
+  border: 1px solid rgba(var(--accent-rgb), 0.35) !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12), 0 0 12px var(--accent-glow-soft) !important;
+  border-radius: 6px !important;
+}
+
+.tsv-settings-categories .tsv-item.tsv-selected > .tsv-item-highlight:after,
+.tsv-settings-categories.not-in-sidebar .tsv-item.tsv-selected > .tsv-item-highlight:after {
+  background-color: var(--custom-color-accent-light) !important;
+  box-shadow: 0 0 8px var(--accent-glow-subtle) !important;
+}
+
+.tsv-settings-categories .tsv-item:hover:not(.tsv-selected) > .tsv-item-highlight,
+.tsv-settings-categories.not-in-sidebar .tsv-item:hover:not(.tsv-selected) > .tsv-item-highlight {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 6px !important;
 }
 
 
