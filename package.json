@@ -1,6 +1,6 @@
 {
     "name": "AMOLED Cyber Glow",
-    "description": "A pure-black AMOLED & QD-OLED calibrated theme for TeamSpeak 6 with Dark Glass, Voice Rings, and Neon Glow.",
+    "description": "Откалиброванная тёмная тема для TeamSpeak 6 с глубоким чёрным фоном (#000000) для OLED-экранов, тёмным стеклом, индикацией голоса и неоновым свечением.",
     "version": "1.6.1",
     "identifier": "amoled.dark.minimalistic",
     "engines": {

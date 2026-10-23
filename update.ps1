@@ -1,31 +1,32 @@
-param(
+﻿param(
     [switch]$Force
 )
+try { [Console]::OutputEncoding = [System.Text.Encoding]::UTF8 } catch {}
 
-# TeamSpeak 6 AMOLED Glow - Automated Installer & Updater
+# TeamSpeak 6 AMOLED Glow — Автоматический установщик и модуль обновления
 $ErrorActionPreference = 'Stop'
 
-# Support force installation via arguments or environment variable
+# Поддержка принудительной установки через аргументы или переменную окружения
 $isForce = ($args -contains '-Force') -or ($args -contains '/Force') -or ($args -contains '-f') -or ($env:FORCE_INSTALL -eq '1') -or ($Force -eq $true)
 
 Write-Host '========================================' -ForegroundColor Magenta
-Write-Host '  TeamSpeak 6 AMOLED Glow Theme' -ForegroundColor Cyan
+Write-Host '  Тема AMOLED Cyber Glow для TeamSpeak 6' -ForegroundColor Cyan
 Write-Host '========================================' -ForegroundColor Magenta
 
-# 1. Resolve user paths
+# 1. Определение путей пользователя
 $appData = if ($env:APPDATA) { $env:APPDATA } else { [Environment]::GetFolderPath('ApplicationData') }
 $localAppData = if ($env:LOCALAPPDATA) { $env:LOCALAPPDATA } else { [Environment]::GetFolderPath('LocalApplicationData') }
 $extDir = Join-Path $appData 'TeamSpeak\Default\extensions\amoled.dark.minimalistic'
 
-# 2. Check if TeamSpeak is installed on this computer
+# 2. Проверка, установлен ли TeamSpeak на компьютере
 $isTsInstalled = $false
 
-# Check active process
+# Проверка активного процесса
 if (Get-Process -Name 'TeamSpeak*' -ErrorAction SilentlyContinue) {
     $isTsInstalled = $true
 }
 
-# Check executable files (.exe)
+# Проверка исполняемых файлов (.exe)
 if (-not $isTsInstalled) {
     $tsPaths = @(
         (Join-Path $env:ProgramFiles 'TeamSpeak\TeamSpeak.exe'),
@@ -43,7 +44,7 @@ if (-not $isTsInstalled) {
     }
 }
 
-# Check TeamSpeak data directories
+# Проверка каталогов данных TeamSpeak
 if (-not $isTsInstalled) {
     $tsDataPaths = @(
         (Join-Path $appData 'TeamSpeak'),
@@ -57,7 +58,7 @@ if (-not $isTsInstalled) {
     }
 }
 
-# Check Windows Registry
+# Проверка реестра Windows
 if (-not $isTsInstalled) {
     $regPaths = @(
         'HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*',
@@ -74,14 +75,14 @@ if (-not $isTsInstalled) {
 
 if (-not $isTsInstalled -and -not $isForce) {
     Write-Host ''
-    Write-Host '[!] TeamSpeak is not detected on your computer!' -ForegroundColor Yellow
-    Write-Host '    Please install TeamSpeak 6 first: https://teamspeak.com' -ForegroundColor Gray
-    Write-Host '    (To bypass this check, run with: -Force or set FORCE_INSTALL=1)' -ForegroundColor DarkGray
+    Write-Host '[!] Клиент TeamSpeak не обнаружен на вашем компьютере!' -ForegroundColor Yellow
+    Write-Host '    Пожалуйста, сначала установите TeamSpeak 6: https://teamspeak.com' -ForegroundColor Gray
+    Write-Host '    (Для принудительной установки запустите скрипт с ключом: -Force или FORCE_INSTALL=1)' -ForegroundColor DarkGray
     Write-Host ''
     return
 }
 
-# 3. Download from GitHub or install from local folder
+# 3. Загрузка с GitHub или установка из локальной папки
 $tempFolder = if ($env:TEMP) { $env:TEMP } else { [System.IO.Path]::GetTempPath() }
 $tempZip = Join-Path $tempFolder 'ts6-amoled-glow.zip'
 $tempDir = Join-Path $tempFolder 'ts6-amoled-glow-tmp'
@@ -90,7 +91,7 @@ try {
     $srcDir = $null
     $candidate = if ($env:LOCAL_SRC) { $env:LOCAL_SRC } elseif ($PSScriptRoot) { $PSScriptRoot } elseif (Test-Path -LiteralPath '.\package.json') { (Get-Location).Path } else { $null }
 
-    # Check if executed directly from the target extension folder
+    # Проверка, не запущен ли скрипт непосредственно из целевой папки расширения
     $isSelfDirectory = $false
     if ($candidate -and (Test-Path -LiteralPath $candidate)) {
         try {
@@ -103,10 +104,10 @@ try {
     }
 
     if ($candidate -and -not $isSelfDirectory -and (Test-Path -LiteralPath (Join-Path $candidate 'package.json')) -and (Test-Path -LiteralPath (Join-Path $candidate 'TeamSpeak.css'))) {
-        Write-Host '>>> Installing from local directory...' -ForegroundColor Yellow
+        Write-Host '>>> Установка из локальной директории...' -ForegroundColor Yellow
         $srcDir = $candidate
     } else {
-        Write-Host '>>> Downloading latest theme release from GitHub...' -ForegroundColor Yellow
+        Write-Host '>>> Загрузка последней версии темы с GitHub...' -ForegroundColor Yellow
         try {
             [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 -bor [Net.SecurityProtocolType]::Tls13
         } catch {
@@ -134,24 +135,24 @@ try {
         
         $innerFolder = Get-ChildItem -LiteralPath $tempDir -Directory | Select-Object -First 1
         if (-not $innerFolder -or -not (Test-Path -LiteralPath (Join-Path $innerFolder.FullName 'package.json'))) {
-            throw 'Failed to extract theme archive or archive is corrupted.'
+            throw 'Не удалось распаковать архив темы или архив поврежден.'
         }
         $srcDir = $innerFolder.FullName
     }
 
-    # 4. Create target extension directory if it does not exist
+    # 4. Создание целевого каталога расширения, если он не существует
     if (-not (Test-Path -LiteralPath $extDir)) {
         New-Item -ItemType Directory -Path $extDir -Force | Out-Null
     }
 
-    # 5. Copy theme files
-    Write-Host '>>> Copying theme files...' -ForegroundColor Yellow
+    # 5. Копирование файлов темы
+    Write-Host '>>> Копирование файлов темы...' -ForegroundColor Yellow
     $newItems = @(Get-ChildItem -LiteralPath $srcDir | Where-Object { $_.Name -ne '.git' })
     if (-not $newItems -or $newItems.Count -eq 0) {
-        throw 'Source theme folder is empty.'
+        throw 'Папка с исходными файлами темы пуста.'
     }
 
-    # Remove obsolete files in target extension folder
+    # Удаление устаревших файлов в целевой папке расширения
     $newNames = @($newItems | Select-Object -ExpandProperty Name)
     Get-ChildItem -LiteralPath $extDir | Where-Object { $_.Name -notin $newNames -and $_.Name -ne '.git' } | ForEach-Object {
         Remove-Item -LiteralPath $_.FullName -Recurse -Force -ErrorAction SilentlyContinue
@@ -162,16 +163,16 @@ try {
     }
 
     Write-Host ''
-    Write-Host '[OK] Theme installed / updated successfully!' -ForegroundColor Green
+    Write-Host '[OK] Тема успешно установлена / обновлена!' -ForegroundColor Green
     Write-Host '----------------------------------------' -ForegroundColor DarkGray
-    Write-Host 'To apply changes in TeamSpeak 6:' -ForegroundColor White
-    Write-Host '  1. Open: Settings -> Appearance (enable theme if not active)' -ForegroundColor Cyan
-    Write-Host '  2. Completely exit TeamSpeak (tray icon -> Exit) and restart it' -ForegroundColor Yellow
+    Write-Host 'Чтобы применить изменения в TeamSpeak 6:' -ForegroundColor White
+    Write-Host '  1. Откройте: Настройки -> Внешний вид (включите "Использовать внешнюю тему")' -ForegroundColor Cyan
+    Write-Host '  2. Полностью закройте TeamSpeak (значок в трее -> Выход) и запустите снова' -ForegroundColor Yellow
     Write-Host ''
 }
 catch {
     Write-Host ''
-    Write-Host ('[!] Error during installation: ' + $_.Exception.Message) -ForegroundColor Red
+    Write-Host ('[!] Ошибка при установке: ' + $_.Exception.Message) -ForegroundColor Red
     Write-Host ''
 }
 finally {

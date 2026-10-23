@@ -17,15 +17,15 @@
 ## Доступные варианты темы
 
 - AMOLED Pink (неоновый розовый)
+- AMOLED Dark (минималистичный тёмный с фиолетовым акцентом)
 - AMOLED Cyan (бирюзовый)
 - AMOLED Purple (фиолетовый)
 - AMOLED Amber (янтарно-оранжевый)
 - AMOLED Emerald (изумрудный)
 - AMOLED Ruby (рубиновый)
-- AMOLED Dark (минималистичный тёмный с фиолетовым акцентом)
-- AMOLED Silver (серебристый)
-- AMOLED Abyss (тёмная морская волна)
-- Midnight Slate (тёмно-серый фон для IPS/LCD мониторов, скрывает засветы матрицы)
+- AMOLED Silver (Platinum) (серебристый / платиновый)
+- AMOLED Abyss (Deep Teal) (тёмная морская волна)
+- Midnight Slate (IPS) (тёмно-серый фон для IPS/LCD мониторов, скрывает засветы матрицы)
 - Cyber Graphite (графитовый)
 - Catppuccin Mocha (кофейно-пастельный)
 

@@ -1,6 +1,6 @@
 @echo off
 chcp 65001 >nul
-title TeamSpeak 6 AMOLED Glow Updater
+title Установка и обновление темы TeamSpeak 6 AMOLED Glow
 setlocal
 cd /d "%~dp0"
 set "LOCAL_SRC=%~dp0"
