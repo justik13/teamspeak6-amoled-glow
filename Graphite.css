@@ -49,6 +49,10 @@
   --tsv-view-header-bg: #202225 !important;
   --tsv-contrast-bg: #202225 !important;
   --tsv-separation-border-color: rgba(255, 255, 255, 0.07) !important;
+  --ts-sidebar-footer-background: #18191c !important;
+  --tsv-footer-bg: #18191c !important;
+  --tsv-shaded-footer-bg: #18191c !important;
+  --tsv-side-bar-bg-gradient-bottom: #18191c !important;
 
   /* ── High-Contrast Typography ── */
   --tsv-font-color: #f2f3f5 !important;

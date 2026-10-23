@@ -182,6 +182,8 @@ textarea:focus-visible {
   --ts-primary-background: var(--custom-value-dark1) !important;
   --ts-sidebar-background: var(--custom-sidebar-bg, var(--custom-value-dark1)) !important;
   --ts-sidebar-footer-background: var(--custom-sidebar-bg, var(--custom-value-dark1)) !important;
+  --tsv-footer-bg: var(--custom-sidebar-bg, var(--custom-value-dark1)) !important;
+  --tsv-shaded-footer-bg: var(--custom-sidebar-bg, var(--custom-value-dark1)) !important;
   --ts-sidebar-titlebar-bg-color: var(--custom-sidebar-bg, var(--custom-value-dark1)) !important;
   --ts-sidebar-connections-background: var(--custom-sidebar-bg, var(--custom-value-dark1)) !important;
   --ts-sidebar-search-background: var(--custom-sidebar-bg, var(--custom-value-dark1)) !important;
@@ -257,7 +259,7 @@ textarea:focus-visible {
   --horizontal-separator-color: rgba(255, 255, 255, 0.07) !important;
 
   /* Side bar */
-  --tsv-side-bar-bg-gradient-bottom: var(--custom-value-dark1) !important;
+  --tsv-side-bar-bg-gradient-bottom: var(--custom-sidebar-bg, var(--custom-value-dark1)) !important;
   --ts-tree-badges-bg: rgba(255, 255, 255, 0.08) !important;
 
   /* Highlight */
@@ -320,9 +322,22 @@ titlebar,
   border: none !important;
 }
 
-/* ── Seamless Sidebar Footer (Removes harsh horizontal line above user profile) ── */
+/* ── Seamless Sidebar Footer & Channel Footers ── */
 .ts-sidebar-footer,
-.tsv-sidebar .tsv-footer {
+.tsv-sidebar .tsv-footer,
+.main-content .app-content .ts-sidebar .ts-sidebar-footer,
+.tsv-footer,
+.tsv-activity-secondary .tsv-footer {
+  background: var(--custom-sidebar-bg, var(--custom-value-dark1)) !important;
+  background-color: var(--custom-sidebar-bg, var(--custom-value-dark1)) !important;
+  border-top: none !important;
+}
+
+.tsv-footer:before,
+.tsv-footer::before,
+.tsv-sidebar .tsv-footer:before,
+.tsv-sidebar .tsv-footer::before {
+  display: none !important;
   border-top: none !important;
 }
 
