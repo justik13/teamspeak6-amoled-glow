@@ -88,7 +88,7 @@ $tempDir = Join-Path $tempFolder 'ts6-amoled-glow-tmp'
 
 try {
     $srcDir = $null
-    $candidate = if ($env:LOCAL_SRC) { $env:LOCAL_SRC } elseif ($PSScriptRoot) { $PSScriptRoot } else { $null }
+    $candidate = if ($env:LOCAL_SRC) { $env:LOCAL_SRC } elseif ($PSScriptRoot) { $PSScriptRoot } elseif (Test-Path -LiteralPath '.\package.json') { (Get-Location).Path } else { $null }
 
     # Check if executed directly from the target extension folder
     $isSelfDirectory = $false
