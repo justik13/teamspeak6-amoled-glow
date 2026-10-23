@@ -15,11 +15,6 @@
   --accent-glow-subtle: rgba(56, 189, 248, 0.20);
   --accent-glow-soft: rgba(56, 189, 248, 0.08);
 
-  --custom-color-accent-light-t: rgba(56, 189, 248, 0.16);
-  --custom-color-accent-dark-t: rgba(56, 189, 248, 0.08);
-  --custom-color-slider1: #38bdf8;
-  --custom-color-slider2: rgba(255, 255, 255, 0.15);
-
   /* ── Strict SSOT Contract Guards ── */
   --card-outline: rgba(56, 189, 248, 0.28) !important;
   --tsv-tint: var(--custom-color-accent-light) !important;
@@ -29,10 +24,6 @@
   --custom-value-dark1: #18191c;
   --custom-value-dark2: #202225;
   --custom-value-dark3: #282a2e;
-  --custom-value-dark4: #313338;
-  --custom-value-dark5: #3a3c42;
-  --custom-value-dark6: #44474e;
-  --custom-value-dark7: #4e515a;
 
   /* ── Harmonized Canvas & Cards (Single Source of Truth) ── */
   --custom-sidebar-bg: #18191c !important;

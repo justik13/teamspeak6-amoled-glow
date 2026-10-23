@@ -1,3 +1,7 @@
+param(
+    [switch]$Force
+)
+
 # TeamSpeak 6 AMOLED Glow - Automated Installer & Updater
 $ErrorActionPreference = 'Stop'
 

@@ -15,11 +15,6 @@
   --accent-glow-subtle: rgba(226, 232, 240, 0.20);
   --accent-glow-soft: rgba(226, 232, 240, 0.08);
 
-  --custom-color-accent-light-t: rgba(226, 232, 240, 0.16);
-  --custom-color-accent-dark-t: rgba(226, 232, 240, 0.08);
-  --custom-color-slider1: #e2e8f0;
-  --custom-color-slider2: rgba(255, 255, 255, 0.18);
-
   /* ── Strict SSOT Contract Guards ── */
   --card-outline: rgba(226, 232, 240, 0.28) !important;
   --tsv-tint: var(--custom-color-accent-light) !important;

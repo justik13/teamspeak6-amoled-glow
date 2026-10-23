@@ -7,6 +7,9 @@
 ::after,
 ::before {
   color-scheme: dark !important;
+  /* ── Motion & Springs ── */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+
   /* ── Accent (overridden per variant) ── */
   --custom-color-accent-light: #f43f8e;
   --custom-color-accent-dark: #be185d;
@@ -15,13 +18,7 @@
   --accent-glow-subtle: rgba(var(--accent-rgb), 0.22);
   --accent-glow-soft: rgba(var(--accent-rgb), 0.10);
 
-  --custom-color-accent-light-t: rgba(var(--accent-rgb), 0.16);
-  --custom-color-accent-dark-t: rgba(var(--accent-rgb), 0.08);
-  --custom-color-slider1: var(--custom-color-accent-light);
-  --custom-color-slider2: rgba(255, 255, 255, 0.14);
-  --custom-color-secondary-text: #969ba8;
   --custom-value-scrollbar-width: 5px;
-  --default-tsv-tint: var(--custom-color-accent-light);
 
   /* ── Typography Stack & Smoothing ── */
   --tsv-font-family: "Segoe UI", "Segoe UI Variable Text", -apple-system, BlinkMacSystemFont, "Inter", Roboto, sans-serif !important;
@@ -41,10 +38,6 @@
   --custom-value-dark1: #000000;
   --custom-value-dark2: #050608;
   --custom-value-dark3: #0a0b10;
-  --custom-value-dark4: #0f1118;
-  --custom-value-dark5: #151822;
-  --custom-value-dark6: #1b1f2c;
-  --custom-value-dark7: #222738;
 }
 
 /* ── Core Dark Engine & Accessibility (UI/UX Pro Max & WCAG 2.2) ── */
@@ -173,7 +166,6 @@ textarea:focus-visible {
   --tsv-font-color: #f1f3f7 !important;
   --tsv-font-subtitle-color: #a3abb8 !important;
   --ts-third-font-color: #cbd2dc !important;
-  --custom-color-secondary-text: #a3abb8 !important;
 
   /* Core surfaces — Pure black base */
   --tsv-bg: var(--custom-value-dark1) !important;
@@ -224,7 +216,7 @@ textarea:focus-visible {
   --tsv-client-whisper-talking--gradient-stop: #be185d !important;
   --tsv-client-whisper-talking--outline: #ec4899 !important;
 
-  --ts-chat-system-message-color: rgba(255, 255, 255, 0.06) !important;
+  --ts-chat-system-message-text-color: var(--tsv-font-subtitle-color, #a3abb8) !important;
 
   /* Scrollbar */
   --tsv-scrollbar-bg: transparent !important;
@@ -373,7 +365,7 @@ titlebar,
   border: 1px solid rgba(255, 255, 255, 0.10) !important;
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06), 0 2px 6px rgba(0, 0, 0, 0.35) !important;
   border-radius: 6px !important;
-  transition: background-color 140ms cubic-bezier(0.16, 1, 0.3, 1), border-color 140ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 140ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: background-color 140ms var(--ease-spring), border-color 140ms var(--ease-spring), box-shadow 140ms var(--ease-spring) !important;
 }
 
 .ts-server-tree-item-leaf.channel:not(.spacer) .ts-server-tree-item-node {
@@ -406,7 +398,7 @@ titlebar,
 
 /* Tactile press on channel */
 .ts-server-tree-item-leaf:active {
-  transform: scale(0.995) !important;
+  transform: scale(0.98) !important;
   transition: transform 60ms ease-out !important;
 }
 
@@ -565,7 +557,7 @@ svg.tsv-icon-client-detailed-talking {
   color: #e2e5eb !important;
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12), 0 0 10px var(--accent-glow-soft) !important;
   animation: none !important;
-  transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1), background 120ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 120ms cubic-bezier(0.16, 1, 0.3, 1), border-color 120ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: transform 120ms var(--ease-spring), background 120ms var(--ease-spring), box-shadow 120ms var(--ease-spring), border-color 120ms var(--ease-spring) !important;
 }
 
 .tsv-button-hero:hover,
@@ -738,6 +730,7 @@ svg.tsv-icon-client-detailed-talking {
   justify-content: flex-end !important;
   gap: 3px !important;
   backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
   background: rgba(8, 10, 15, 0.85) !important;
   border: 1px solid rgba(255, 255, 255, 0.10) !important;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14) !important;
@@ -831,7 +824,7 @@ svg.tsv-icon-client-detailed-talking {
 .screen-overlay__bottom .tsv-button:not(.screen-overlay_bottom__viewers, .tsv-is-destructive),
 .screen-overlay__bottom .compensate-border-button:not(.screen-overlay_bottom__viewers, [is-destructive]) {
   width: 25px !important;
-  min-width: 22px !important;
+  min-width: 24px !important;
   max-width: 27px !important;
   height: 24px !important;
   min-height: 24px !important;
@@ -1082,7 +1075,7 @@ svg.tsv-icon-client-detailed-talking {
   border: 1px solid rgba(255, 255, 255, 0.09) !important;
   border-radius: 6px !important;
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08) !important;
-  transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1), background-color 120ms cubic-bezier(0.16, 1, 0.3, 1), border-color 120ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 120ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: transform 120ms var(--ease-spring), background-color 120ms var(--ease-spring), border-color 120ms var(--ease-spring), box-shadow 120ms var(--ease-spring) !important;
 }
 .tsv-button:not(.tsv-button-hero, .compensate-border-button, .screen-overlay_bottom__viewers, .tsv-is-destructive, [is-destructive], [class*="destructive"], :disabled, [disabled], .is-disabled):hover {
   background: rgba(var(--accent-rgb), 0.12) !important;
@@ -1135,7 +1128,7 @@ svg.tsv-icon-client-detailed-talking {
   padding: 6px 10px !important;
   margin: 1px 0 !important;
   color: #dce0e8 !important;
-  transition: background-color 120ms cubic-bezier(0.16, 1, 0.3, 1), color 120ms cubic-bezier(0.16, 1, 0.3, 1), transform 120ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: background-color 120ms var(--ease-spring), color 120ms var(--ease-spring), transform 120ms var(--ease-spring) !important;
 }
 
 .ts-server-management-actions .tsv-button:hover,
@@ -1163,7 +1156,7 @@ svg.tsv-icon-client-detailed-talking {
 .ts-audio-controls .tsv-tool-button,
 .tsv-tool-button {
   border-radius: 6px !important;
-  transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1), background-color 120ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 120ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: transform 120ms var(--ease-spring), background-color 120ms var(--ease-spring), box-shadow 120ms var(--ease-spring) !important;
 }
 .ts-audio-controls .tsv-tool-button:hover,
 .tsv-tool-button:hover {
@@ -1202,19 +1195,22 @@ svg.tsv-icon-client-detailed-talking {
 .tsv-form-input,
 .tsv-suggestions-menu-filter-input,
 input[type="text"],
-input[type="search"] {
+input[type="search"],
+textarea {
   background: rgba(12, 14, 20, 0.75) !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   color: #e2e5eb !important;
   border-radius: 6px !important;
-  transition: border-color 140ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 140ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: border-color 140ms var(--ease-spring), box-shadow 140ms var(--ease-spring) !important;
 }
 
 .tsv-search-bar:focus-within,
 .tsv-form-input:focus:not(.has-error, .error, .is-error, :invalid),
 .tsv-suggestions-menu-filter-input:focus:not(.has-error, .error, .is-error, :invalid),
 input[type="text"]:focus:not(.has-error, .error, .is-error, :invalid),
-input[type="search"]:focus:not(.has-error, .error, .is-error, :invalid) {
+input[type="search"]:focus:not(.has-error, .error, .is-error, :invalid),
+textarea:focus:not(.has-error, .error, .is-error, :invalid),
+textarea:focus-visible:not(.has-error, .error, .is-error, :invalid) {
   border-color: var(--custom-color-accent-light) !important;
   box-shadow: 0 0 12px var(--accent-glow-subtle), inset 0 0 0 1px var(--custom-color-accent-light) !important;
   outline: none !important;
@@ -1232,7 +1228,7 @@ input[type="search"]:focus:not(.has-error, .error, .is-error, :invalid) {
   backdrop-filter: blur(16px) !important;
   border-radius: 8px !important;
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05) !important;
-  transition: border-color 140ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 140ms cubic-bezier(0.16, 1, 0.3, 1), background-color 140ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: border-color 140ms var(--ease-spring), box-shadow 140ms var(--ease-spring), background-color 140ms var(--ease-spring) !important;
 }
 .ts-chat-input-container.focus,
 .ts-chat-input-container:hover {
@@ -1265,7 +1261,7 @@ input[type="search"]:focus:not(.has-error, .error, .is-error, :invalid) {
 
 /* Toggles with tactile feel */
 .ts-toggle {
-  transition: transform 100ms cubic-bezier(0.16, 1, 0.3, 1), border-color 120ms ease-out !important;
+  transition: transform 100ms var(--ease-spring), background-color 120ms ease-out, border-color 120ms ease-out !important;
 }
 .ts-toggle:active {
   transform: scale(0.95) !important;
@@ -1432,11 +1428,22 @@ a:not(.tsv-button, .tsv-tool-button, .tsv-item, .tsv-tab):hover,
 .ts-context-menu,
 .ts-false-context-menu,
 .menu {
-  animation: ts-spring-pop 140ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  animation: ts-spring-pop 140ms var(--ease-spring) !important;
   transform-origin: top left !important;
 }
 
+.bottom-no-space.tsv-context-menu,
+.bottom-no-space.ts-context-menu,
+.bottom-no-space.ts-false-context-menu,
+.bottom-no-space.menu,
+.bottom-no-space .tsv-context-menu,
+.bottom-no-space .ts-context-menu,
+.bottom-no-space .ts-false-context-menu,
+.bottom-no-space .menu {
+  transform-origin: bottom left !important;
+}
+
 .ts-tooltip {
-  animation: ts-spring-pop 120ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  animation: ts-spring-pop 120ms var(--ease-spring) !important;
   transform-origin: center bottom !important;
 }

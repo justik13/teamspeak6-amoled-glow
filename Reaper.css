@@ -9,16 +9,11 @@
 ::before {
   /* ── Accent & Glow ── */
   --custom-color-accent-light: #9061f9;
-  --custom-color-accent-dark: #6d28d9;
+  --custom-color-accent-dark: #7c3aed;
   --accent-rgb: 144, 97, 249;
   --accent-glow: rgba(144, 97, 249, 0.48);
   --accent-glow-subtle: rgba(144, 97, 249, 0.22);
   --accent-glow-soft: rgba(144, 97, 249, 0.10);
-
-  --custom-color-accent-light-t: rgba(144, 97, 249, 0.16);
-  --custom-color-accent-dark-t: rgba(144, 97, 249, 0.08);
-  --custom-color-slider1: #9061f9;
-  --custom-color-slider2: rgba(255, 255, 255, 0.15);
 
   /* ── Strict SSOT Contract Guards ── */
   --card-outline: rgba(144, 97, 249, 0.28) !important;
