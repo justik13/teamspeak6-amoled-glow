@@ -5,7 +5,7 @@
 
 /* ── Sidebar — frosted dark glass ── */
 .tsv-sidebar .tsv-body-background {
-  background: rgba(0, 0, 0, 0.75) !important;
+  background: var(--custom-sidebar-bg, rgba(0, 0, 0, 0.75)) !important;
   backdrop-filter: blur(24px) saturate(150%) !important;
   -webkit-backdrop-filter: blur(24px) saturate(150%) !important;
   border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
@@ -17,7 +17,7 @@
 .tsv-view-header,
 .ts-server-header,
 .ts-new-header-bg {
-  background: rgba(5, 6, 8, 0.82) !important;
+  background: var(--custom-header-bg, rgba(5, 6, 8, 0.82)) !important;
   backdrop-filter: blur(18px) saturate(140%) !important;
   -webkit-backdrop-filter: blur(18px) saturate(140%) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
@@ -29,7 +29,7 @@
 .tsv-dashboard-chats,
 .tsv-dashboard-news,
 .ts-discovery-wrapper {
-  background: #000000 !important;
+  background: var(--ts-primary-background, var(--tsv-bg, var(--custom-value-dark1, #000000))) !important;
   border: none !important;
 }
 
@@ -38,10 +38,10 @@
 .tsv-preview,
 .tsv-deviant,
 .tsv-highlight-header {
-  background: rgba(16, 18, 24, 0.70) !important;
+  background: var(--card-background, rgba(16, 18, 24, 0.70)) !important;
   backdrop-filter: blur(16px) saturate(140%) !important;
   -webkit-backdrop-filter: blur(16px) saturate(140%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid var(--card-outline, rgba(255, 255, 255, 0.08)) !important;
   border-radius: 8px !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.40) !important;
   transition: border-color 140ms ease, box-shadow 140ms ease, transform 140ms ease !important;
@@ -57,7 +57,7 @@
   background: rgba(14, 16, 22, 0.75) !important;
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid var(--card-outline, rgba(255, 255, 255, 0.08)) !important;
   border-radius: 8px !important;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
 }
@@ -128,7 +128,7 @@
   .tsv-modal-backdrop {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    background: #000000 !important;
+    background: var(--ts-primary-background, var(--tsv-bg, var(--custom-value-dark1, #000000))) !important;
     border-color: rgba(255, 255, 255, 0.22) !important;
   }
 }

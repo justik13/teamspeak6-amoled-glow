@@ -1,0 +1,25 @@
+@import url(TeamSpeak.css);
+@import url(Glassmorphism.css);
+
+/* AMOLED Ruby — Crimson Cyber Red
+   Pure OLED Black (#000000) base with fiery ruby red neon glow. */
+
+:root,
+::after,
+::before {
+  --custom-color-accent-light: #f43f5e;
+  --custom-color-accent-dark: #be123c;
+  --accent-rgb: 244, 63, 94;
+  --accent-glow: rgba(244, 63, 94, 0.48);
+  --accent-glow-subtle: rgba(244, 63, 94, 0.22);
+  --accent-glow-soft: rgba(244, 63, 94, 0.10);
+
+  --custom-color-accent-light-t: rgba(244, 63, 94, 0.16);
+  --custom-color-accent-dark-t: rgba(244, 63, 94, 0.08);
+  --custom-color-slider1: #f43f5e;
+  --custom-color-slider2: rgba(255, 255, 255, 0.15);
+
+  --card-outline: rgba(244, 63, 94, 0.28) !important;
+  --tsv-tint: var(--custom-color-accent-light) !important;
+  --tsv-tint2: var(--custom-color-accent-light) !important;
+}

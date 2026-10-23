@@ -1,0 +1,25 @@
+@import url(TeamSpeak.css);
+@import url(Glassmorphism.css);
+
+/* AMOLED Silver — Platinum Metallic Edition
+   Pure OLED Black (#000000) base with sleek platinum silver & metallic chrome glow. */
+
+:root,
+::after,
+::before {
+  --custom-color-accent-light: #e2e8f0;
+  --custom-color-accent-dark: #94a3b8;
+  --accent-rgb: 226, 232, 240;
+  --accent-glow: rgba(226, 232, 240, 0.45);
+  --accent-glow-subtle: rgba(226, 232, 240, 0.20);
+  --accent-glow-soft: rgba(226, 232, 240, 0.08);
+
+  --custom-color-accent-light-t: rgba(226, 232, 240, 0.16);
+  --custom-color-accent-dark-t: rgba(226, 232, 240, 0.08);
+  --custom-color-slider1: #e2e8f0;
+  --custom-color-slider2: rgba(255, 255, 255, 0.18);
+
+  --card-outline: rgba(226, 232, 240, 0.28) !important;
+  --tsv-tint: var(--custom-color-accent-light) !important;
+  --tsv-tint2: var(--custom-color-accent-light) !important;
+}

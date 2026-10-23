@@ -1,0 +1,56 @@
+@import url(TeamSpeak.css);
+@import url(Glassmorphism.css);
+
+/* Catppuccin Mocha — Soothing Pastel Dark Edition
+   Authentic Catppuccin Mocha palette with Crust (#11111b), Mantle (#181825), Base (#1e1e2e). */
+
+:root,
+::after,
+::before {
+  /* ── Accent (Lavender & Mauve) ── */
+  --custom-color-accent-light: #cba6f7;
+  --custom-color-accent-dark: #8839ef;
+  --accent-rgb: 203, 166, 247;
+  --accent-glow: rgba(203, 166, 247, 0.45);
+  --accent-glow-subtle: rgba(203, 166, 247, 0.20);
+  --accent-glow-soft: rgba(203, 166, 247, 0.08);
+
+  --custom-color-accent-light-t: rgba(203, 166, 247, 0.15);
+  --custom-color-accent-dark-t: rgba(203, 166, 247, 0.07);
+  --custom-color-slider1: #cba6f7;
+  --custom-color-slider2: rgba(255, 255, 255, 0.14);
+
+  --card-outline: rgba(203, 166, 247, 0.28) !important;
+  --tsv-tint: var(--custom-color-accent-light) !important;
+  --tsv-tint2: var(--custom-color-accent-light) !important;
+
+  /* ── Catppuccin Mocha Surface Scale ── */
+  --custom-value-dark1: #11111b; /* Crust */
+  --custom-value-dark2: #181825; /* Mantle */
+  --custom-value-dark3: #1e1e2e; /* Base */
+  --custom-value-dark4: #313244; /* Surface0 */
+  --custom-value-dark5: #45475a; /* Surface1 */
+  --custom-value-dark6: #585b70; /* Surface2 */
+  --custom-value-dark7: #6c7086; /* Overlay0 */
+
+  /* ── Harmonized Surfaces ── */
+  --custom-sidebar-bg: #11111b !important;
+  --custom-header-bg: #181825 !important;
+  --card-background: #181825 !important;
+  --card-hover-background: #313244 !important;
+  --ts-primary-background: #1e1e2e !important;
+  --tsv-bg: #1e1e2e !important;
+  --tsv-header-bg: #181825 !important;
+  --ts-new-header-bg: #181825 !important;
+  --tsv-view-header-bg: #181825 !important;
+  --tsv-server-header-gradient-start: #181825 !important;
+  --tsv-server-header-gradient-end: #181825 !important;
+
+  /* ── Typography & Status ── */
+  --tsv-font-color: #cdd6f4 !important;
+  --tsv-font-subtitle-color: #a6adc8 !important;
+  --ts-third-font-color: #bac2de !important;
+  --tsv-online-color: #a6e3a1 !important;
+  --tsv-away-color: #f9e2af !important;
+  --tsv-error-color: #f38ba8 !important;
+}

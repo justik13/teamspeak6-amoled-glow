@@ -1,0 +1,53 @@
+@import url(TeamSpeak.css);
+@import url(Glassmorphism.css);
+
+/* Cyber Graphite — Neutral Charcoal Gray Edition
+   True neutral dark gray (#18191c) canvas inspired by modern developer & gaming platforms. */
+
+:root,
+::after,
+::before {
+  /* ── Accent (Electric Sky Blue) ── */
+  --custom-color-accent-light: #38bdf8;
+  --custom-color-accent-dark: #0284c7;
+  --accent-rgb: 56, 189, 248;
+  --accent-glow: rgba(56, 189, 248, 0.45);
+  --accent-glow-subtle: rgba(56, 189, 248, 0.20);
+  --accent-glow-soft: rgba(56, 189, 248, 0.08);
+
+  --custom-color-accent-light-t: rgba(56, 189, 248, 0.16);
+  --custom-color-accent-dark-t: rgba(56, 189, 248, 0.08);
+  --custom-color-slider1: #38bdf8;
+  --custom-color-slider2: rgba(255, 255, 255, 0.15);
+
+  --card-outline: rgba(56, 189, 248, 0.28) !important;
+  --tsv-tint: var(--custom-color-accent-light) !important;
+  --tsv-tint2: var(--custom-color-accent-light) !important;
+
+  /* ── Neutral Dark Gray Surface Scale ── */
+  --custom-value-dark1: #18191c;
+  --custom-value-dark2: #202225;
+  --custom-value-dark3: #282a2e;
+  --custom-value-dark4: #313338;
+  --custom-value-dark5: #3a3c42;
+  --custom-value-dark6: #44474e;
+  --custom-value-dark7: #4e515a;
+
+  /* ── Harmonized Surfaces (Single Source of Truth) ── */
+  --custom-sidebar-bg: #18191c !important;
+  --custom-header-bg: #202225 !important;
+  --card-background: #202225 !important;
+  --card-hover-background: #282a2e !important;
+  --ts-primary-background: #18191c !important;
+  --tsv-bg: #18191c !important;
+  --tsv-header-bg: #202225 !important;
+  --ts-new-header-bg: #202225 !important;
+  --tsv-view-header-bg: #202225 !important;
+  --tsv-server-header-gradient-start: #202225 !important;
+  --tsv-server-header-gradient-end: #202225 !important;
+
+  /* ── High-Contrast Typography ── */
+  --tsv-font-color: #f2f3f5 !important;
+  --tsv-font-subtitle-color: #949ba4 !important;
+  --ts-third-font-color: #b5bac1 !important;
+}

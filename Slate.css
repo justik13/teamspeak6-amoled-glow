@@ -1,11 +1,13 @@
 @import url(TeamSpeak.css);
 @import url(Glassmorphism.css);
 
-/* AMOLED Slate — Midnight Slate (IPS & LCD Calibrated Edition)
+/* Midnight Slate — IPS & LCD Calibrated Edition
    Calibrated for IPS/LCD displays: #0d1117 deep slate base hides backlight bleed,
    eliminates IPS glow in corners, with gentle electric sky blue accents. */
 
-:root, ::after, ::before {
+:root,
+::after,
+::before {
   /* ── Accent (Electric Sky Blue / Cyan) ── */
   --custom-color-accent-light: #38bdf8;
   --custom-color-accent-dark: #0284c7;
@@ -19,6 +21,10 @@
   --custom-color-slider1: #38bdf8;
   --custom-color-slider2: rgba(255, 255, 255, 0.18);
 
+  --card-outline: rgba(56, 189, 248, 0.28) !important;
+  --tsv-tint: var(--custom-color-accent-light) !important;
+  --tsv-tint2: var(--custom-color-accent-light) !important;
+
   /* ── IPS Surface Ladder (Replaces pure #000000 to eliminate IPS glow) ── */
   --custom-value-dark1: #0d1117;
   --custom-value-dark2: #161b22;
@@ -28,32 +34,21 @@
   --custom-value-dark6: #373e47;
   --custom-value-dark7: #444c56;
 
+  /* ── Harmonized Surfaces (Single Source of Truth) ── */
+  --custom-sidebar-bg: #0d1117 !important;
+  --custom-header-bg: #161b22 !important;
+  --card-background: #161b22 !important;
+  --card-hover-background: #1c2128 !important;
+  --ts-primary-background: #0d1117 !important;
+  --tsv-bg: #0d1117 !important;
+  --tsv-header-bg: #161b22 !important;
+  --ts-new-header-bg: #161b22 !important;
+  --tsv-view-header-bg: #161b22 !important;
+  --tsv-server-header-gradient-start: #161b22 !important;
+  --tsv-server-header-gradient-end: #161b22 !important;
+
   /* ── IPS Calibrated Typography (Crisp & High Contrast) ── */
   --tsv-font-color: #f0f3f6 !important;
   --tsv-font-subtitle-color: #9aa4b2 !important;
   --ts-third-font-color: #c0c8d4 !important;
-}
-
-/* Dashboard & discovery backgrounds in Slate */
-.tsv-dashboard-servers__content,
-.tsv-dashboard-chats,
-.tsv-dashboard-news,
-.ts-discovery-wrapper {
-  background: #0d1117 !important;
-}
-
-/* Glass adjustments for IPS matrices */
-.tsv-sidebar .tsv-body-background {
-  background: rgba(13, 17, 23, 0.85) !important;
-}
-
-.tsv-view-banner .tsv-view-background,
-.tsv-view-header,
-.ts-server-header,
-.ts-new-header-bg {
-  background: rgba(22, 27, 34, 0.88) !important;
-}
-
-.screen-overlay__bottom {
-  background: rgba(13, 17, 23, 0.90) !important;
 }

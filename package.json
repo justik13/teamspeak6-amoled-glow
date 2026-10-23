@@ -1,7 +1,7 @@
 {
     "name": "AMOLED Cyber Glow",
     "description": "A pure-black AMOLED & QD-OLED calibrated theme for TeamSpeak 6 with Dark Glass, Voice Rings, and Neon Glow.",
-    "version": "1.5.0",
+    "version": "1.6.0",
     "identifier": "amoled.dark.minimalistic",
     "engines": {
         "teamspeak": 1
@@ -49,9 +49,45 @@
                 "apiVersion": 1
             },
             {
+                "name": "AMOLED Emerald",
+                "source": "Emerald.css",
+                "image": "Emerald.png",
+                "apiVersion": 1
+            },
+            {
+                "name": "AMOLED Ruby",
+                "source": "Ruby.css",
+                "image": "Ruby.png",
+                "apiVersion": 1
+            },
+            {
+                "name": "AMOLED Silver (Platinum)",
+                "source": "Silver.css",
+                "image": "Silver.png",
+                "apiVersion": 1
+            },
+            {
+                "name": "AMOLED Abyss (Deep Teal)",
+                "source": "Abyss.css",
+                "image": "Abyss.png",
+                "apiVersion": 1
+            },
+            {
                 "name": "Midnight Slate (IPS)",
                 "source": "Slate.css",
                 "image": "Slate.png",
+                "apiVersion": 1
+            },
+            {
+                "name": "Cyber Graphite",
+                "source": "Graphite.css",
+                "image": "Graphite.png",
+                "apiVersion": 1
+            },
+            {
+                "name": "Catppuccin Mocha",
+                "source": "Catppuccin.css",
+                "image": "Catppuccin.png",
                 "apiVersion": 1
             }
         ]

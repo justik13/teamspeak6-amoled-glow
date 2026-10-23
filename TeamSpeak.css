@@ -178,8 +178,19 @@ textarea:focus-visible {
 
   /* Core surfaces — Pure black base */
   --tsv-bg: var(--custom-value-dark1) !important;
-  --tsv-shaded-bg: var(--custom-value-dark1) !important;
-  --tsv-contrast-bg: var(--custom-value-dark2) !important;
+  --tsv-shaded-bg: var(--custom-sidebar-bg, var(--custom-value-dark1)) !important;
+  --ts-primary-background: var(--custom-value-dark1) !important;
+  --ts-sidebar-background: var(--custom-sidebar-bg, var(--custom-value-dark1)) !important;
+  --ts-sidebar-footer-background: var(--custom-sidebar-bg, var(--custom-value-dark1)) !important;
+  --ts-sidebar-titlebar-bg-color: var(--custom-sidebar-bg, var(--custom-value-dark1)) !important;
+  --ts-sidebar-connections-background: var(--custom-sidebar-bg, var(--custom-value-dark1)) !important;
+  --ts-sidebar-search-background: var(--custom-sidebar-bg, var(--custom-value-dark1)) !important;
+  --ts-chat-background-color: var(--custom-value-dark1) !important;
+  --ts-sidebar-titlebar-background: var(--custom-sidebar-bg, var(--custom-value-dark1)) !important;
+  --ts-content-titlebar-background: var(--custom-header-bg, var(--custom-value-dark1)) !important;
+  --ts-secondary-sidebar-titlebar-bg-color: var(--custom-sidebar-bg, var(--custom-value-dark1)) !important;
+  --ts-tab-strip-background: var(--custom-sidebar-bg, var(--custom-value-dark1)) !important;
+  --tsv-contrast-bg: var(--custom-header-bg, var(--custom-value-dark2)) !important;
   --tsv-contrast-strong-bg: var(--custom-value-dark3) !important;
 
   /* Context menu */
@@ -188,8 +199,8 @@ textarea:focus-visible {
   --tsv-context-menu-item-selection: rgba(var(--accent-rgb), 0.15) !important;
 
   /* Header */
-  --tsv-header-bg: rgba(5, 6, 8, 0.85) !important;
-  --ts-new-header-bg: rgba(5, 6, 8, 0.85) !important;
+  --tsv-header-bg: var(--custom-header-bg, var(--custom-value-dark1)) !important;
+  --ts-new-header-bg: var(--custom-header-bg, var(--custom-value-dark1)) !important;
 
   /* System messages */
   --ts-chat-system-message-bg: transparent !important;
@@ -227,15 +238,15 @@ textarea:focus-visible {
   --tsv-deviant-bg: rgba(16, 18, 24, 0.70) !important;
 
   /* Server tree */
-  --tsv-servertree-bg-gradient: var(--custom-value-dark1) !important;
-  --tsv-view-header-bg: rgba(5, 6, 8, 0.85) !important;
-  --tsv-view-header-gradient-start: rgba(5, 6, 8, 0.85) !important;
-  --tsv-server-header-gradient-start: rgba(5, 6, 8, 0.85) !important;
-  --tsv-server-header-gradient-end: rgba(5, 6, 8, 0.85) !important;
+  --tsv-servertree-bg-gradient: var(--ts-primary-background, var(--tsv-bg, var(--custom-value-dark1))) !important;
+  --tsv-view-header-bg: var(--custom-header-bg, var(--custom-value-dark1)) !important;
+  --tsv-view-header-gradient-start: var(--custom-header-bg, var(--custom-value-dark1)) !important;
+  --tsv-server-header-gradient-start: var(--custom-header-bg, var(--custom-value-dark1)) !important;
+  --tsv-server-header-gradient-end: var(--custom-sidebar-bg, var(--custom-value-dark1)) !important;
 
   /* Cards */
-  --card-background: rgba(16, 18, 24, 0.70) !important;
-  --card-hover-background: rgba(24, 28, 38, 0.80) !important;
+  --card-background: var(--custom-value-dark2, rgba(16, 18, 24, 0.70)) !important;
+  --card-hover-background: var(--custom-value-dark3, rgba(24, 28, 38, 0.80)) !important;
 
   /* Hero button */
   --hero-button-background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.35), rgba(var(--accent-rgb), 0.12)) !important;
@@ -252,6 +263,35 @@ textarea:focus-visible {
   --highlight-outline-color: var(--accent-glow) !important;
   --tsv-preview-bg: rgba(16, 18, 24, 0.70) !important;
   --tsv-highlight-header-bg: rgba(16, 18, 24, 0.70) !important;
+}
+
+/* ── Window Titlebar & Top Header ── */
+.tsv-header,
+.tsv-header:before,
+.tsv-header-backdrop,
+.tsv-window-bar,
+.tsv-bar.tsv-window-bar,
+.tsv-bar.tsv-title-bar,
+.tsv-content-header-bar,
+.main-content titlebar,
+titlebar {
+  background: var(--tsv-header-bg, var(--custom-header-bg, var(--custom-value-dark1))) !important;
+}
+
+/* ── Seamless Sidebar Footer (Removes harsh horizontal line above user profile) ── */
+.ts-sidebar-footer,
+.tsv-sidebar .tsv-footer {
+  border-top: none !important;
+}
+
+/* ── Discovery & Navigation Separator Guards ── */
+.ts-discovery-card-border:after {
+  border: 2px solid var(--card-outline, rgba(255, 255, 255, 0.08)) !important;
+}
+
+.horizontal-faded-sep:after,
+.horizontal-faded-sep[data-v-2ac1d302]:after {
+  background: var(--tsv-tint2, var(--custom-color-accent-light)) !important;
 }
 
 
