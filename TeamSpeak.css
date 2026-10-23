@@ -293,18 +293,24 @@ titlebar,
   border-radius: 9999px !important;
 }
 
-/* Seamless Server Banner (integrates banner into header, removes floating island & seams) */
+/* ── Server Banner Card — Clean Rounded Card matching native design ── */
 .tsv-view-banner-container {
   background: transparent !important;
-  border-radius: 0 !important;
 }
-.tsv-view-banner-container .tsv-view-banner {
-  margin: 0 !important;
+
+.tsv-view-banner {
+  background: var(--card-background, var(--custom-value-dark2)) !important;
+  border: 1px solid var(--card-outline, rgba(255, 255, 255, 0.12)) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.20) !important;
 }
+
 .tsv-view-banner .tsv-view-background {
-  border-radius: 0 !important;
+  background: transparent !important;
   border: none !important;
+  border-radius: 7px !important;
 }
+
 .tsv-view-banner .tsv-view-background:before,
 .tsv-view-banner .tsv-view-background:after {
   display: none !important;
