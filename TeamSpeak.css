@@ -1294,16 +1294,23 @@ input[type="search"]:focus:not(.has-error, .error, .is-error, :invalid) {
   filter: drop-shadow(0 0 5px var(--accent-glow-subtle)) !important;
 }
 
-/* Hyperlinks & Pinned Titles */
+/* Hyperlinks & Pinned Titles — WCAG 2.2 Accessible Underlines */
 a:not(.tsv-button, .tsv-tool-button, .tsv-item, .tsv-tab),
+.ts-chat-room-event-bubble a,
+.ts-chat-message-content a,
 .tsv-pinned-message-title {
   color: var(--custom-color-accent-light) !important;
-  text-decoration: none !important;
-  transition: color 120ms ease, text-shadow 120ms ease !important;
-}
-a:not(.tsv-button, .tsv-tool-button, .tsv-item, .tsv-tab):hover {
-  color: var(--tsv-font-color, #f1f3f7) !important;
   text-decoration: underline !important;
+  text-decoration-color: rgba(var(--accent-rgb), 0.45) !important;
+  text-underline-offset: 3px !important;
+  text-decoration-thickness: 1px !important;
+  transition: color 120ms ease, text-decoration-color 120ms ease, text-shadow 120ms ease !important;
+}
+a:not(.tsv-button, .tsv-tool-button, .tsv-item, .tsv-tab):hover,
+.ts-chat-room-event-bubble a:hover,
+.ts-chat-message-content a:hover {
+  color: var(--tsv-font-color, #f1f3f7) !important;
+  text-decoration-color: var(--custom-color-accent-light) !important;
   text-shadow: 0 0 8px var(--accent-glow-subtle) !important;
 }
 
