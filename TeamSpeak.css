@@ -491,6 +491,12 @@ titlebar,
   border-radius: 50% !important;
   animation: ts-voice-pulse 1.35s infinite cubic-bezier(0.4, 0, 0.2, 1) !important;
   box-shadow: 0 0 12px var(--tsv-online-color) !important;
+  /* Compositing & Layout isolation:
+     `contain: layout style` scopes layout and style calculations without clipping outer box-shadow.
+     `will-change` promotes active voice rings to isolated Chromium GPU layers to avoid repainting sibling DOM.
+     (Note: `contain: paint` is deliberately avoided here as it clips outer glow / box-shadow outside the avatar box). */
+  contain: layout style !important;
+  will-change: transform, box-shadow !important;
 }
 
 /* Talking icon glow in server tree */
@@ -499,6 +505,8 @@ titlebar,
 svg.tsv-icon-client-talking,
 svg.tsv-icon-client-detailed-talking {
   animation: ts-voice-glow 1.35s infinite ease-in-out !important;
+  contain: layout style !important;
+  will-change: transform, filter !important;
 }
 
 /* Accessibility — Respect system reduced motion preferences */
@@ -518,6 +526,7 @@ svg.tsv-icon-client-detailed-talking {
   .menu {
     animation: none !important;
     transform: none !important;
+    will-change: auto !important;
   }
 
   *, ::before, ::after {
