@@ -67,6 +67,50 @@
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.60), 0 0 16px var(--accent-glow-subtle) !important;
 }
 
+/* ── Dropdown & Popover Stacking Context Elevation (Comprehensive) ──
+   Elevates cards, rows, columns, and containers hosting an active dropdown so the floating menu renders above sibling glass cards */
+.ts-card:has(.multiselect--active),
+.tsv-item-card:has(.multiselect--active),
+.ts-discovery-card:has(.multiselect--active),
+.ts-server-card:has(.multiselect--active),
+.ts-action-card:has(.multiselect--active),
+.ts-sidebar-card:has(.multiselect--active),
+.ts-edit-bookmark-popout:has(.multiselect--active),
+.ts-audio-device-recovery:has(.multiselect--active),
+.tsv-item:has(.multiselect--active),
+.ts-keybinds-hotkeys-entry:has(.multiselect--active),
+.ts-keybinds-hotkeys-group:has(.multiselect--active),
+.ts-keybinds-hotkeys-container:has(.multiselect--active),
+.ts-option-row:has(.multiselect--active),
+.ts-options-as-table:has(.multiselect--active),
+.ts-widget:has(.multiselect--active),
+.ts-widget-wrapper:has(.multiselect--active),
+.ts-widget-container:has(.multiselect--active),
+.ts-widget-column:has(.multiselect--active),
+.ts-widget-grid:has(.multiselect--active),
+.ts-information-row:has(.multiselect--active),
+.ts-card-content:has(.multiselect--active),
+.ts-card-setting-container:has(.multiselect--active),
+.ts-vadmode-container:has(.multiselect--active),
+.ts-device-selection:has(.multiselect--active),
+.ts-audio-device-selector:has(.multiselect--active),
+.ts-identity-selector:has(.multiselect--active),
+.ts-pagination-container:has(.multiselect--active) {
+  position: relative !important;
+  z-index: 100 !important;
+  overflow: visible !important;
+}
+
+.ts-card:focus-within,
+.ts-widget:focus-within,
+.ts-widget-wrapper:focus-within,
+.ts-widget-container:focus-within,
+.ts-option-row:focus-within,
+.tsv-item:focus-within {
+  position: relative !important;
+  z-index: 90 !important;
+}
+
 /* ── Chat input — dark glass ── */
 .ts-chat-input-container {
   background: rgba(14, 16, 22, 0.75) !important;
@@ -102,17 +146,25 @@
   border-right-color: rgba(var(--accent-rgb), 0.22) !important;
 }
 
-/* ── Context menus & Popups — Apple Deep Glass ── */
+/* ── Context menus, Submenus & Popups — Apple Deep Glass ── */
 .tsv-context-menu,
 .ts-context-menu,
+.ts-false-context-menu,
+.ts-context-menu-sub-group,
 .menu,
-.ts-tooltip {
-  background: rgba(12, 14, 20, 0.92) !important;
+.v-popper__inner,
+.multiselect__content-wrapper {
+  background: rgba(12, 14, 20, 0.94) !important;
   backdrop-filter: blur(24px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
   border: 1px solid rgba(255, 255, 255, 0.12) !important;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75), 0 0 20px var(--accent-glow-subtle), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
   border-radius: 8px !important;
+}
+
+/* Tooltip & Popover Arrow Theme Sync (Preserves pure triangular borders) */
+.v-popper__popper {
+  --tsv-contrast-bg: rgba(12, 14, 20, 0.94) !important;
 }
 
 /* ── Modals & Overlays — Frosted Backdrop ── */
@@ -163,8 +215,12 @@
   .ts-chat-input-container,
   .tsv-context-menu,
   .ts-context-menu,
+  .ts-false-context-menu,
+  .ts-context-menu-sub-group,
   .menu,
   .ts-tooltip,
+  .v-popper__inner,
+  .multiselect__content-wrapper,
   .tsv-modal-overlay,
   .ts-incoming-call-modal__overlay,
   .ts-modal-container-display-overlayed,

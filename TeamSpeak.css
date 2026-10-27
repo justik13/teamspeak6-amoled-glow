@@ -155,6 +155,22 @@ textarea:focus-visible {
   --ts-drag-border: var(--custom-color-accent-light) !important;
   --ts-select-arrow-color: var(--custom-color-accent-light) !important;
 
+  /* Multiselect & Dropdown tokens */
+  --ts-select-bg: rgba(12, 14, 20, 0.95) !important;
+  --ts-select-color: var(--tsv-font-color, #f1f3f7) !important;
+  --ts-select-border-color: rgba(255, 255, 255, 0.10) !important;
+  --ts-select-border-radius: 6px !important;
+  --ts-select-option-highlight-bg: rgba(var(--accent-rgb), 0.20) !important;
+  --ts-select-option-highlight-color: #ffffff !important;
+  --ts-select-option-selected-bg: rgba(var(--accent-rgb), 0.12) !important;
+  --ts-select-option-selected-color: var(--custom-color-accent-light) !important;
+  --ts-select-option-selected-secondary-color: var(--custom-color-accent-light) !important;
+  --ts-select-option-selected-highlight-bg: rgba(var(--accent-rgb), 0.30) !important;
+  --ts-select-option-selected-highlight-color: #ffffff !important;
+  --ts-select-placeholder-color: #94a3b8 !important;
+  --ts-select-disabled-bg: rgba(20, 24, 34, 0.50) !important;
+  --ts-select-disabled-color: #94a3b8 !important;
+
   /* Global accents & toggles */
   --ts-brand-color-bl: var(--custom-color-accent-light) !important;
   --ts-primary-accent-color: var(--custom-color-accent-light) !important;
@@ -1227,6 +1243,223 @@ textarea:focus-visible:not(.has-error, .error, .is-error, :invalid) {
 
 
 /* ═══════════════════════════════════════════
+   DROPDOWNS & MULTISELECT (Audio/Video Devices, Settings, Pickers)
+   ═══════════════════════════════════════════ */
+
+/* Stacking Context Elevation (Comprehensive) — prevents parent cards, rows, columns & widgets from trapping open dropdowns behind sibling cards */
+.ts-card:has(.multiselect--active),
+.tsv-item-card:has(.multiselect--active),
+.ts-discovery-card:has(.multiselect--active),
+.ts-server-card:has(.multiselect--active),
+.ts-action-card:has(.multiselect--active),
+.ts-sidebar-card:has(.multiselect--active),
+.ts-edit-bookmark-popout:has(.multiselect--active),
+.ts-audio-device-recovery:has(.multiselect--active),
+.tsv-item:has(.multiselect--active),
+.ts-keybinds-hotkeys-entry:has(.multiselect--active),
+.ts-keybinds-hotkeys-group:has(.multiselect--active),
+.ts-keybinds-hotkeys-container:has(.multiselect--active),
+.ts-option-row:has(.multiselect--active),
+.ts-options-as-table:has(.multiselect--active),
+.ts-widget:has(.multiselect--active),
+.ts-widget-wrapper:has(.multiselect--active),
+.ts-widget-container:has(.multiselect--active),
+.ts-widget-column:has(.multiselect--active),
+.ts-widget-grid:has(.multiselect--active),
+.ts-information-row:has(.multiselect--active),
+.ts-card-content:has(.multiselect--active),
+.ts-card-setting-container:has(.multiselect--active),
+.ts-vadmode-container:has(.multiselect--active),
+.ts-device-selection:has(.multiselect--active),
+.ts-audio-device-selector:has(.multiselect--active),
+.ts-identity-selector:has(.multiselect--active),
+.ts-pagination-container:has(.multiselect--active) {
+  position: relative !important;
+  z-index: 100 !important;
+  overflow: visible !important;
+}
+
+.ts-card:focus-within,
+.ts-widget:focus-within,
+.ts-widget-wrapper:focus-within,
+.ts-widget-container:focus-within,
+.ts-option-row:focus-within,
+.tsv-item:focus-within {
+  position: relative !important;
+  z-index: 90 !important;
+}
+
+/* Multiselect Trigger & Container */
+.multiselect,
+.ts-select {
+  background: rgba(12, 14, 20, 0.75) !important;
+  border: 1px solid rgba(255, 255, 255, 0.10) !important;
+  border-radius: 6px !important;
+  box-sizing: border-box !important;
+  min-height: 34px !important;
+  transition: border-color 140ms var(--ease-spring), box-shadow 140ms var(--ease-spring), background-color 140ms var(--ease-spring) !important;
+}
+
+.multiselect:hover,
+.ts-select:hover {
+  border-color: rgba(var(--accent-rgb), 0.40) !important;
+  background: rgba(16, 19, 28, 0.85) !important;
+}
+
+.multiselect--active,
+.multiselect:focus-within {
+  border-color: var(--custom-color-accent-light) !important;
+  box-shadow: 0 0 12px var(--accent-glow-subtle), inset 0 0 0 1px var(--custom-color-accent-light) !important;
+  background: rgba(14, 17, 24, 0.95) !important;
+  z-index: 1000 !important;
+}
+
+.multiselect__tags {
+  background: transparent !important;
+  border: none !important;
+  padding: 6px 36px 6px 12px !important;
+  min-height: 32px !important;
+}
+
+.multiselect__single {
+  background: transparent !important;
+  color: var(--tsv-font-color, #f1f3f7) !important;
+  margin-bottom: 0 !important;
+  padding-left: 0 !important;
+  line-height: 20px !important;
+}
+
+.multiselect__input {
+  background: transparent !important;
+  color: var(--tsv-font-color, #f1f3f7) !important;
+  margin-bottom: 0 !important;
+}
+
+/* Multiselect Arrow */
+.multiselect__select {
+  height: 100% !important;
+  width: 32px !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 180ms var(--ease-spring) !important;
+}
+
+.multiselect__select:before {
+  border-color: var(--custom-color-accent-light) transparent transparent transparent !important;
+}
+
+.multiselect--active .multiselect__select {
+  transform: rotate(180deg) !important;
+}
+
+/* Multiselect Dropdown Popup Menu */
+.multiselect__content-wrapper {
+  background: rgba(10, 12, 17, 0.96) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(var(--accent-rgb), 0.35) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85), 0 0 16px var(--accent-glow-soft), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+  margin-top: 4px !important;
+  max-height: 260px !important;
+  z-index: 1000 !important;
+  animation: ts-spring-pop 130ms var(--ease-spring) !important;
+  transform-origin: top center !important;
+}
+
+.multiselect--above .multiselect__content-wrapper {
+  margin-top: 0 !important;
+  margin-bottom: 4px !important;
+  transform-origin: bottom center !important;
+}
+
+/* Dropdown Menu Items */
+.multiselect__content {
+  padding: 4px !important;
+}
+
+.multiselect__element {
+  margin: 1px 0 !important;
+}
+
+.multiselect__option {
+  border-radius: 6px !important;
+  padding: 7px 12px !important;
+  min-height: 32px !important;
+  line-height: 18px !important;
+  color: var(--tsv-font-color, #f1f3f7) !important;
+  background: transparent !important;
+  transition: background-color 100ms ease, color 100ms ease !important;
+}
+
+.multiselect__option--highlight {
+  background: rgba(var(--accent-rgb), 0.20) !important;
+  color: #ffffff !important;
+}
+
+.multiselect__option--highlight:after {
+  background: transparent !important;
+  color: var(--custom-color-accent-light) !important;
+}
+
+.multiselect__option--selected {
+  background: rgba(var(--accent-rgb), 0.12) !important;
+  color: var(--custom-color-accent-light) !important;
+  font-weight: 600 !important;
+}
+
+.multiselect__option--selected:after {
+  color: var(--custom-color-accent-light) !important;
+}
+
+.multiselect__option--selected.multiselect__option--highlight {
+  background: rgba(var(--accent-rgb), 0.30) !important;
+  color: #ffffff !important;
+}
+
+/* Device Selector Item Formatting (Left title / Right device model) */
+.ts-selector-w-default-option-content {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 12px !important;
+  width: 100% !important;
+}
+
+.ts-selector-w-default-option-title {
+  color: var(--tsv-font-color, #f1f3f7) !important;
+  font-weight: 450 !important;
+}
+
+.ts-selector-w-default-option-small {
+  color: var(--tsv-font-subtitle-color, #94a3b8) !important;
+  font-size: 0.85em !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+.multiselect__option--highlight .ts-selector-w-default-option-title {
+  color: #ffffff !important;
+}
+
+.multiselect__option--highlight .ts-selector-w-default-option-small {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.multiselect__option--selected .ts-selector-w-default-option-title {
+  color: var(--custom-color-accent-light) !important;
+  font-weight: 600 !important;
+}
+
+.multiselect__option--selected .ts-selector-w-default-option-small {
+  color: var(--custom-color-accent-light) !important;
+  opacity: 0.9 !important;
+}
+
+
+/* ═══════════════════════════════════════════
    CHAT & CONTROLS — Glass, Neon & Micro-interactions
    ═══════════════════════════════════════════ */
 
@@ -1436,6 +1669,7 @@ a:not(.tsv-button, .tsv-tool-button, .tsv-item, .tsv-tab):hover,
 .tsv-context-menu,
 .ts-context-menu,
 .ts-false-context-menu,
+.ts-context-menu-sub-group,
 .menu {
   animation: ts-spring-pop 140ms var(--ease-spring) !important;
   transform-origin: top left !important;
@@ -1444,10 +1678,12 @@ a:not(.tsv-button, .tsv-tool-button, .tsv-item, .tsv-tab):hover,
 .bottom-no-space.tsv-context-menu,
 .bottom-no-space.ts-context-menu,
 .bottom-no-space.ts-false-context-menu,
+.bottom-no-space.ts-context-menu-sub-group,
 .bottom-no-space.menu,
 .bottom-no-space .tsv-context-menu,
 .bottom-no-space .ts-context-menu,
 .bottom-no-space .ts-false-context-menu,
+.bottom-no-space .ts-context-menu-sub-group,
 .bottom-no-space .menu {
   transform-origin: bottom left !important;
 }
