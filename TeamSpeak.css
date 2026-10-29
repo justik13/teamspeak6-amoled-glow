@@ -535,16 +535,22 @@ svg.tsv-icon-client-detailed-talking {
   .ts-server-tree-icon.client.talking,
   svg.tsv-icon-client-talking,
   svg.tsv-icon-client-detailed-talking,
-  .tsv-context-menu,
   .ts-context-menu,
   .ts-false-context-menu,
   .ts-context-menu-sub-group,
   .v-popper__wrapper,
   .v-popper__inner,
-  .menu {
+  .multiselect__content-wrapper {
     animation: none !important;
-    transform: none !important;
     will-change: auto !important;
+  }
+
+  .ts-context-menu,
+  .ts-false-context-menu,
+  .ts-context-menu-sub-group,
+  .v-popper__wrapper,
+  .v-popper__inner {
+    transform: none !important;
   }
 
   *, ::before, ::after {
@@ -557,13 +563,14 @@ svg.tsv-icon-client-detailed-talking {
 @media (prefers-reduced-transparency: reduce) {
   .tsv-header-bg,
   .ts-new-header-bg,
-  .tsv-context-menu,
   .ts-context-menu,
+  .ts-false-context-menu,
+  .ts-context-menu-sub-group,
   .screen-overlay__bottom,
   .ts-chat-input-container {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    background: #090b10 !important;
+    background: var(--ts-primary-background, var(--tsv-bg, var(--custom-value-dark1, #000000))) !important;
     border-color: rgba(255, 255, 255, 0.22) !important;
   }
 }
@@ -1365,7 +1372,7 @@ textarea:focus-visible:not(.has-error, .error, .is-error, :invalid) {
   border-radius: 8px !important;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85), 0 0 16px var(--accent-glow-soft), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
   margin-top: 4px !important;
-  max-height: 260px !important;
+  max-height: 260px;
   z-index: 1000 !important;
   animation: ts-spring-pop 130ms var(--ease-spring) !important;
   transform-origin: top center !important;
@@ -1668,25 +1675,22 @@ a:not(.tsv-button, .tsv-tool-button, .tsv-item, .tsv-tab):hover,
   }
 }
 
-.tsv-context-menu,
-.ts-context-menu,
-.ts-false-context-menu,
-.ts-context-menu-sub-group,
-.menu {
-  animation: ts-spring-pop 140ms var(--ease-spring) !important;
-  transform-origin: top left !important;
+@keyframes ts-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-.bottom-no-space.tsv-context-menu,
-.bottom-no-space.ts-context-menu,
-.bottom-no-space.ts-false-context-menu,
-.bottom-no-space.ts-context-menu-sub-group,
-.bottom-no-space.menu,
-.bottom-no-space .tsv-context-menu,
-.bottom-no-space .ts-context-menu,
-.bottom-no-space .ts-false-context-menu,
-.bottom-no-space .ts-context-menu-sub-group,
-.bottom-no-space .menu {
+.ts-context-menu,
+.ts-false-context-menu,
+.ts-context-menu-sub-group {
+  animation: ts-fade-in 110ms ease-out !important;
+}
+
+.bottom-no-space .ts-context-menu-sub>.ts-context-menu-sub-group {
   transform-origin: bottom left !important;
 }
 
