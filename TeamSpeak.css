@@ -538,7 +538,9 @@ svg.tsv-icon-client-detailed-talking {
   .tsv-context-menu,
   .ts-context-menu,
   .ts-false-context-menu,
-  .ts-tooltip,
+  .ts-context-menu-sub-group,
+  .v-popper__wrapper,
+  .v-popper__inner,
   .menu {
     animation: none !important;
     transform: none !important;
@@ -1688,7 +1690,24 @@ a:not(.tsv-button, .tsv-tool-button, .tsv-item, .tsv-tab):hover,
   transform-origin: bottom left !important;
 }
 
+@keyframes ts-tooltip-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Tooltips & Popovers — Animate inner wrapper so Popper's translate3d positioning on .v-popper__popper is preserved */
+.v-popper__popper,
 .ts-tooltip {
-  animation: ts-spring-pop 120ms var(--ease-spring) !important;
-  transform-origin: center bottom !important;
+  animation: none !important;
+}
+
+.v-popper__popper .v-popper__wrapper,
+.ts-tooltip .v-popper__wrapper {
+  animation: ts-tooltip-pop 120ms var(--ease-spring) !important;
 }
