@@ -575,6 +575,25 @@ svg.tsv-icon-client-detailed-talking {
   }
 }
 
+/* Responsive touch ergonomics for Tablets & Touchscreen devices (Apple Design & UI/UX Pro Max) */
+@media (pointer: coarse) {
+  .ts-audio-controls .tsv-tool-button,
+  .tsv-tool-button {
+    min-height: 36px !important;
+    min-width: 36px !important;
+    padding: 4px 6px !important;
+  }
+
+  .ts-server-tree-item-leaf.channel:not(.spacer) .tsv-item-highlight {
+    min-height: 32px !important;
+  }
+
+  .multiselect__option {
+    min-height: 38px !important;
+    padding: 10px 14px !important;
+  }
+}
+
 
 /* ═══════════════════════════════════════════
    BUTTONS — Apple Bevel & Emil Spring Physics
